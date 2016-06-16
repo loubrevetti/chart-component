@@ -1,9 +1,9 @@
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
-import {Pie} from '../voya-chart/pie/pie'
+import {Donut} from '../voya-chart/donut/donut'
 import {TimeSeries} from '../voya-chart/time-series/time-series'
 export function chartUtilities(){
     const charts = {
-        "_PIE":Pie,
+        "_DONUT":Donut,
         "_TIMESERIES":TimeSeries
     }
     function getChart(chartProperties){

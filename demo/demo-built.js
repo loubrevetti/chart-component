@@ -4,7 +4,7 @@
 var require = this.require, exports = this.exports, module = this.module;
 !function(e){function r(e,r){for(var n=e.split(".");n.length;)r=r[n.shift()];return r}function n(n){if("string"==typeof n)return r(n,e);if(!(n instanceof Array))throw new Error("Global exports must be a string or array.");for(var t={},o=!0,f=0;f<n.length;f++){var i=r(n[f],e);o&&(t["default"]=i,o=!1),t[n[f].split(".").pop()]=i}return t}function t(r){if(Object.keys)Object.keys(e).forEach(r);else for(var n in e)a.call(e,n)&&r(n)}function o(r){t(function(n){if(-1==l.call(s,n)){try{var t=e[n]}catch(o){s.push(n)}r(n,t)}})}var f,i=$__System,a=Object.prototype.hasOwnProperty,l=Array.prototype.indexOf||function(e){for(var r=0,n=this.length;n>r;r++)if(this[r]===e)return r;return-1},s=["_g","sessionStorage","localStorage","clipboardData","frames","frameElement","external","mozAnimationStartTime","webkitStorageInfo","webkitIndexedDB","mozInnerScreenY","mozInnerScreenX"];i.set("@@global-helpers",i.newModule({prepareGlobal:function(r,t,i){var a=e.define;e.define=void 0;var l;if(i){l={};for(var s in i)l[s]=e[s],e[s]=i[s]}return t||(f={},o(function(e,r){f[e]=r})),function(){var r;if(t)r=n(t);else{r={};var i,s;o(function(e,n){f[e]!==n&&"undefined"!=typeof n&&(r[e]=n,"undefined"!=typeof i?s||i===n||(s=!0):i=n)}),r=s?r:i}if(l)for(var u in l)e[u]=l[u];return e.define=a,r}}}))}("undefined"!=typeof self?self:global);
 $__System.register('2', ['3', '4', '5', '6', '7', '8', '9'], function (_export) {
-    var VoyaChart, _get, _inherits, _defineDecoratedPropertyDescriptor, _createDecoratedClass, _classCallCheck, property, nullable, Pie;
+    var VoyaChart, _get, _inherits, _defineDecoratedPropertyDescriptor, _createDecoratedClass, _classCallCheck, property, nullable, Donut;
 
     return {
         setters: [function (_6) {
@@ -26,15 +26,15 @@ $__System.register('2', ['3', '4', '5', '6', '7', '8', '9'], function (_export) 
         execute: function () {
             'use strict';
 
-            Pie = (function (_VoyaChart) {
+            Donut = (function (_VoyaChart) {
                 var _instanceInitializers = {};
 
-                _inherits(Pie, _VoyaChart);
+                _inherits(Donut, _VoyaChart);
 
-                function Pie(chartProperties) {
-                    _classCallCheck(this, Pie);
+                function Donut(chartProperties) {
+                    _classCallCheck(this, Donut);
 
-                    _get(Object.getPrototypeOf(Pie.prototype), 'constructor', this).call(this, chartProperties);
+                    _get(Object.getPrototypeOf(Donut.prototype), 'constructor', this).call(this, chartProperties);
 
                     _defineDecoratedPropertyDescriptor(this, 'width', _instanceInitializers);
 
@@ -45,11 +45,10 @@ $__System.register('2', ['3', '4', '5', '6', '7', '8', '9'], function (_export) 
                     this.createConfig();
                 }
 
-                _createDecoratedClass(Pie, [{
+                _createDecoratedClass(Donut, [{
                     key: 'createConfig',
                     value: function createConfig() {
                         this.dataModel['columns'] = [["setosa", 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.2, 0.3, 0.3, 0.2, 0.6, 0.4, 0.3, 0.2, 0.2, 0.2, 0.2], ["versicolor", 1.4, 1.5, 1.5, 1.3, 1.5, 1.3, 1.6, 1.0, 1.3, 1.4, 1.0, 1.5, 1.0, 1.4, 1.3, 1.4, 1.5, 1.0, 1.5, 1.1, 1.8, 1.3, 1.5, 1.2, 1.3, 1.4, 1.4, 1.7, 1.5, 1.0, 1.1, 1.0, 1.2, 1.6, 1.5, 1.6, 1.5, 1.3, 1.3, 1.3, 1.2, 1.4, 1.2, 1.0, 1.3, 1.2, 1.3, 1.3, 1.1, 1.3], ["virginica", 2.5, 1.9, 2.1, 1.8, 2.2, 2.1, 1.7, 1.8, 1.8, 2.5, 2.0, 1.9, 2.1, 2.0, 2.4, 2.3, 1.8, 2.2, 2.3, 1.5, 2.3, 2.0, 2.0, 1.8, 2.1, 1.8, 1.8, 1.8, 2.1, 1.6, 1.9, 2.0, 2.2, 1.5, 1.4, 2.3, 2.4, 1.8, 1.8, 2.1, 2.4, 2.3, 1.9, 2.3, 2.5, 2.3, 1.9, 2.0, 2.3, 1.8]];
-                        this.dataModel["type"] = "donut";
                     }
                 }, {
                     key: 'width',
@@ -68,10 +67,10 @@ $__System.register('2', ['3', '4', '5', '6', '7', '8', '9'], function (_export) 
                     enumerable: true
                 }], null, _instanceInitializers);
 
-                return Pie;
+                return Donut;
             })(VoyaChart);
 
-            _export('Pie', Pie);
+            _export('Donut', Donut);
         }
     };
 });
@@ -22776,13 +22775,16 @@ $__System.register('3', ['6', '7', '8', '9', '42', '64', '3b', '3e'], function (
 				}, {
 					key: 'createChart',
 					value: function createChart() {
-						var chartApi = this;
-						var chart = _c3.get(this).generate({
-							data: chartApi.dataModel,
-							donut: {
-								title: chartApi.title
-							}
-						});
+						var chartType = this.constructor.name.toLowerCase(),
+						    chartAPI = { data: this.dataModel },
+						    typeConfig = {};
+						chartAPI.data.type = chartType;
+						for (var prop in this._properties) {
+							if (VoyaChart.prototype[prop] !== undefined) continue;
+							typeConfig[prop] = this._properties[prop];
+						}
+						chartAPI[chartType] = typeConfig;
+						var chart = _c3.get(this).generate(chartAPI);
 						this.exposeC3Api(this, chart);
 					}
 				}, {
@@ -22849,13 +22851,13 @@ $__System.register('65', ['3', '4', '5', '8'], function (_export) {
 $__System.register('66', ['2', '9', '65'], function (_export) {
     'use strict';
 
-    var Pie, property, nullable, TimeSeries;
+    var Donut, property, nullable, TimeSeries;
 
     _export('chartUtilities', chartUtilities);
 
     function chartUtilities() {
         var charts = {
-            "_PIE": Pie,
+            "_DONUT": Donut,
             "_TIMESERIES": TimeSeries
         };
         function getChart(chartProperties) {
@@ -22870,7 +22872,7 @@ $__System.register('66', ['2', '9', '65'], function (_export) {
 
     return {
         setters: [function (_2) {
-            Pie = _2.Pie;
+            Donut = _2.Donut;
         }, function (_) {
             property = _.property;
             nullable = _.nullable;
@@ -22938,6 +22940,7 @@ $__System.register('67', ['4', '5', '6', '7', '8', '9', '66', '3b'], function (_
                         this.chart = _utils.get(this).getChart(this.attributes);
                         this.chart.createChart();
                         this.appendChild(this.chart.element);
+                        console.dir(this);
                     }
                 }, {
                     key: 'chart',

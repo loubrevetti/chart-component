@@ -8,7 +8,6 @@ export class VoyaChart{
 			this.bindProperties(this,chartProperties);
 			this.dataModel={};
 		}
-		
 		@property
 		@nullable
 		apiUrl;
@@ -40,13 +39,14 @@ export class VoyaChart{
 		}
 
 		createChart(){
-			let chartApi = this
-			let chart = _c3.get(this).generate({
-				data: chartApi.dataModel,
-				donut: {
-					title: chartApi.title
-				}
-			})
+			let chartType = this.constructor.name.toLowerCase(), chartAPI = {data:this.dataModel}, typeConfig = {};
+			chartAPI.data.type = chartType
+			for(var prop in this._properties){
+				if(VoyaChart.prototype[prop]!==undefined) continue;
+				typeConfig[prop] = this._properties[prop]
+			}
+			chartAPI[chartType] = typeConfig
+			let chart = _c3.get(this).generate(chartAPI)
 			this.exposeC3Api(this,chart);
 		}
 }

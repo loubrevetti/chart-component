@@ -19,6 +19,7 @@ export class VoyaChart extends (HTMLElement || Element){
         this.chart = _utils.get(this).getChart(this.attributes);
         this.chart.createChart();
         this.appendChild(this.chart.element);
+        console.dir(this)
     }
 }
 document.registerElement('voya-chart', VoyaChart);
