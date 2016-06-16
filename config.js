@@ -20,6 +20,7 @@ System.config({
   map: {
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
+    "c3": "npm:c3@0.4.11",
     "core-js": "npm:core-js@1.2.6",
     "d3": "npm:d3@3.5.17",
     "dom-delegate": "npm:dom-delegate@2.0.3",
@@ -59,6 +60,11 @@ System.config({
       "ieee754": "npm:ieee754@1.1.6",
       "isarray": "npm:isarray@1.0.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:c3@0.4.11": {
+      "d3": "npm:d3@3.5.17",
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "path": "github:jspm/nodelibs-path@0.1.0"
     },
     "npm:core-js@1.2.6": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",

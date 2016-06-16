@@ -1,4 +1,4 @@
-import '../src/voya-charts';
+import '../src/voya-chart';
 import delegate from 'dom-delegate';
 let eventMethod=(addEventListener) ? {addEventListener:"DOMContentLoaded"} : {attachEvent:"onload"};
 window[Object.keys(eventMethod)[0]](eventMethod[Object.keys(eventMethod)[0]],appLoaded)

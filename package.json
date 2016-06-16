@@ -42,7 +42,7 @@
       "lib": "src"
     },
     "dependencies": {
-      "d3": "npm:d3@^3.5.17",
+      "c3": "npm:c3@^0.4.11",
       "dom-delegate": "npm:dom-delegate@^2.0.3",
       "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@^2.0.0",
       "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@^3.1.0-beta"
