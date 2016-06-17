@@ -42,13 +42,26 @@ $__System.register('2', ['3', '4', '5', '6', '7', '8', '9'], function (_export) 
 
                     _defineDecoratedPropertyDescriptor(this, 'expand', _instanceInitializers);
 
-                    this.createConfig();
+                    this.addEventListener("dataAssembled", this.createConfig.bind(this));
                 }
 
                 _createDecoratedClass(Donut, [{
+                    key: 'propertyChangedCallback',
+                    value: function propertyChangedCallback(prop, oldValue, newValue) {
+                        if (oldValue === newValue) return;
+                        if (prop === "dataModel") {
+                            console.dir(newValue);
+                        }
+                    }
+                }, {
                     key: 'createConfig',
                     value: function createConfig() {
-                        this.dataModel['columns'] = [["setosa", 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.2, 0.3, 0.3, 0.2, 0.6, 0.4, 0.3, 0.2, 0.2, 0.2, 0.2], ["versicolor", 1.4, 1.5, 1.5, 1.3, 1.5, 1.3, 1.6, 1.0, 1.3, 1.4, 1.0, 1.5, 1.0, 1.4, 1.3, 1.4, 1.5, 1.0, 1.5, 1.1, 1.8, 1.3, 1.5, 1.2, 1.3, 1.4, 1.4, 1.7, 1.5, 1.0, 1.1, 1.0, 1.2, 1.6, 1.5, 1.6, 1.5, 1.3, 1.3, 1.3, 1.2, 1.4, 1.2, 1.0, 1.3, 1.2, 1.3, 1.3, 1.1, 1.3], ["virginica", 2.5, 1.9, 2.1, 1.8, 2.2, 2.1, 1.7, 1.8, 1.8, 2.5, 2.0, 1.9, 2.1, 2.0, 2.4, 2.3, 1.8, 2.2, 2.3, 1.5, 2.3, 2.0, 2.0, 1.8, 2.1, 1.8, 1.8, 1.8, 2.1, 1.6, 1.9, 2.0, 2.2, 1.5, 1.4, 2.3, 2.4, 1.8, 1.8, 2.1, 2.4, 2.3, 1.9, 2.3, 2.5, 2.3, 1.9, 2.0, 2.3, 1.8]];
+                        console.dir(this.dataModel);
+                        /*this.dataModel['columns'] = [
+                            ["setosa", 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.2, 0.3, 0.3, 0.2, 0.6, 0.4, 0.3, 0.2, 0.2, 0.2, 0.2],
+                            ["versicolor", 1.4, 1.5, 1.5, 1.3, 1.5, 1.3, 1.6, 1.0, 1.3, 1.4, 1.0, 1.5, 1.0, 1.4, 1.3, 1.4, 1.5, 1.0, 1.5, 1.1, 1.8, 1.3, 1.5, 1.2, 1.3, 1.4, 1.4, 1.7, 1.5, 1.0, 1.1, 1.0, 1.2, 1.6, 1.5, 1.6, 1.5, 1.3, 1.3, 1.3, 1.2, 1.4, 1.2, 1.0, 1.3, 1.2, 1.3, 1.3, 1.1, 1.3],
+                            ["virginica", 2.5, 1.9, 2.1, 1.8, 2.2, 2.1, 1.7, 1.8, 1.8, 2.5, 2.0, 1.9, 2.1, 2.0, 2.4, 2.3, 1.8, 2.2, 2.3, 1.5, 2.3, 2.0, 2.0, 1.8, 2.1, 1.8, 1.8, 1.8, 2.1, 1.6, 1.9, 2.0, 2.2, 1.5, 1.4, 2.3, 2.4, 1.8, 1.8, 2.1, 2.4, 2.3, 1.9, 2.3, 2.5, 2.3, 1.9, 2.0, 2.3, 1.8]
+                        ]*/
                     }
                 }, {
                     key: 'width',
@@ -22705,8 +22718,40 @@ $__System.register('64', [], function (_export) {
         execute: function () {}
     };
 });
-$__System.register('3', ['6', '7', '8', '9', '42', '64', '3b', '3e'], function (_export) {
-	var _defineDecoratedPropertyDescriptor, _createDecoratedClass, _classCallCheck, property, nullable, c3, RestAssembely, _WeakMap, _Object$keys, _c3, VoyaChart;
+$__System.register('65', ['64'], function (_export) {
+    'use strict';
+
+    var restAssembly;
+
+    _export('VoyaChartServices', VoyaChartServices);
+
+    function VoyaChartServices() {
+
+        var REST = restAssembly();
+
+        function api(params) {
+            REST.buildRequest(params);
+        }
+        function loadData() {
+            return fetch(REST.request()).then(function (response) {
+                return response.json();
+            });
+        }
+        return {
+            api: api,
+            loadData: loadData
+        };
+    }
+
+    return {
+        setters: [function (_) {
+            restAssembly = _.restAssembly;
+        }],
+        execute: function () {}
+    };
+});
+$__System.register('3', ['6', '7', '8', '9', '42', '65', '3b', '3e'], function (_export) {
+	var _defineDecoratedPropertyDescriptor, _createDecoratedClass, _classCallCheck, property, nullable, c3, VoyaChartServices, _WeakMap, _Object$keys, DATA_EVENT, _c3, VoyaChart;
 
 	return {
 		setters: [function (_) {
@@ -22721,7 +22766,7 @@ $__System.register('3', ['6', '7', '8', '9', '42', '64', '3b', '3e'], function (
 		}, function (_4) {
 			c3 = _4['default'];
 		}, function (_6) {
-			RestAssembely = _6.RestAssembely;
+			VoyaChartServices = _6.VoyaChartServices;
 		}, function (_b) {
 			_WeakMap = _b['default'];
 		}, function (_e) {
@@ -22730,6 +22775,7 @@ $__System.register('3', ['6', '7', '8', '9', '42', '64', '3b', '3e'], function (
 		execute: function () {
 			'use strict';
 
+			DATA_EVENT = new CustomEvent('dataAssembled');
 			_c3 = new _WeakMap();
 
 			VoyaChart = (function () {
@@ -22737,6 +22783,8 @@ $__System.register('3', ['6', '7', '8', '9', '42', '64', '3b', '3e'], function (
 
 				function VoyaChart(chartProperties) {
 					_classCallCheck(this, VoyaChart);
+
+					_defineDecoratedPropertyDescriptor(this, 'services', _instanceInitializers);
 
 					_defineDecoratedPropertyDescriptor(this, 'apiUrl', _instanceInitializers);
 
@@ -22747,8 +22795,11 @@ $__System.register('3', ['6', '7', '8', '9', '42', '64', '3b', '3e'], function (
 					_defineDecoratedPropertyDescriptor(this, 'element', _instanceInitializers);
 
 					_c3.set(this, c3);
+					this.services = VoyaChartServices();
+					this.dataEvent = new CustomEvent('dataAssembled');
 					this.bindProperties(this, chartProperties);
-					this.dataModel = {};
+					this.buildServices();
+					this.assembleData();
 				}
 
 				_createDecoratedClass(VoyaChart, [{
@@ -22765,12 +22816,19 @@ $__System.register('3', ['6', '7', '8', '9', '42', '64', '3b', '3e'], function (
 						});
 					}
 				}, {
-					key: 'exposeC3Api',
-					value: function exposeC3Api(chart, c3Properties) {
-						_Object$keys(c3Properties).forEach(function (prop) {
-							if (chart[prop] === undefined) return;
-							chart[prop] = c3Properties[prop];
-						});
+					key: 'buildServices',
+					value: function buildServices() {
+						if (!this.apiUrl) return;
+						var payload = this.apiParams ? JSON.parse(this.apiParams) : null;
+						var apiParams = { url: this.apiUrl, payload: payload };
+						this.services.api(apiParams);
+					}
+				}, {
+					key: 'assembleData',
+					value: function assembleData() {
+						this.services.loadData().then((function (response) {
+							this.dataModel = response.records;
+						}).bind(this));
 					}
 				}, {
 					key: 'createChart',
@@ -22787,6 +22845,19 @@ $__System.register('3', ['6', '7', '8', '9', '42', '64', '3b', '3e'], function (
 						var chart = _c3.get(this).generate(chartAPI);
 						this.exposeC3Api(this, chart);
 					}
+				}, {
+					key: 'exposeC3Api',
+					value: function exposeC3Api(chart, c3Properties) {
+						_Object$keys(c3Properties).forEach(function (prop) {
+							if (chart[prop] === undefined) return;
+							chart[prop] = c3Properties[prop];
+						});
+					}
+				}, {
+					key: 'services',
+					decorators: [nullable, property],
+					initializer: null,
+					enumerable: true
 				}, {
 					key: 'apiUrl',
 					decorators: [nullable, property],
@@ -22816,7 +22887,7 @@ $__System.register('3', ['6', '7', '8', '9', '42', '64', '3b', '3e'], function (
 		}
 	};
 });
-$__System.register('65', ['3', '4', '5', '8'], function (_export) {
+$__System.register('66', ['3', '4', '5', '8'], function (_export) {
     var VoyaChart, _get, _inherits, _classCallCheck, TimeSeries;
 
     return {
@@ -22848,7 +22919,7 @@ $__System.register('65', ['3', '4', '5', '8'], function (_export) {
         }
     };
 });
-$__System.register('66', ['2', '9', '65'], function (_export) {
+$__System.register('67', ['2', '9', '66'], function (_export) {
     'use strict';
 
     var Donut, property, nullable, TimeSeries;
@@ -22882,7 +22953,7 @@ $__System.register('66', ['2', '9', '65'], function (_export) {
         execute: function () {}
     };
 });
-$__System.register('67', ['4', '5', '6', '7', '8', '9', '66', '3b'], function (_export) {
+$__System.register('68', ['4', '5', '6', '7', '8', '9', '67', '3b'], function (_export) {
     var _get, _inherits, _defineDecoratedPropertyDescriptor, _createDecoratedClass, _classCallCheck, property, nullable, chartUtilities, _WeakMap, _utils, VoyaChart;
 
     return {
@@ -22958,7 +23029,7 @@ $__System.register('67', ['4', '5', '6', '7', '8', '9', '66', '3b'], function (_
         }
     };
 });
-$__System.registerDynamic("68", [], true, function($__require, exports, module) {
+$__System.registerDynamic("69", [], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -23184,13 +23255,13 @@ $__System.registerDynamic("68", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("69", ["68"], true, function($__require, exports, module) {
+$__System.registerDynamic("6a", ["69"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var Delegate = $__require('68');
+  var Delegate = $__require('69');
   module.exports = function(root) {
     return new Delegate(root);
   };
@@ -23198,16 +23269,16 @@ $__System.registerDynamic("69", ["68"], true, function($__require, exports, modu
   return module.exports;
 });
 
-$__System.registerDynamic("6a", ["69"], true, function($__require, exports, module) {
+$__System.registerDynamic("6b", ["6a"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__require('69');
+  module.exports = $__require('6a');
   return module.exports;
 });
 
-$__System.register('1', ['67', '3e', '6a'], function (_export) {
+$__System.register('1', ['68', '3e', '6b'], function (_export) {
 	var _Object$keys, delegate, eventMethod;
 
 	function appLoaded() {
@@ -23221,8 +23292,8 @@ $__System.register('1', ['67', '3e', '6a'], function (_export) {
 	return {
 		setters: [function (_) {}, function (_e) {
 			_Object$keys = _e['default'];
-		}, function (_a) {
-			delegate = _a['default'];
+		}, function (_b) {
+			delegate = _b['default'];
 		}],
 		execute: function () {
 			'use strict';
