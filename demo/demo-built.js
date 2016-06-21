@@ -24088,7 +24088,7 @@ $__System.register('89', ['3', '4', '5', '8', '9', '1e', 'a', 'b', 'c'], functio
                 }
 
                 /**
-                 * 
+                 * Handle property change.
                  * @Override
                  * @param {string} prop
                  * @param {*} oldValue
@@ -24103,29 +24103,25 @@ $__System.register('89', ['3', '4', '5', '8', '9', '1e', 'a', 'b', 'c'], functio
                         }
 
                         if (prop === "dataModel") {
-                            this.createConfig();
+                            this.assembleChartModel(this.getDataArray());
+                            this.createChart();
                         }
                     }
 
                     /**
-                     *
-                     */
-                }, {
-                    key: 'createConfig',
-                    value: function createConfig() {
-                        this.assembleChartModel(this.dissembleRawData());
-                        this.createChart();
-                    }
-
-                    /**
-                     *
+                     * TODO: Is all of this work necessary????????
+                     * 
                      * @returns {Array}
                      */
                 }, {
-                    key: 'dissembleRawData',
-                    value: function dissembleRawData() {
+                    key: 'getDataArray',
+                    value: function getDataArray() {
                         var dataMappings = new _Map();
 
+                        // Build a Map from the data supplied by the server.
+                        // Each Record contained in the DataModel is an Object, all of which contain the same properties.
+                        // Use the properties of first Record to set the keys in the Map.
+                        // The value of each item in the Map, will be an Array, whose first item will also be the key.
                         this.dataModel.forEach(function (record, idx) {
                             _Object$keys(record).forEach(function (key) {
                                 if (idx === 0) {
@@ -24136,6 +24132,7 @@ $__System.register('89', ['3', '4', '5', '8', '9', '1e', 'a', 'b', 'c'], functio
                             });
                         });
 
+                        // Convert the Map to an Array.
                         return _Array$from(dataMappings);
                     }
 

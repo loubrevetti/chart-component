@@ -8,7 +8,7 @@ export class AreaSpline extends VoyaChart {
     }
 
     /**
-     * 
+     * Handle property change.
      * @Override
      * @param {string} prop
      * @param {*} oldValue
@@ -20,35 +20,38 @@ export class AreaSpline extends VoyaChart {
         }
 
         if (prop === "dataModel") {
-            this.createConfig();
+            this.assembleChartModel(this.getDataArray());
+            this.createChart();
         }
     }
 
     /**
-     *
-     */
-    createConfig() {
-        this.assembleChartModel(this.dissembleRawData());
-        this.createChart();
-    }
-
-    /**
-     *
+     * TODO: Is all of this work necessary????????
+     * 
      * @returns {Array}
      */
-    dissembleRawData() {
+    getDataArray() {
         let dataMappings = new Map();
 
-        this.dataModel.forEach(function(record,idx) {
-            Object.keys(record).forEach(function(key) {
-                if (idx === 0) {
-                    dataMappings.set(key,[key]);
-                }
+        // Build a Map from the data supplied by the server.
+        // Each Record contained in the DataModel is an Object, all of which contain the same properties.
+        // Use the properties of first Record to set the keys in the Map.
+        // The value of each item in the Map, will be an Array, whose first item will also be the key.
+        this.dataModel.forEach(
+            (record, idx) => {
+                Object.keys(record).forEach(
+                    (key) => {
+                        if (idx === 0) {
+                            dataMappings.set(key, [key]);
+                        }
 
-                dataMappings.get(key).push(record[key]);
-            });
-        });
+                        dataMappings.get(key).push(record[key]);
+                    }
+                );
+            }
+        );
 
+        // Convert the Map to an Array.
         return Array.from(dataMappings);
     }
 
