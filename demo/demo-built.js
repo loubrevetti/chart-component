@@ -416,7 +416,8 @@ $__System.register('27', ['26', '28', '29', '2a', '2b', '2c', '2d', '1d', '2e', 
                     _defineDecoratedPropertyDescriptor(this, 'expand', _instanceInitializers);
 
                     this.labels = [];
-                    this.eventBus.on('rendered', this.newLegend.bind(this));
+                    this.eventBus.on('legenditemhover', this.showToolTip.bind(this));
+                    this.eventBus.on('legenditemout', this.hideToolTip.bind(this));
                 }
 
                 _createDecoratedClass(Donut, [{
@@ -455,26 +456,38 @@ $__System.register('27', ['26', '28', '29', '2a', '2b', '2c', '2d', '1d', '2e', 
                         }).bind(this));
                     }
                 }, {
-                    key: 'newLegend',
-                    value: function newLegend() {
-                        var names = this.getNames(),
-                            dataPoints = this.getData(),
-                            totalAmount = 0,
-                            labels = {};
-                        dataPoints.forEach(function (dataPoint) {
-                            var amount = 0;
-                            dataPoint.values.forEach(function (obj) {
-                                amount = amount + obj.value;
-                            });
-                            totalAmount += amount;
-                            labels[dataPoint.id] = amount;
+                    key: 'getAggregateNumber',
+                    value: function getAggregateNumber(id) {
+                        if (this.getData(id).length == 0) return null;
+                        var dataPoint = this.getData(id),
+                            amount = 0;
+                        dataPoint[0].values.forEach(function (obj) {
+                            amount = amount + obj.value;
                         });
-
-                        _Object$keys(labels).forEach(function (label) {
-                            var percentage = parseFloat(labels[label] / totalAmount * 100).toFixed(1);
-                            names[label] = percentage + "% " + names[label];
-                        });
-                        this.setNames(names);
+                        return amount;
+                    }
+                }, {
+                    key: 'getPercentage',
+                    value: function getPercentage(id) {
+                        var dataPoints = this.getData(),
+                            totalAmount = 0;
+                        dataPoints.forEach((function (dataPoint) {
+                            totalAmount += this.getAggregateNumber(dataPoint.id);
+                        }).bind(this));
+                        return parseFloat(this.getAggregateNumber(id) / totalAmount);
+                    }
+                }, {
+                    key: 'showToolTip',
+                    value: function showToolTip(toolTipId) {
+                        if (!this.getAggregateNumber(toolTipId)) return;
+                        var selector = toolTipId.replace(/ /g, "-");
+                        var toolTipData = { id: toolTipId, name: toolTipId, value: this.getAggregateNumber(toolTipId), ratio: this.getPercentage(toolTipId) };
+                        this.setToolTip(toolTipData, d3.select(".c3-arc-" + selector)[0][0]);
+                    }
+                }, {
+                    key: 'hideToolTip',
+                    value: function hideToolTip(toolTipId) {
+                        this.removeToolTip();
                     }
                 }, {
                     key: 'width',
@@ -23827,7 +23840,7 @@ $__System.register('28', ['52', '69', '87', '2b', '2c', '2d', '4c', '2e', '2f'],
 					_defineDecoratedPropertyDescriptor(this, 'instanceName', _instanceInitializers);
 
 					_chart.set(this, { c3: c3, chart: null });
-					_chartEvents.set(this, { render: 'rendered', update: 'update' });
+					_chartEvents.set(this, { render: 'rendered', update: 'update', legendItemClick: 'legenditemclick', legendItemHover: 'legenditemhover', legendItemOut: 'legenditemout' });
 					this.eventBus = ee();
 					this.services = VoyaChartServices();
 					this.chartModel = {};
@@ -23884,8 +23897,22 @@ $__System.register('28', ['52', '69', '87', '2b', '2c', '2d', '4c', '2e', '2f'],
 				}, {
 					key: 'buildLegend',
 					value: function buildLegend() {
-						if (!this.legend) return null;
-						return JSON.parse(this.legend);
+						var chart = this;
+						var legend = this.legend ? JSON.parse(this.legend) : { item: {} };
+						if (!this.legend.item) legend['item'] = {};
+						legend.item['onclick'] = function (id) {
+							_chart.get(chart).chart.toggle(id);
+							chart.eventBus.emit(_chartEvents.get(chart).legendItemClick);
+						};
+						legend.item['onmouseover'] = function (id) {
+							_chart.get(chart).chart.focus(id);
+							chart.eventBus.emit(_chartEvents.get(chart).legendItemHover, id);
+						};
+						legend.item['onmouseout'] = function (id) {
+							_chart.get(chart).chart.revert();
+							chart.eventBus.emit(_chartEvents.get(chart).legendItemOut, id);
+						};
+						return legend;
 					}
 				}, {
 					key: 'createChart',
@@ -23896,6 +23923,8 @@ $__System.register('28', ['52', '69', '87', '2b', '2c', '2d', '4c', '2e', '2f'],
 						this.exposeC3Api(this, _chart.get(this).chart);
 						this.eventBus.emit(_chartEvents.get(this).render);
 					}
+
+					//exposing public api for implementing devs
 				}, {
 					key: 'exposeC3Api',
 					value: function exposeC3Api(chart, c3Properties) {
@@ -23911,8 +23940,8 @@ $__System.register('28', ['52', '69', '87', '2b', '2c', '2d', '4c', '2e', '2f'],
 					}
 				}, {
 					key: 'getData',
-					value: function getData() {
-						return _chart.get(this).chart.data.shown();
+					value: function getData(id) {
+						return id ? _chart.get(this).chart.data.shown(id) : _chart.get(this).chart.data.shown(id);
 					}
 				}, {
 					key: 'getNames',
@@ -23924,6 +23953,17 @@ $__System.register('28', ['52', '69', '87', '2b', '2c', '2d', '4c', '2e', '2f'],
 					value: function setNames(newNames) {
 						_chart.get(this).chart.data.names(newNames);
 						this.redraw();
+					}
+				}, {
+					key: 'removeToolTip',
+					value: function removeToolTip() {
+						console.dir('bye');
+						_chart.get(this).chart.tooltip.hide();
+					}
+				}, {
+					key: 'setToolTip',
+					value: function setToolTip(toolTipData, element) {
+						_chart.get(this).chart.internal.showTooltip([toolTipData], element);
 					}
 				}, {
 					key: 'renderEvent',

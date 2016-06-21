@@ -5,7 +5,8 @@ export class Donut extends VoyaChart{
     constructor(chartProperties){
         super(chartProperties);
         this.labels=[];
-        this.eventBus.on('rendered',this.newLegend.bind(this));
+        this.eventBus.on('legenditemhover',this.showToolTip.bind(this));
+        this.eventBus.on('legenditemout',this.hideToolTip.bind(this));
     }
 
     @property
@@ -30,7 +31,6 @@ export class Donut extends VoyaChart{
         this.assembleChartModel(this.desemmbleRawData());
         this.createChart();
     }
-
     desemmbleRawData(){
         let dataMappings = new Map();
         this.dataModel.forEach(function(record,idx){
@@ -48,21 +48,28 @@ export class Donut extends VoyaChart{
             return datapoint[1];
         }.bind(this))
     }
-    newLegend(){
-        let names= this.getNames(), dataPoints = this.getData(), totalAmount=0,labels={};
+    getAggregateNumber(id){
+        if(this.getData(id).length==0)return null;
+        let dataPoint = this.getData(id),amount=0;
+        dataPoint[0].values.forEach(function(obj){
+            amount = amount+obj.value;
+        })
+        return amount;
+    }
+    getPercentage(id){
+        let dataPoints = this.getData(), totalAmount=0;
         dataPoints.forEach(function(dataPoint){
-            let amount=0
-            dataPoint.values.forEach(function(obj){
-                amount = amount+obj.value;
-            })
-            totalAmount+=amount;
-            labels[dataPoint.id]=amount
-        })
-
-        Object.keys(labels).forEach(function(label){
-            let percentage = parseFloat((labels[label]/totalAmount)*100).toFixed(1);
-            names[label] = percentage+"% "+names[label];
-        })
-        this.setNames(names);
+            totalAmount+=this.getAggregateNumber(dataPoint.id);
+        }.bind(this))
+        return parseFloat((this.getAggregateNumber(id)/totalAmount));
+    }
+    showToolTip(toolTipId){
+        if(!this.getAggregateNumber(toolTipId))return;
+        let selector=toolTipId.replace(/ /g,"-");
+        let toolTipData={id:toolTipId, name:toolTipId, value:this.getAggregateNumber(toolTipId), ratio:this.getPercentage(toolTipId)}
+        this.setToolTip(toolTipData,d3.select(".c3-arc-"+selector)[0][0]);
+    }
+    hideToolTip(toolTipId){
+        this.removeToolTip();
     }
 }
