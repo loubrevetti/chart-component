@@ -1,25 +1,36 @@
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
-import {chartUtilities} from './utilities/chart-utilities';
-let _utils = new WeakMap();
+import {Donut} from './voya-chart/donut/donut';
+import {TimeSeries} from './voya-chart/time-series/time-series';
+let _chartInstances = new WeakMap();
+
 export class VoyaChart extends (HTMLElement || Element){
     createdCallback(){
-        _utils.set(this,chartUtilities())
-        if(this.attributes.type) this.getChartInstance();
+        let chartInstances={"_DONUT": Donut, "_TIMESERIES": TimeSeries};
+        _chartInstances.set(this,chartInstances);
+        if(this.attributes.type) this.getChart();
     }
-
     @property
-    chart
+    api
+
+    propertyChangedCallback(prop,oldValue,newValue) {
+        if(oldValue === newValue)return;
+        if(prop === 'api'){
+            this.api.eventBus.on('rendered',this.renderChart.bind(this))
+        }
+    }
 
     attributeCallback(prop, oldValue, newValue){
         if(oldValue === newValue) return;
-        if(prop === "type") this.getChartInstance();
+        if(prop === "type") this.getChart();
     }
 
-    getChartInstance(){
-        this.chart = _utils.get(this).getChart(this.attributes);
-        this.chart.createChart();
-        this.appendChild(this.chart.element);
-        console.dir(this)
+    getChart(){
+        let instance  = (_chartInstances.get(this)["_" + this.attributes.type.value.toUpperCase()])
+        this.api= new instance(this.attributes)
+    }
+
+    renderChart(){
+        this.appendChild(this.api.element);
     }
 }
 document.registerElement('voya-chart', VoyaChart);

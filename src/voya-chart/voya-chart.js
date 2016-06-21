@@ -1,17 +1,24 @@
 import c3 from 'c3'
+import ee from 'event-emitter';
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
 import {VoyaChartServices} from './voya-chart-services'
-const DATA_EVENT = new CustomEvent('dataAssembled');
-let _c3 = new WeakMap()
+let _chart = new WeakMap();
+let _chartEvents = new WeakMap();
 export class VoyaChart{
 		constructor(chartProperties){
-			_c3.set(this, c3);
+			_chart.set(this, {c3:c3,chart:null});
+			_chartEvents.set(this,{render:'rendered',update:'update'});
+			this.eventBus = ee();
 			this.services = VoyaChartServices();
-			this.dataEvent = new CustomEvent('dataAssembled');
+			this.chartModel={};
+			this.instanceName = this.constructor.name.toLowerCase();
 			this.bindProperties(this,chartProperties);
 			this.buildServices();
 			this.assembleData();
 		}
+		@property
+		renderEvent;
+
 		@property
 		@nullable
 		services;
@@ -30,7 +37,18 @@ export class VoyaChart{
 
 		@property
 		@nullable
-		element
+		element;
+
+		@property
+		@nullable
+		chartModel;
+
+		@property
+		@nullable
+		legend;
+
+		@property
+		instanceName;
 
 		bindProperties(chart,props) {
 			Object.keys(props).forEach(function (attr) {
@@ -47,29 +65,52 @@ export class VoyaChart{
 			let apiParams={url:this.apiUrl,payload:payload};
 			this.services.api(apiParams);
 		}
-
 		assembleData() {
 			this.services.loadData().then(function (response) {
 				this.dataModel = response.records;
 			}.bind(this));
 		}
-
-		createChart(){
-			let chartType = this.constructor.name.toLowerCase(), chartAPI = {data:this.dataModel}, typeConfig = {};
-			chartAPI.data.type = chartType
+		buildChartData(){
+			this.chartModel.type = this.instanceName;
+			return this.chartModel
+		}
+		buildInstanceData(){
+			let typeConfig={};
 			for(var prop in this._properties){
 				if(VoyaChart.prototype[prop]!==undefined) continue;
-				typeConfig[prop] = this._properties[prop]
+				typeConfig[prop] = this._properties[prop];
 			}
-			chartAPI[chartType] = typeConfig
-			let chart = _c3.get(this).generate(chartAPI)
-			this.exposeC3Api(this,chart);
+			return typeConfig
 		}
-
+		buildLegend(){
+			if(!this.legend) return null;
+			return JSON.parse(this.legend);
+		}
+		createChart(){
+			let chartAPI={data:this.buildChartData(),legend:this.buildLegend()};
+			chartAPI[this.instanceName] = this.buildInstanceData();
+			_chart.get(this).chart = _chart.get(this).c3.generate(chartAPI);
+			this.exposeC3Api(this,_chart.get(this).chart);
+			this.eventBus.emit(_chartEvents.get(this).render);
+		}
 		exposeC3Api(chart,c3Properties){
 			Object.keys(c3Properties).forEach(function (prop) {
 				if (chart[prop] === undefined)return;
 				chart[prop] = c3Properties[prop];
 			})
 		}
+		redraw(){
+			_chart.get(this).chart.flush();
+		}
+		getData(){
+			return _chart.get(this).chart.data.shown();
+		}
+		getNames(){
+			return _chart.get(this).chart.data.names();
+		}
+		setNames(newNames){
+			_chart.get(this).chart.data.names(newNames);
+			this.redraw()
+		}
+
 }

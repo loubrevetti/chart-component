@@ -24,6 +24,7 @@ System.config({
     "core-js": "npm:core-js@1.2.6",
     "d3": "npm:d3@3.5.17",
     "dom-delegate": "npm:dom-delegate@2.0.3",
+    "event-emitter": "npm:event-emitter@0.3.4",
     "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@2.4.2",
     "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@3.3.2",
     "github:jspm/nodelibs-assert@0.1.0": {
@@ -31,6 +32,9 @@ System.config({
     },
     "github:jspm/nodelibs-buffer@0.1.0": {
       "buffer": "npm:buffer@3.6.0"
+    },
+    "github:jspm/nodelibs-events@0.1.1": {
+      "events": "npm:events@1.0.2"
     },
     "github:jspm/nodelibs-path@0.1.0": {
       "path-browserify": "npm:path-browserify@0.0.0"
@@ -71,6 +75,28 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
+    },
+    "npm:d@0.1.1": {
+      "es5-ext": "npm:es5-ext@0.10.11"
+    },
+    "npm:es5-ext@0.10.11": {
+      "es6-iterator": "npm:es6-iterator@2.0.0",
+      "es6-symbol": "npm:es6-symbol@3.0.2",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:es6-iterator@2.0.0": {
+      "d": "npm:d@0.1.1",
+      "es5-ext": "npm:es5-ext@0.10.11",
+      "es6-symbol": "npm:es6-symbol@3.0.2"
+    },
+    "npm:es6-symbol@3.0.2": {
+      "d": "npm:d@0.1.1",
+      "es5-ext": "npm:es5-ext@0.10.11"
+    },
+    "npm:event-emitter@0.3.4": {
+      "d": "npm:d@0.1.1",
+      "es5-ext": "npm:es5-ext@0.10.11",
+      "events": "github:jspm/nodelibs-events@0.1.1"
     },
     "npm:font-awesome@4.4.0": {
       "css": "github:systemjs/plugin-css@0.1.23"
