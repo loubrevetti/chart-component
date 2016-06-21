@@ -1,11 +1,11 @@
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
 import {Donut} from './voya-chart/donut/donut';
-import {TimeSeries} from './voya-chart/time-series/time-series';
+import {AreaSpline} from './voya-chart/area-spline/area-spline';
 let _chartInstances = new WeakMap();
 
 export class VoyaChart extends (HTMLElement || Element){
     createdCallback(){
-        let chartInstances={"_DONUT": Donut, "_TIMESERIES": TimeSeries};
+        let chartInstances={"_DONUT": Donut, "_AREASPLINE": AreaSpline};
         _chartInstances.set(this,chartInstances);
         if(this.attributes.type) this.getChart();
     }
