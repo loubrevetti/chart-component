@@ -7,7 +7,7 @@ let _chartEvents = new WeakMap();
 export class VoyaChart{
 		constructor(chartProperties){
 			_chart.set(this, {c3:c3,chart:null});
-			_chartEvents.set(this,{render:'rendered',update:'update'});
+			_chartEvents.set(this,{render:'rendered',update:'update',legendItemClick:'legenditemclick',legendItemHover:'legenditemhover',legendItemOut:'legenditemout'});
 			this.eventBus = ee();
 			this.services = VoyaChartServices();
 			this.chartModel={};
@@ -83,8 +83,22 @@ export class VoyaChart{
 			return typeConfig
 		}
 		buildLegend(){
-			if(!this.legend) return null;
-			return JSON.parse(this.legend);
+			let chart = this
+			let legend = (this.legend)? JSON.parse(this.legend):{item:{}};
+			if(!this.legend.item)legend['item']={};
+			legend.item['onclick']=function(id){
+				_chart.get(chart).chart.toggle(id);
+				chart.eventBus.emit(_chartEvents.get(chart).legendItemClick);
+			}
+			legend.item['onmouseover']=function(id){
+				_chart.get(chart).chart.focus(id);
+				chart.eventBus.emit(_chartEvents.get(chart).legendItemHover,id);
+			}
+			legend.item['onmouseout']=function(id){
+				_chart.get(chart).chart.revert();
+				chart.eventBus.emit(_chartEvents.get(chart).legendItemOut,id);
+			}
+			return legend;
 		}
 		createChart(){
 			let chartAPI={data:this.buildChartData(),legend:this.buildLegend()};
@@ -93,6 +107,9 @@ export class VoyaChart{
 			this.exposeC3Api(this,_chart.get(this).chart);
 			this.eventBus.emit(_chartEvents.get(this).render);
 		}
+		//end of build for base chart
+
+		//exposing public api for implementing devs
 		exposeC3Api(chart,c3Properties){
 			Object.keys(c3Properties).forEach(function (prop) {
 				if (chart[prop] === undefined)return;
@@ -102,15 +119,20 @@ export class VoyaChart{
 		redraw(){
 			_chart.get(this).chart.flush();
 		}
-		getData(){
-			return _chart.get(this).chart.data.shown();
+		getData(id){
+			return (id)? _chart.get(this).chart.data.shown(id) : _chart.get(this).chart.data.shown(id);
 		}
 		getNames(){
 			return _chart.get(this).chart.data.names();
 		}
 		setNames(newNames){
 			_chart.get(this).chart.data.names(newNames);
-			this.redraw()
+			this.redraw();
 		}
-
+		removeToolTip(){
+	        _chart.get(this).chart.tooltip.hide();
+		}
+		setToolTip(toolTipData,element){
+			_chart.get(this).chart.internal.showTooltip([toolTipData],element)
+		}
 }
