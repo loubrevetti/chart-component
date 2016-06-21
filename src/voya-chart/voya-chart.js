@@ -85,7 +85,7 @@ export class VoyaChart{
 		buildLegend(){
 			let chart = this
 			let legend = (this.legend)? JSON.parse(this.legend):{item:{}};
-			if(!this.legend.item)legend['item']={};
+			if(!legend.item)legend['item']={};
 			legend.item['onclick']=function(id){
 				_chart.get(chart).chart.toggle(id);
 				chart.eventBus.emit(_chartEvents.get(chart).legendItemClick);
