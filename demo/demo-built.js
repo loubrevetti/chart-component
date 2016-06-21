@@ -24047,10 +24047,11 @@ $__System.register('89', ['3', '4', '5', '8', '9', '1e', 'a', 'b', 'c'], functio
                 }
 
                 /**
-                 *
-                 * @param prop
-                 * @param oldValue
-                 * @param newValue
+                 * 
+                 * @Override
+                 * @param {string} prop
+                 * @param {*} oldValue
+                 * @param {*} newValue
                  */
 
                 _createClass(AreaSpline, [{

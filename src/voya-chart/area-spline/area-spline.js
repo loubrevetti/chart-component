@@ -8,10 +8,11 @@ export class AreaSpline extends VoyaChart {
     }
 
     /**
-     *
-     * @param prop
-     * @param oldValue
-     * @param newValue
+     * 
+     * @Override
+     * @param {string} prop
+     * @param {*} oldValue
+     * @param {*} newValue
      */
     propertyChangedCallback(prop, oldValue, newValue) {
         if (oldValue === newValue) {
