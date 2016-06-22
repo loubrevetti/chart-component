@@ -24110,7 +24110,7 @@ $__System.register('89', ['3', '4', '5', '8', '9', '1e', 'a', 'b', 'c'], functio
 
                     /**
                      * TODO: Is all of this work necessary????????
-                     * 
+                     *
                      * @returns {Array}
                      */
                 }, {
@@ -24143,12 +24143,16 @@ $__System.register('89', ['3', '4', '5', '8', '9', '1e', 'a', 'b', 'c'], functio
                 }, {
                     key: 'assembleChartModel',
                     value: function assembleChartModel(data) {
-                        this.chartModel.names = {};
+                        this.chartModel.names = {
+                            '3 mo': '3 mo',
+                            '6 mo': '6 mo',
+                            '1 yr': '1 yr',
+                            '2 yr': '2 yr'
+                        };
 
-                        this.chartModel.columns = data.map((function (datapoint) {
-                            this.chartModel.names[datapoint[0]] = datapoint[0];
-                            return datapoint[1];
-                        }).bind(this));
+                        this.chartModel.columns = [['3 mo', 10000, 20000, 30000], ['6 mo', 10000, 20000, 30000, 25000, 35000, 30000], ['1 yr', 10000, 20000, 30000, 25000, 35000, 30000, 40000, 50000, 40000, 45000, 60000, 55000], ['2 yr', 10000, 20000, 30000, 25000, 35000, 30000, 40000, 50000, 40000, 45000, 60000, 55000, 60000, 70000, 80000, 75000, 75000, 80000, 85000, 90000, 95000, 90000, 100000, 95000]];
+
+                        var i = 0;
                     }
                 }]);
 
