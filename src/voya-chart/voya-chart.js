@@ -11,7 +11,18 @@ export class VoyaChart{
 			this.eventBus = ee();
 			this.services = VoyaChartServices();
 			this.chartModel={};
-			this.instanceName = this.constructor.name.toLowerCase();
+
+			this.instanceName = (this.constructor.name.match(/([a-z][A-Z][a-z])\w+/g))
+				? this.constructor.name.replace(
+					/([a-z][A-Z][a-z])\w+/g,
+					(str) => {
+						let strArr = str.split('');
+						strArr.splice(1, 0, '-');
+						return strArr.join('');
+					}
+				).toLowerCase()
+				: this.constructor.name.toLowerCase();
+
 			this.bindProperties(this,chartProperties);
 			this.buildServices();
 			this.assembleData();
