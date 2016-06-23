@@ -22683,6 +22683,7 @@ $__System.register('3', ['6', '7', '8', '53', '4d', 'a', '6a', 'c', '6c'], funct
 					key: 'removeToolTip',
 					value: function removeToolTip() {
 						_chart.get(this).chart.tooltip.hide();
+						document.querySelector('.c3-tooltip-container').style.display = 'none';
 					}
 				}, {
 					key: 'setToolTip',
