@@ -144,6 +144,7 @@ export class VoyaChart{
 		}
 		removeToolTip(){
 	        _chart.get(this).chart.tooltip.hide();
+			document.querySelector('.c3-tooltip-container').style.display = 'none';
 		}
 		setToolTip(toolTipData,element){
 			_chart.get(this).chart.internal.showTooltip([toolTipData],element)

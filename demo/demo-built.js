@@ -22706,6 +22706,7 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '54', '4e', '6b', '6d'],
 					key: 'removeToolTip',
 					value: function removeToolTip() {
 						_chart.get(this).chart.tooltip.hide();
+						document.querySelector('.c3-tooltip-container').style.display = 'none';
 					}
 				}, {
 					key: 'setToolTip',
@@ -24156,20 +24157,6 @@ $__System.register('8a', ['20', '21', '24', '27', '34', '3e', '1f'], function (_
                         });
 
                         this.chartModel = chartModel;
-
-                        // this.chartModel.names = {
-                        //     '3 mo': '3 mo',
-                        //     '6 mo': '6 mo',
-                        //     '1 yr': '1 yr',
-                        //     '2 yr': '2 yr'
-                        // };
-                        //
-                        // this.chartModel.columns = [
-                        //     ['3 mo', 10000, 20000, 30000],
-                        //     ['6 mo', 10000, 20000, 30000, 25000, 35000, 30000],
-                        //     ['1 yr', 10000, 20000, 30000, 25000, 35000, 30000, 40000, 50000, 40000, 45000, 60000, 55000],
-                        //     ['2 yr', 10000, 20000, 30000, 25000, 35000, 30000, 40000, 50000, 40000, 45000, 60000, 55000, 60000, 70000, 80000, 75000, 75000, 80000, 85000, 90000, 95000, 90000, 100000, 95000]
-                        // ];
                     }
                 }]);
 
