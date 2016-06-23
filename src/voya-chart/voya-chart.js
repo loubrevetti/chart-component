@@ -12,6 +12,8 @@ export class VoyaChart{
 			this.services = VoyaChartServices();
 			this.chartModel={};
 
+			// If necessary, convert CamelCased chart name to it's hyphenated equivalent.
+			// C3 chart names are all lowercase, with multi-word names being hyphenated.
 			this.instanceName = (this.constructor.name.match(/([a-z][A-Z][a-z])\w+/g))
 				? this.constructor.name.replace(
 					/([a-z][A-Z][a-z])\w+/g,
