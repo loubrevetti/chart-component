@@ -24144,16 +24144,42 @@ $__System.register('8a', ['20', '21', '24', '27', '34', '3e', '1f'], function (_
                         var chartModel = {};
 
                         chartModel.names = {};
-                        chartModel.columns = [];
+                        chartModel.data = {};
+                        chartModel.data.columns = [];
+                        chartModel.data.x = undefined;
+
+                        // Set up the x-axis for the chart.
+                        // This tells C3 to render the x-axis as a Time Series.
+                        // Each tick on the x-axis, in the Year-Month-Day format.
+                        chartModel.axis = {
+                            x: {
+                                type: 'timeseries',
+                                tick: {
+                                    format: '%Y-%m-%d'
+                                }
+                            }
+                        };
 
                         this.dataModel.forEach(function (item, idx, arr) {
-                            var col = [];
+                            var col1 = []; // Data to be displayed in the chart.
+                            var col2 = []; // Data to act as the chart's x-axis.
 
-                            col.push(item.label);
-                            col.push.apply(col, _toConsumableArray(item.data));
+                            // Column data for an individual col is supplied to C3 as an array.
+                            // The first item in the array, identifies the data in the col.
+                            // Col data identifiers should be unique.
+                            col1.push(item.label);
+                            col1.push.apply(col1, _toConsumableArray(item.balances));
+                            col2.push('_' + item.label);
+                            col2.push.apply(col2, _toConsumableArray(item.dates));
+
+                            // This property tells C3 which col of data will serve as the ticks along the x-axis.
+                            // The identified col will be excluded from the chart itself and serve only to deliniate points along the axis.
+                            // Default to the x-axis data, supplied in the first record.
+                            chartModel.data.x = idx === 0 ? '_' + item.label : chartModel.data.x;
 
                             chartModel.names[item.label] = item.label;
-                            chartModel.columns.push(col);
+                            chartModel.data.columns.push(col1);
+                            chartModel.data.columns.push(col2);
                         });
 
                         this.chartModel = chartModel;
