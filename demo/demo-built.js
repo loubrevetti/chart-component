@@ -24151,6 +24151,10 @@ $__System.register('8a', ['20', '21', '24', '27', '34', '3e', '1f'], function (_
                         chartModel.data = {};
                         chartModel.data.columns = [];
 
+                        // TODO: ADD X-AXIS & Y-AXIS PROPERTIES, SO USERS CAN CUSTOMIZE THE AXIS.
+                        // TODO: ADD TEST FOR X/Y AXIS PROPERTY VALUES.
+                        // TODO: ONLY RUN THIS CODE IF THE PROPERTY IS PRESENT & HAS VALUE.
+                        //
                         // Set up the x-axis for the chart.
                         // This tells C3 to render the x-axis as a Time Series.
                         // Each tick on the x-axis, in the Year-Month-Day format.
@@ -24160,6 +24164,14 @@ $__System.register('8a', ['20', '21', '24', '27', '34', '3e', '1f'], function (_
                                 format: '%Y-%m-%d'
                             }
                         };
+
+                        // TODO: FIGURE OUT HOW TO TURN OFF ALL DATA EXCEPT THE FIRST RECORD (3-MONTH) ON PAGE-LOAD
+                        // TODO: ADD A PROPERTY TO ENABLE/DISABLE DEFAULTING TO JUST FIRST RECORD????
+
+                        // TODO: FIGURE OUT HOW TO SHOW ONE DATA SET AT A TIME.
+                        // TODO: MAYBE JUST EMIT AN EVENT AND LET MAIN APPLICATION DEAL WITH IT?
+                        // TODO: MAYBE ADD A PROPERTY TO TURN THIS BEHAVIOR ON/OFF???
+                        // TODO: SOME IMPLEMENTATIONS MAY WANT TO SHOW MULTIPLE SETS OF DATA AT A TIME.
 
                         this.dataModel.forEach(function (item, idx, arr) {
                             var chartData = []; // Data, to be displayed in the chart.

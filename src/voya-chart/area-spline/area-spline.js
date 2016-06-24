@@ -37,6 +37,10 @@ export class AreaSpline extends VoyaChart {
         chartModel.data = {};
         chartModel.data.columns = [];
 
+        // TODO: ADD X-AXIS & Y-AXIS PROPERTIES, SO USERS CAN CUSTOMIZE THE AXIS.
+        // TODO: ADD TEST FOR X/Y AXIS PROPERTY VALUES.
+        // TODO: ONLY RUN THIS CODE IF THE PROPERTY IS PRESENT & HAS VALUE.
+        //
         // Set up the x-axis for the chart.
         // This tells C3 to render the x-axis as a Time Series.
         // Each tick on the x-axis, in the Year-Month-Day format.
@@ -46,6 +50,14 @@ export class AreaSpline extends VoyaChart {
                 format: '%Y-%m-%d'
             }
         };
+
+        // TODO: FIGURE OUT HOW TO TURN OFF ALL DATA EXCEPT THE FIRST RECORD (3-MONTH) ON PAGE-LOAD
+        // TODO: ADD A PROPERTY TO ENABLE/DISABLE DEFAULTING TO JUST FIRST RECORD????
+
+        // TODO: FIGURE OUT HOW TO SHOW ONE DATA SET AT A TIME.
+        // TODO: MAYBE JUST EMIT AN EVENT AND LET MAIN APPLICATION DEAL WITH IT?
+        // TODO: MAYBE ADD A PROPERTY TO TURN THIS BEHAVIOR ON/OFF???
+        // TODO: SOME IMPLEMENTATIONS MAY WANT TO SHOW MULTIPLE SETS OF DATA AT A TIME.
 
         this.dataModel.forEach(
             (item, idx, arr) => {
