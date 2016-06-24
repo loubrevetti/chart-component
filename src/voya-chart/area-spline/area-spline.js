@@ -32,44 +32,60 @@ export class AreaSpline extends VoyaChart {
     buildChartModel() {
         let chartModel = {};
 
+        chartModel.axis = {};
         chartModel.names = {};
         chartModel.data = {};
         chartModel.data.columns = [];
-        chartModel.data.x = undefined;
 
         // Set up the x-axis for the chart.
         // This tells C3 to render the x-axis as a Time Series.
         // Each tick on the x-axis, in the Year-Month-Day format.
-        chartModel.axis = {
-            x: {
-                type: 'timeseries',
-                tick: {
-                    format: '%Y-%m-%d'
-                }
+        chartModel.axis.x = {
+            type: 'timeseries',
+            tick: {
+                format: '%Y-%m-%d'
             }
         };
 
         this.dataModel.forEach(
             (item, idx, arr) => {
-                let col1 = []; // Data to be displayed in the chart.
-                let col2 = []; // Data to act as the chart's x-axis.
+                let chartData = []; // Data, to be displayed in the chart.
+
+                // Store the names of each set of data to be displayed in the chart.
+                chartModel.names[item.label] = item.label;
 
                 // Column data for an individual col is supplied to C3 as an array.
                 // The first item in the array, identifies the data in the col.
                 // Col data identifiers should be unique.
-                col1.push(item.label);
-                col1.push(...item.balances);
-                col2.push(`_${item.label}`);
-                col2.push(...item.dates);
+                chartData.push(item.label);
+                chartData.push(...item.data);
+                chartModel.data.columns.push(chartData);
 
-                // This property tells C3 which col of data will serve as the ticks along the x-axis.
-                // The identified col will be excluded from the chart itself and serve only to deliniate points along the axis.
-                // Default to the x-axis data, supplied in the first record.
-                chartModel.data.x = (idx === 0) ? `_${item.label}` : chartModel.data.x;
+                // If custom x/y-axis data has been supplied...
+                if (item.xAxis || item.yAxis) {
+                    let xAxisData = []; // Data to act as the chart's x-axis.
+                    let yAxisData = []; // Data to act as the chart's y-axis.
+                    let xPrefix = 'x_';
+                    let yPrefix = 'Y_';
 
-                chartModel.names[item.label] = item.label;
-                chartModel.data.columns.push(col1);
-                chartModel.data.columns.push(col2);
+                    // This property tells C3 which col of data will serve as the ticks along the x/y-axis.
+                    // The identified col will be excluded from the chart itself and serve only to deliniate points along the axis.
+                    // Default to the x/y-axis data, supplied in the first record.
+                    chartModel.data.x = ((idx === 0) && (item.xAxis)) ? `${xPrefix}${item.label}` : chartModel.data.x;
+                    chartModel.data.y = ((idx === 0) && (item.yAxis)) ? `${yPrefix}${item.label}` : chartModel.data.y;
+
+                    if (item.xAxis) {
+                        xAxisData.push(`${xPrefix}${item.label}`);
+                        xAxisData.push(...item.xAxis);
+                        chartModel.data.columns.push(xAxisData);
+                    }
+
+                    if (item.yAxis) {
+                        yAxisData.push(`${yPrefix}${item.label}`);
+                        yAxisData.push(...item.yAxis);
+                        chartModel.data.columns.push(yAxisData);
+                    }
+                }
             }
         );
 

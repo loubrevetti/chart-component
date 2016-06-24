@@ -24143,43 +24143,59 @@ $__System.register('8a', ['20', '21', '24', '27', '34', '3e', '1f'], function (_
                     value: function buildChartModel() {
                         var chartModel = {};
 
+                        chartModel.axis = {};
                         chartModel.names = {};
                         chartModel.data = {};
                         chartModel.data.columns = [];
-                        chartModel.data.x = undefined;
 
                         // Set up the x-axis for the chart.
                         // This tells C3 to render the x-axis as a Time Series.
                         // Each tick on the x-axis, in the Year-Month-Day format.
-                        chartModel.axis = {
-                            x: {
-                                type: 'timeseries',
-                                tick: {
-                                    format: '%Y-%m-%d'
-                                }
+                        chartModel.axis.x = {
+                            type: 'timeseries',
+                            tick: {
+                                format: '%Y-%m-%d'
                             }
                         };
 
                         this.dataModel.forEach(function (item, idx, arr) {
-                            var col1 = []; // Data to be displayed in the chart.
-                            var col2 = []; // Data to act as the chart's x-axis.
+                            var chartData = []; // Data, to be displayed in the chart.
+
+                            // Store the names of each set of data to be displayed in the chart.
+                            chartModel.names[item.label] = item.label;
 
                             // Column data for an individual col is supplied to C3 as an array.
                             // The first item in the array, identifies the data in the col.
                             // Col data identifiers should be unique.
-                            col1.push(item.label);
-                            col1.push.apply(col1, _toConsumableArray(item.balances));
-                            col2.push('_' + item.label);
-                            col2.push.apply(col2, _toConsumableArray(item.dates));
+                            chartData.push(item.label);
+                            chartData.push.apply(chartData, _toConsumableArray(item.data));
+                            chartModel.data.columns.push(chartData);
 
-                            // This property tells C3 which col of data will serve as the ticks along the x-axis.
-                            // The identified col will be excluded from the chart itself and serve only to deliniate points along the axis.
-                            // Default to the x-axis data, supplied in the first record.
-                            chartModel.data.x = idx === 0 ? '_' + item.label : chartModel.data.x;
+                            // If custom x/y-axis data has been supplied...
+                            if (item.xAxis || item.yAxis) {
+                                var xAxisData = []; // Data to act as the chart's x-axis.
+                                var yAxisData = []; // Data to act as the chart's y-axis.
+                                var xPrefix = 'x_';
+                                var yPrefix = 'Y_';
 
-                            chartModel.names[item.label] = item.label;
-                            chartModel.data.columns.push(col1);
-                            chartModel.data.columns.push(col2);
+                                // This property tells C3 which col of data will serve as the ticks along the x/y-axis.
+                                // The identified col will be excluded from the chart itself and serve only to deliniate points along the axis.
+                                // Default to the x/y-axis data, supplied in the first record.
+                                chartModel.data.x = idx === 0 && item.xAxis ? '' + xPrefix + item.label : chartModel.data.x;
+                                chartModel.data.y = idx === 0 && item.yAxis ? '' + yPrefix + item.label : chartModel.data.y;
+
+                                if (item.xAxis) {
+                                    xAxisData.push('' + xPrefix + item.label);
+                                    xAxisData.push.apply(xAxisData, _toConsumableArray(item.xAxis));
+                                    chartModel.data.columns.push(xAxisData);
+                                }
+
+                                if (item.yAxis) {
+                                    yAxisData.push('' + yPrefix + item.label);
+                                    yAxisData.push.apply(yAxisData, _toConsumableArray(item.yAxis));
+                                    chartModel.data.columns.push(yAxisData);
+                                }
+                            }
                         });
 
                         this.chartModel = chartModel;
