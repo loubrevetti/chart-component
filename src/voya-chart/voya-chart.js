@@ -11,6 +11,7 @@ export class VoyaChart{
 			this.eventBus = ee();
 			this.services = VoyaChartServices();
 			this.chartModel={};
+			this.chartModel.data={};
 
 			// If necessary, convert CamelCased chart name to it's hyphenated equivalent.
 			// C3 chart names are all lowercase, with multi-word names being hyphenated.
@@ -84,7 +85,7 @@ export class VoyaChart{
 			}.bind(this));
 		}
 		buildChartData(){
-			this.chartModel.type = this.instanceName;
+			this.chartModel.data.type = this.instanceName;
 			return this.chartModel
 		}
 		buildInstanceData(){
@@ -114,7 +115,8 @@ export class VoyaChart{
 			return legend;
 		}
 		createChart(){
-			let chartAPI={data:this.buildChartData(),legend:this.buildLegend()};
+			let chartAPI=this.buildChartData();
+			chartAPI.legend=this.buildLegend();
 			chartAPI[this.instanceName] = this.buildInstanceData();
 			_chart.get(this).chart = _chart.get(this).c3.generate(chartAPI);
 			this.exposeC3Api(this,_chart.get(this).chart);

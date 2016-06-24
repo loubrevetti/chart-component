@@ -42,9 +42,10 @@ export class Donut extends VoyaChart{
         return Array.from(dataMappings);
     }
     assembleChartModel(data){
-        this.chartModel.names={}
-        this.chartModel.columns=data.map(function(datapoint){
-            this.chartModel.names[datapoint[0]] = datapoint[0];
+        this.chartModel.data={};
+        this.chartModel.data.names={};
+        this.chartModel.data.columns=data.map(function(datapoint){
+            this.chartModel.data.names[datapoint[0]] = datapoint[0];
             return datapoint[1];
         }.bind(this))
     }

@@ -344,9 +344,10 @@ $__System.register('1e', ['20', '21', '22', '23', '24', '25', '26', '27', '1d', 
                 }, {
                     key: 'assembleChartModel',
                     value: function assembleChartModel(data) {
-                        this.chartModel.names = {};
-                        this.chartModel.columns = data.map((function (datapoint) {
-                            this.chartModel.names[datapoint[0]] = datapoint[0];
+                        this.chartModel.data = {};
+                        this.chartModel.data.names = {};
+                        this.chartModel.data.columns = data.map((function (datapoint) {
+                            this.chartModel.data.names[datapoint[0]] = datapoint[0];
                             return datapoint[1];
                         }).bind(this));
                     }
@@ -22582,6 +22583,7 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '54', '4e', '6b', '6d'],
 					this.eventBus = ee();
 					this.services = VoyaChartServices();
 					this.chartModel = {};
+					this.chartModel.data = {};
 
 					// If necessary, convert CamelCased chart name to it's hyphenated equivalent.
 					// C3 chart names are all lowercase, with multi-word names being hyphenated.
@@ -22627,7 +22629,7 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '54', '4e', '6b', '6d'],
 				}, {
 					key: 'buildChartData',
 					value: function buildChartData() {
-						this.chartModel.type = this.instanceName;
+						this.chartModel.data.type = this.instanceName;
 						return this.chartModel;
 					}
 				}, {
@@ -22663,7 +22665,8 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '54', '4e', '6b', '6d'],
 				}, {
 					key: 'createChart',
 					value: function createChart() {
-						var chartAPI = { data: this.buildChartData(), legend: this.buildLegend() };
+						var chartAPI = this.buildChartData();
+						chartAPI.legend = this.buildLegend();
 						chartAPI[this.instanceName] = this.buildInstanceData();
 						_chart.get(this).chart = _chart.get(this).c3.generate(chartAPI);
 						this.exposeC3Api(this, _chart.get(this).chart);
