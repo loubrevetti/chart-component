@@ -65,18 +65,26 @@
 		<li data-property="null" data-value="null">feature 14</li>
 	
 </ul>
+
 <!-- inline html for implementation to serve for demo purposes -->
 <p>
     <voya-chart type="Donut" width="80" expand="true" api-url="/src/stubs/chart.json" api-params={"method":"GET"} title="Your Accounts" legend={"position":"right"}></voya-chart>
 </p>
 
+<!-- type        : Chart Type -->
+<!-- xaxistype   : Optional. X-axis type.  Use a valid chart type to change how the axis displays it's ticks -->
+<!-- xaxisformat : Optional. X-axis format string.  Use when x-axis is displaying as a Time Series -->
+<!-- showalldata : Optional. TRUE/FALSE. Defaults to TRUE. Set to FALSE, to initially display only the first set of data. -->
+<!-- api-url     : Data service URL -->
+<!-- api-params  : Data service request type -->
 <p>
     <voya-chart
-            type="AreaSpline"                         <!-- Chart Type -->
-			xaxistype="timeseries"                    <!-- X-axis type.  Use a valid chart type to change how the axis displays it's ticks -->
-			xaxisformat="%Y-%m-%d"                    <!-- X-axis format string.  Use when x-axis is displaying as a Time Series -->
-            api-url="/src/stubs/balanceHistory.json"  <!-- Data service URL -->
-            api-params={"method":"GET"}>              <!-- Data service request type -->
+            type="AreaSpline"
+			xaxistype="timeseries"
+			xaxisformat="%Y-%m-%d"
+			showalldata="false"
+            api-url="/src/stubs/balanceHistory.json"
+            api-params={"method":"GET"}>
     </voya-chart>
 </p>
 

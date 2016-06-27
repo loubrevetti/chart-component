@@ -24095,11 +24095,9 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
 
                     _defineDecoratedPropertyDescriptor(this, 'xaxistype', _instanceInitializers);
 
-                    _defineDecoratedPropertyDescriptor(this, 'yaxistype', _instanceInitializers);
-
                     _defineDecoratedPropertyDescriptor(this, 'xaxisformat', _instanceInitializers);
 
-                    _defineDecoratedPropertyDescriptor(this, 'yaxisformat', _instanceInitializers);
+                    _defineDecoratedPropertyDescriptor(this, 'showalldata', _instanceInitializers);
 
                     this.labels = [];
                 }
@@ -24135,46 +24133,31 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                 }, {
                     key: 'buildChartModel',
                     value: function buildChartModel() {
+                        var _this = this;
+
                         var chartModel = {};
 
-                        chartModel.axis = {};
-                        chartModel.names = {};
-                        chartModel.data = {};
-                        chartModel.data.columns = [];
+                        chartModel.axis = {}; // Used to customize the x/y axis.
+                        chartModel.names = {}; // Used to build the chart Legend.
+                        chartModel.data = {}; // Used to describe the chart's data.
+                        chartModel.data.columns = []; // Data Columns hold data to display, as well as data for use along the x/y axis.
+                        chartModel.data.hide = []; // List of Columns that should be initially hidden from view.
+                        chartModel.data.xs = {}; // Associate custom x-axis data with the col data it describes.
 
-                        // Set up the x-axis for the chart.
+                        // Are the x-axis ticks being displayed in anything other than standard Area Spline format?
                         if (this.xaxistype && this.xaxistype !== 'area-spline') {
                             chartModel.axis.x = {
                                 type: this.xaxistype
                             };
 
+                            // Is the x-axis being set up as a Time Series specifically?
+                            // If so, apply any supplied formatting.
                             if (this.xaxistype === 'timeseries' && this.xaxisformat) {
                                 chartModel.axis.x.tick = {
                                     format: this.xaxisformat
                                 };
                             }
                         }
-
-                        // Set up the y-axis for the chart.
-                        if (this.yaxistype && this.yaxistype !== 'area-spline') {
-                            chartModel.axis.y = {
-                                type: this.yaxistype
-                            };
-
-                            if (this.yaxistype === 'timeseries' && this.yaxisformat) {
-                                chartModel.axis.y.tick = {
-                                    format: this.yaxisformat
-                                };
-                            }
-                        }
-
-                        // TODO: FIGURE OUT HOW TO TURN OFF ALL DATA EXCEPT THE FIRST RECORD (3-MONTH) ON PAGE-LOAD
-                        // TODO: ADD A PROPERTY TO ENABLE/DISABLE DEFAULTING TO JUST FIRST RECORD????
-
-                        // TODO: FIGURE OUT HOW TO SHOW ONE DATA SET AT A TIME.
-                        // TODO: MAYBE JUST EMIT AN EVENT AND LET MAIN APPLICATION DEAL WITH IT?
-                        // TODO: MAYBE ADD A PROPERTY TO TURN THIS BEHAVIOR ON/OFF???
-                        // TODO: SOME IMPLEMENTATIONS MAY WANT TO SHOW MULTIPLE SETS OF DATA AT A TIME.
 
                         this.dataModel.forEach(function (item, idx, arr) {
                             var chartData = []; // Data, to be displayed in the chart.
@@ -24189,30 +24172,24 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                             chartData.push.apply(chartData, _toConsumableArray(item.data));
                             chartModel.data.columns.push(chartData);
 
-                            // If custom x/y-axis data has been supplied...
-                            if (item.xAxis || item.yAxis) {
+                            // If NOT show-all-data, make sure only the first col's data is initially displayed.
+                            if (!_this.showalldata && idx !== 0) {
+                                chartModel.data.hide.push(item.label);
+                            }
+
+                            // If custom x-axis data has been supplied...
+                            if (item.xAxis) {
                                 var xAxisData = []; // Data to act as the chart's x-axis.
-                                var yAxisData = []; // Data to act as the chart's y-axis.
                                 var xPrefix = 'x_';
-                                var yPrefix = 'Y_';
 
-                                // This property tells C3 which col of data will serve as the ticks along the x/y-axis.
-                                // The identified col will be excluded from the chart itself and serve only to deliniate points along the axis.
-                                // Default to the x/y-axis data, supplied in the first record.
-                                chartModel.data.x = idx === 0 && item.xAxis ? '' + xPrefix + item.label : chartModel.data.x;
-                                chartModel.data.y = idx === 0 && item.yAxis ? '' + yPrefix + item.label : chartModel.data.y;
+                                // This property tells C3 which cols of data will serve as the ticks along the x-axis.
+                                // The identified cols will be excluded from the chart itself and serve only to deliniate points along the axis.
+                                // Format = { Col data to display : Col data to use as it's x-axis }
+                                chartModel.data.xs[item.label] = '' + xPrefix + item.label;
 
-                                if (item.xAxis) {
-                                    xAxisData.push('' + xPrefix + item.label);
-                                    xAxisData.push.apply(xAxisData, _toConsumableArray(item.xAxis));
-                                    chartModel.data.columns.push(xAxisData);
-                                }
-
-                                if (item.yAxis) {
-                                    yAxisData.push('' + yPrefix + item.label);
-                                    yAxisData.push.apply(yAxisData, _toConsumableArray(item.yAxis));
-                                    chartModel.data.columns.push(yAxisData);
-                                }
+                                xAxisData.push('' + xPrefix + item.label);
+                                xAxisData.push.apply(xAxisData, _toConsumableArray(item.xAxis));
+                                chartModel.data.columns.push(xAxisData);
                             }
                         });
 
@@ -24220,14 +24197,6 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                     }
                 }, {
                     key: 'xaxistype',
-                    decorators: [nullable, property],
-                    initializer: null,
-
-                    // Set to a C3 chart type, in order to customize the ticks along the y-axis.
-                    // See:  http://c3js.org/examples.html, for available chart types.
-                    enumerable: true
-                }, {
-                    key: 'yaxistype',
                     decorators: [nullable, property],
                     initializer: null,
 
@@ -24239,13 +24208,15 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                     decorators: [nullable, property],
                     initializer: null,
 
-                    // Format String for a "timeseries" y-axis.
-                    // C3 API Ref:  http://c3js.org/reference.html#axis-x-tick-format
+                    // If TRUE, display all supplied data sets in the chart when the chart is first rendered.
+                    // If FALSE, initially display only the first set of data.
                     enumerable: true
                 }, {
-                    key: 'yaxisformat',
-                    decorators: [nullable, property],
-                    initializer: null,
+                    key: 'showalldata',
+                    decorators: [property],
+                    initializer: function initializer() {
+                        return true;
+                    },
                     enumerable: true
                 }], null, _instanceInitializers);
 
