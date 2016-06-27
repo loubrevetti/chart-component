@@ -2,6 +2,11 @@ import {VoyaChart} from '../voya-chart';
 import {property, nullable} from 'voya-component-utils/decorators/property-decorators';
 
 export class AreaSpline extends VoyaChart {
+
+    /**
+     * Constructor
+     * @param {Object} chartProperties
+     */
     constructor(chartProperties) {
         super(chartProperties);
         this.labels = [];

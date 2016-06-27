@@ -24083,6 +24083,11 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
 
                 _inherits(AreaSpline, _VoyaChart);
 
+                /**
+                 * Constructor
+                 * @param {Object} chartProperties
+                 */
+
                 function AreaSpline(chartProperties) {
                     _classCallCheck(this, AreaSpline);
 
