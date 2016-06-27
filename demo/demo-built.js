@@ -609,37 +609,7 @@ $__System.registerDynamic("21", ["2e", "33"], true, function($__require, exports
   return module.exports;
 });
 
-$__System.registerDynamic("34", ["35"], true, function($__require, exports, module) {
-  "use strict";
-  ;
-  var define,
-      global = this,
-      GLOBAL = this;
-  var _Object$defineProperty = $__require('35')["default"];
-  exports["default"] = (function() {
-    function defineProperties(target, props) {
-      for (var i = 0; i < props.length; i++) {
-        var descriptor = props[i];
-        descriptor.enumerable = descriptor.enumerable || false;
-        descriptor.configurable = true;
-        if ("value" in descriptor)
-          descriptor.writable = true;
-        _Object$defineProperty(target, descriptor.key, descriptor);
-      }
-    }
-    return function(Constructor, protoProps, staticProps) {
-      if (protoProps)
-        defineProperties(Constructor.prototype, protoProps);
-      if (staticProps)
-        defineProperties(Constructor, staticProps);
-      return Constructor;
-    };
-  })();
-  exports.__esModule = true;
-  return module.exports;
-});
-
-$__System.registerDynamic("36", ["6"], true, function($__require, exports, module) {
+$__System.registerDynamic("34", ["6"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -675,7 +645,7 @@ $__System.registerDynamic("36", ["6"], true, function($__require, exports, modul
   return module.exports;
 });
 
-$__System.registerDynamic("37", ["a", "18", "38", "39", "3a", "3b", "3c", "36"], true, function($__require, exports, module) {
+$__System.registerDynamic("35", ["a", "18", "36", "37", "38", "39", "3a", "34"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -683,12 +653,12 @@ $__System.registerDynamic("37", ["a", "18", "38", "39", "3a", "3b", "3c", "36"],
       GLOBAL = this;
   var ctx = $__require('a'),
       $export = $__require('18'),
-      toObject = $__require('38'),
-      call = $__require('39'),
-      isArrayIter = $__require('3a'),
-      toLength = $__require('3b'),
-      getIterFn = $__require('3c');
-  $export($export.S + $export.F * !$__require('36')(function(iter) {
+      toObject = $__require('36'),
+      call = $__require('37'),
+      isArrayIter = $__require('38'),
+      toLength = $__require('39'),
+      getIterFn = $__require('3a');
+  $export($export.S + $export.F * !$__require('34')(function(iter) {
     Array.from(iter);
   }), 'Array', {from: function from(arrayLike) {
       var O = toObject(arrayLike),
@@ -721,30 +691,30 @@ $__System.registerDynamic("37", ["a", "18", "38", "39", "3a", "3b", "3c", "36"],
   return module.exports;
 });
 
-$__System.registerDynamic("3d", ["1b", "37", "3"], true, function($__require, exports, module) {
+$__System.registerDynamic("3b", ["1b", "35", "3"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   $__require('1b');
-  $__require('37');
+  $__require('35');
   module.exports = $__require('3').Array.from;
   return module.exports;
 });
 
-$__System.registerDynamic("26", ["3d"], true, function($__require, exports, module) {
+$__System.registerDynamic("26", ["3b"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   module.exports = {
-    "default": $__require('3d'),
+    "default": $__require('3b'),
     __esModule: true
   };
   return module.exports;
 });
 
-$__System.registerDynamic("3e", ["26"], true, function($__require, exports, module) {
+$__System.registerDynamic("3c", ["26"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -765,13 +735,13 @@ $__System.registerDynamic("3e", ["26"], true, function($__require, exports, modu
   return module.exports;
 });
 
-$__System.registerDynamic("22", ["35"], true, function($__require, exports, module) {
+$__System.registerDynamic("22", ["3d"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var _Object$defineProperty = $__require('35')["default"];
+  var _Object$defineProperty = $__require('3d')["default"];
   exports["default"] = function(target, key, descriptors) {
     var _descriptor = descriptors[key];
     if (!_descriptor)
@@ -786,7 +756,7 @@ $__System.registerDynamic("22", ["35"], true, function($__require, exports, modu
   return module.exports;
 });
 
-$__System.registerDynamic("3f", ["4"], true, function($__require, exports, module) {
+$__System.registerDynamic("3e", ["4"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -798,25 +768,25 @@ $__System.registerDynamic("3f", ["4"], true, function($__require, exports, modul
   return module.exports;
 });
 
-$__System.registerDynamic("35", ["3f"], true, function($__require, exports, module) {
+$__System.registerDynamic("3d", ["3e"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   module.exports = {
-    "default": $__require('3f'),
+    "default": $__require('3e'),
     __esModule: true
   };
   return module.exports;
 });
 
-$__System.registerDynamic("23", ["35"], true, function($__require, exports, module) {
+$__System.registerDynamic("23", ["3d"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var _Object$defineProperty = $__require('35')["default"];
+  var _Object$defineProperty = $__require('3d')["default"];
   exports["default"] = (function() {
     function defineProperties(target, descriptors, initializers) {
       for (var i = 0; i < descriptors.length; i++) {
@@ -882,25 +852,25 @@ $__System.registerDynamic("1a", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("40", ["41"], true, function($__require, exports, module) {
+$__System.registerDynamic("3f", ["40"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var cof = $__require('41');
+  var cof = $__require('40');
   module.exports = Array.isArray || function(arg) {
     return cof(arg) == 'Array';
   };
   return module.exports;
 });
 
-$__System.registerDynamic("42", ["12", "40", "6"], true, function($__require, exports, module) {
+$__System.registerDynamic("41", ["12", "3f", "6"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   var isObject = $__require('12'),
-      isArray = $__require('40'),
+      isArray = $__require('3f'),
       SPECIES = $__require('6')('species');
   module.exports = function(original, length) {
     var C;
@@ -919,16 +889,16 @@ $__System.registerDynamic("42", ["12", "40", "6"], true, function($__require, ex
   return module.exports;
 });
 
-$__System.registerDynamic("43", ["a", "44", "38", "3b", "42"], true, function($__require, exports, module) {
+$__System.registerDynamic("42", ["a", "43", "36", "39", "41"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   var ctx = $__require('a'),
-      IObject = $__require('44'),
-      toObject = $__require('38'),
-      toLength = $__require('3b'),
-      asc = $__require('42');
+      IObject = $__require('43'),
+      toObject = $__require('36'),
+      toLength = $__require('39'),
+      asc = $__require('41');
   module.exports = function(TYPE) {
     var IS_MAP = TYPE == 1,
         IS_FILTER = TYPE == 2,
@@ -973,7 +943,7 @@ $__System.registerDynamic("43", ["a", "44", "38", "3b", "42"], true, function($_
   return module.exports;
 });
 
-$__System.registerDynamic("45", ["8", "9", "30", "12", "b", "d", "43", "11", "10"], true, function($__require, exports, module) {
+$__System.registerDynamic("44", ["8", "9", "30", "12", "b", "d", "42", "11", "10"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -985,7 +955,7 @@ $__System.registerDynamic("45", ["8", "9", "30", "12", "b", "d", "43", "11", "10
       isObject = $__require('12'),
       strictNew = $__require('b'),
       forOf = $__require('d'),
-      createArrayMethod = $__require('43'),
+      createArrayMethod = $__require('42'),
       $has = $__require('11'),
       WEAK = $__require('10')('weak'),
       isExtensible = Object.isExtensible || isObject,
@@ -1070,12 +1040,12 @@ $__System.registerDynamic("45", ["8", "9", "30", "12", "b", "d", "43", "11", "10
   return module.exports;
 });
 
-$__System.registerDynamic("9", ["46"], true, function($__require, exports, module) {
+$__System.registerDynamic("9", ["45"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var redefine = $__require('46');
+  var redefine = $__require('45');
   module.exports = function(target, src) {
     for (var key in src)
       redefine(target, key, src[key]);
@@ -1084,7 +1054,7 @@ $__System.registerDynamic("9", ["46"], true, function($__require, exports, modul
   return module.exports;
 });
 
-$__System.registerDynamic("39", ["30"], true, function($__require, exports, module) {
+$__System.registerDynamic("37", ["30"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -1103,12 +1073,12 @@ $__System.registerDynamic("39", ["30"], true, function($__require, exports, modu
   return module.exports;
 });
 
-$__System.registerDynamic("3a", ["47", "6"], true, function($__require, exports, module) {
+$__System.registerDynamic("38", ["46", "6"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var Iterators = $__require('47'),
+  var Iterators = $__require('46'),
       ITERATOR = $__require('6')('iterator'),
       ArrayProto = Array.prototype;
   module.exports = function(it) {
@@ -1117,12 +1087,12 @@ $__System.registerDynamic("3a", ["47", "6"], true, function($__require, exports,
   return module.exports;
 });
 
-$__System.registerDynamic("3b", ["48"], true, function($__require, exports, module) {
+$__System.registerDynamic("39", ["47"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var toInteger = $__require('48'),
+  var toInteger = $__require('47'),
       min = Math.min;
   module.exports = function(it) {
     return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0;
@@ -1130,17 +1100,17 @@ $__System.registerDynamic("3b", ["48"], true, function($__require, exports, modu
   return module.exports;
 });
 
-$__System.registerDynamic("d", ["a", "39", "3a", "30", "3b", "3c"], true, function($__require, exports, module) {
+$__System.registerDynamic("d", ["a", "37", "38", "30", "39", "3a"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   var ctx = $__require('a'),
-      call = $__require('39'),
-      isArrayIter = $__require('3a'),
+      call = $__require('37'),
+      isArrayIter = $__require('38'),
       anObject = $__require('30'),
-      toLength = $__require('3b'),
-      getIterFn = $__require('3c');
+      toLength = $__require('39'),
+      getIterFn = $__require('3a');
   module.exports = function(iterable, entries, fn, that) {
     var iterFn = getIterFn(iterable),
         f = ctx(fn, that, entries ? 2 : 1),
@@ -1175,22 +1145,22 @@ $__System.registerDynamic("b", [], true, function($__require, exports, module) {
   return module.exports;
 });
 
-$__System.registerDynamic("14", ["4", "49", "18", "4a", "8", "9", "d", "b", "12", "4b", "5"], true, function($__require, exports, module) {
+$__System.registerDynamic("14", ["4", "48", "18", "49", "8", "9", "d", "b", "12", "4a", "5"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
   var $ = $__require('4'),
-      global = $__require('49'),
+      global = $__require('48'),
       $export = $__require('18'),
-      fails = $__require('4a'),
+      fails = $__require('49'),
       hide = $__require('8'),
       redefineAll = $__require('9'),
       forOf = $__require('d'),
       strictNew = $__require('b'),
       isObject = $__require('12'),
-      setToStringTag = $__require('4b'),
+      setToStringTag = $__require('4a'),
       DESCRIPTORS = $__require('5');
   module.exports = function(NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
     var Base = global[NAME],
@@ -1235,15 +1205,15 @@ $__System.registerDynamic("14", ["4", "49", "18", "4a", "8", "9", "d", "b", "12"
   return module.exports;
 });
 
-$__System.registerDynamic("4c", ["4", "46", "45", "12", "11", "14"], true, function($__require, exports, module) {
+$__System.registerDynamic("4b", ["4", "45", "44", "12", "11", "14"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
   var $ = $__require('4'),
-      redefine = $__require('46'),
-      weak = $__require('45'),
+      redefine = $__require('45'),
+      weak = $__require('44'),
       isObject = $__require('12'),
       has = $__require('11'),
       frozenStore = weak.frozenStore,
@@ -1283,38 +1253,38 @@ $__System.registerDynamic("4c", ["4", "46", "45", "12", "11", "14"], true, funct
   return module.exports;
 });
 
-$__System.registerDynamic("4d", ["1a", "1c", "4c", "3"], true, function($__require, exports, module) {
+$__System.registerDynamic("4c", ["1a", "1c", "4b", "3"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   $__require('1a');
   $__require('1c');
-  $__require('4c');
+  $__require('4b');
   module.exports = $__require('3').WeakMap;
   return module.exports;
 });
 
-$__System.registerDynamic("4e", ["4d"], true, function($__require, exports, module) {
+$__System.registerDynamic("4d", ["4c"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   module.exports = {
-    "default": $__require('4d'),
+    "default": $__require('4c'),
     __esModule: true
   };
   return module.exports;
 });
 
-$__System.registerDynamic("2a", ["18", "3", "4a"], true, function($__require, exports, module) {
+$__System.registerDynamic("2a", ["18", "3", "49"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   var $export = $__require('18'),
       core = $__require('3'),
-      fails = $__require('4a');
+      fails = $__require('49');
   module.exports = function(KEY, exec) {
     var fn = (core.Object || {})[KEY] || Object[KEY],
         exp = {};
@@ -1326,12 +1296,12 @@ $__System.registerDynamic("2a", ["18", "3", "4a"], true, function($__require, ex
   return module.exports;
 });
 
-$__System.registerDynamic("4f", ["38", "2a"], true, function($__require, exports, module) {
+$__System.registerDynamic("4e", ["36", "2a"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var toObject = $__require('38');
+  var toObject = $__require('36');
   $__require('2a')('keys', function($keys) {
     return function keys(it) {
       return $keys(toObject(it));
@@ -1340,29 +1310,29 @@ $__System.registerDynamic("4f", ["38", "2a"], true, function($__require, exports
   return module.exports;
 });
 
-$__System.registerDynamic("50", ["4f", "3"], true, function($__require, exports, module) {
+$__System.registerDynamic("4f", ["4e", "3"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  $__require('4f');
+  $__require('4e');
   module.exports = $__require('3').Object.keys;
   return module.exports;
 });
 
-$__System.registerDynamic("25", ["50"], true, function($__require, exports, module) {
+$__System.registerDynamic("25", ["4f"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   module.exports = {
-    "default": $__require('50'),
+    "default": $__require('4f'),
     __esModule: true
   };
   return module.exports;
 });
 
-$__System.registerDynamic("51", [], false, function($__require, $__exports, $__module) {
+$__System.registerDynamic("50", [], false, function($__require, $__exports, $__module) {
   var _retrieveGlobal = $__System.get("@@global-helpers").prepareGlobal($__module.id, "d3", null);
   (function() {
     "format global";
@@ -13313,16 +13283,16 @@ $__System.registerDynamic("51", [], false, function($__require, $__exports, $__m
   return _retrieveGlobal();
 });
 
-$__System.registerDynamic("52", ["51"], true, function($__require, exports, module) {
+$__System.registerDynamic("51", ["50"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__require('51');
+  module.exports = $__require('50');
   return module.exports;
 });
 
-$__System.registerDynamic("53", ["52"], true, function($__require, exports, module) {
+$__System.registerDynamic("52", ["51"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -13365,7 +13335,7 @@ $__System.registerDynamic("53", ["52"], true, function($__require, exports, modu
     }
     function ChartInternal(api) {
       var $$ = this;
-      $$.d3 = window.d3 ? window.d3 : typeof $__require !== 'undefined' ? $__require('52') : undefined;
+      $$.d3 = window.d3 ? window.d3 : typeof $__require !== 'undefined' ? $__require('51') : undefined;
       $$.api = api;
       $$.config = $$.getDefaultConfig();
       $$.data = {};
@@ -21833,16 +21803,16 @@ $__System.registerDynamic("53", ["52"], true, function($__require, exports, modu
   return module.exports;
 });
 
-$__System.registerDynamic("54", ["53"], true, function($__require, exports, module) {
+$__System.registerDynamic("53", ["52"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__require('53');
+  module.exports = $__require('52');
   return module.exports;
 });
 
-$__System.registerDynamic("55", [], true, function($__require, exports, module) {
+$__System.registerDynamic("54", [], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -21860,7 +21830,7 @@ $__System.registerDynamic("55", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("56", [], true, function($__require, exports, module) {
+$__System.registerDynamic("55", [], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -21877,7 +21847,7 @@ $__System.registerDynamic("56", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("57", [], true, function($__require, exports, module) {
+$__System.registerDynamic("56", [], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -21890,17 +21860,17 @@ $__System.registerDynamic("57", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("58", ["56", "57"], true, function($__require, exports, module) {
+$__System.registerDynamic("57", ["55", "56"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__require('56')() ? Object.keys : $__require('57');
+  module.exports = $__require('55')() ? Object.keys : $__require('56');
   return module.exports;
 });
 
-$__System.registerDynamic("59", [], true, function($__require, exports, module) {
+$__System.registerDynamic("58", [], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -21914,14 +21884,14 @@ $__System.registerDynamic("59", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("5a", ["58", "59"], true, function($__require, exports, module) {
+$__System.registerDynamic("59", ["57", "58"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var keys = $__require('58'),
-      value = $__require('59'),
+  var keys = $__require('57'),
+      value = $__require('58'),
       max = Math.max;
   module.exports = function(dest, src) {
     var error,
@@ -21948,26 +21918,26 @@ $__System.registerDynamic("5a", ["58", "59"], true, function($__require, exports
   return module.exports;
 });
 
-$__System.registerDynamic("5b", ["55", "5a"], true, function($__require, exports, module) {
+$__System.registerDynamic("5a", ["54", "59"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__require('55')() ? Object.assign : $__require('5a');
+  module.exports = $__require('54')() ? Object.assign : $__require('59');
   return module.exports;
 });
 
-$__System.registerDynamic("5c", ["5b"], true, function($__require, exports, module) {
+$__System.registerDynamic("5b", ["5a"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__require('5b');
+  module.exports = $__require('5a');
   return module.exports;
 });
 
-$__System.registerDynamic("5d", [], true, function($__require, exports, module) {
+$__System.registerDynamic("5c", [], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -22079,12 +22049,21 @@ $__System.registerDynamic("5d", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
+$__System.registerDynamic("5d", ["5c"], true, function($__require, exports, module) {
+  ;
+  var define,
+      global = this,
+      GLOBAL = this;
+  module.exports = $__require('5c');
+  return module.exports;
+});
+
 $__System.registerDynamic("5e", ["5d"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__require('5d');
+  module.exports = $__System._nodeRequire ? process : $__require('5d');
   return module.exports;
 });
 
@@ -22093,20 +22072,11 @@ $__System.registerDynamic("5f", ["5e"], true, function($__require, exports, modu
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__System._nodeRequire ? process : $__require('5e');
+  module.exports = $__require('5e');
   return module.exports;
 });
 
 $__System.registerDynamic("60", ["5f"], true, function($__require, exports, module) {
-  ;
-  var define,
-      global = this,
-      GLOBAL = this;
-  module.exports = $__require('5f');
-  return module.exports;
-});
-
-$__System.registerDynamic("61", ["60"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -22129,11 +22099,11 @@ $__System.registerDynamic("61", ["60"], true, function($__require, exports, modu
       });
       return result;
     };
-  })($__require('60'));
+  })($__require('5f'));
   return module.exports;
 });
 
-$__System.registerDynamic("62", [], true, function($__require, exports, module) {
+$__System.registerDynamic("61", [], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -22145,7 +22115,7 @@ $__System.registerDynamic("62", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("63", [], true, function($__require, exports, module) {
+$__System.registerDynamic("62", [], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -22160,7 +22130,7 @@ $__System.registerDynamic("63", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("64", [], true, function($__require, exports, module) {
+$__System.registerDynamic("63", [], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -22173,35 +22143,35 @@ $__System.registerDynamic("64", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("65", ["63", "64"], true, function($__require, exports, module) {
+$__System.registerDynamic("64", ["62", "63"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__require('63')() ? String.prototype.contains : $__require('64');
+  module.exports = $__require('62')() ? String.prototype.contains : $__require('63');
   return module.exports;
 });
 
-$__System.registerDynamic("66", ["65"], true, function($__require, exports, module) {
+$__System.registerDynamic("65", ["64"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__require('65');
+  module.exports = $__require('64');
   return module.exports;
 });
 
-$__System.registerDynamic("67", ["5c", "61", "62", "66"], true, function($__require, exports, module) {
+$__System.registerDynamic("66", ["5b", "60", "61", "65"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var assign = $__require('5c'),
-      normalizeOpts = $__require('61'),
-      isCallable = $__require('62'),
-      contains = $__require('66'),
+  var assign = $__require('5b'),
+      normalizeOpts = $__require('60'),
+      isCallable = $__require('61'),
+      contains = $__require('65'),
       d;
   d = module.exports = function(dscr, value) {
     var c,
@@ -22274,16 +22244,16 @@ $__System.registerDynamic("67", ["5c", "61", "62", "66"], true, function($__requ
   return module.exports;
 });
 
-$__System.registerDynamic("68", ["67"], true, function($__require, exports, module) {
+$__System.registerDynamic("67", ["66"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__require('67');
+  module.exports = $__require('66');
   return module.exports;
 });
 
-$__System.registerDynamic("69", [], true, function($__require, exports, module) {
+$__System.registerDynamic("68", [], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -22297,14 +22267,14 @@ $__System.registerDynamic("69", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("6a", ["68", "69"], true, function($__require, exports, module) {
+$__System.registerDynamic("69", ["67", "68"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var d = $__require('68'),
-      callable = $__require('69'),
+  var d = $__require('67'),
+      callable = $__require('68'),
       apply = Function.prototype.apply,
       call = Function.prototype.call,
       create = Object.create,
@@ -22442,16 +22412,16 @@ $__System.registerDynamic("6a", ["68", "69"], true, function($__require, exports
   return module.exports;
 });
 
-$__System.registerDynamic("6b", ["6a"], true, function($__require, exports, module) {
+$__System.registerDynamic("6a", ["69"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__require('6a');
+  module.exports = $__require('69');
   return module.exports;
 });
 
-$__System.register('6c', [], function (_export) {
+$__System.register('6b', [], function (_export) {
     'use strict';
 
     _export('restAssembly', restAssembly);
@@ -22492,7 +22462,7 @@ $__System.register('6c', [], function (_export) {
         execute: function () {}
     };
 });
-$__System.register('6d', ['6c'], function (_export) {
+$__System.register('6c', ['6b'], function (_export) {
     'use strict';
 
     var restAssembly;
@@ -22518,13 +22488,13 @@ $__System.register('6d', ['6c'], function (_export) {
     }
 
     return {
-        setters: [function (_c) {
-            restAssembly = _c.restAssembly;
+        setters: [function (_b) {
+            restAssembly = _b.restAssembly;
         }],
         execute: function () {}
     };
 });
-$__System.register('1f', ['22', '23', '24', '25', '27', '54', '4e', '6b', '6d'], function (_export) {
+$__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'], function (_export) {
 	var _defineDecoratedPropertyDescriptor, _createDecoratedClass, _classCallCheck, _Object$keys, property, nullable, c3, _WeakMap, ee, VoyaChartServices, _chart, _chartEvents, VoyaChart;
 
 	return {
@@ -22541,12 +22511,12 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '54', '4e', '6b', '6d'],
 			nullable = _6.nullable;
 		}, function (_5) {
 			c3 = _5['default'];
-		}, function (_e) {
-			_WeakMap = _e['default'];
-		}, function (_b) {
-			ee = _b['default'];
 		}, function (_d) {
-			VoyaChartServices = _d.VoyaChartServices;
+			_WeakMap = _d['default'];
+		}, function (_a) {
+			ee = _a['default'];
+		}, function (_c) {
+			VoyaChartServices = _c.VoyaChartServices;
 		}],
 		execute: function () {
 			'use strict';
@@ -22770,14 +22740,14 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '54', '4e', '6b', '6d'],
 		}
 	};
 });
-$__System.registerDynamic("6e", ["16", "6", "47", "3"], true, function($__require, exports, module) {
+$__System.registerDynamic("6d", ["16", "6", "46", "3"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   var classof = $__require('16'),
       ITERATOR = $__require('6')('iterator'),
-      Iterators = $__require('47');
+      Iterators = $__require('46');
   module.exports = $__require('3').isIterable = function(it) {
     var O = Object(it);
     return O[ITERATOR] !== undefined || '@@iterator' in O || Iterators.hasOwnProperty(classof(O));
@@ -22785,37 +22755,37 @@ $__System.registerDynamic("6e", ["16", "6", "47", "3"], true, function($__requir
   return module.exports;
 });
 
-$__System.registerDynamic("6f", ["1c", "1b", "6e"], true, function($__require, exports, module) {
+$__System.registerDynamic("6e", ["1c", "1b", "6d"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   $__require('1c');
   $__require('1b');
-  module.exports = $__require('6e');
+  module.exports = $__require('6d');
   return module.exports;
 });
 
-$__System.registerDynamic("70", ["6f"], true, function($__require, exports, module) {
+$__System.registerDynamic("6f", ["6e"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   module.exports = {
-    "default": $__require('6f'),
+    "default": $__require('6e'),
     __esModule: true
   };
   return module.exports;
 });
 
-$__System.registerDynamic("71", ["72", "70"], true, function($__require, exports, module) {
+$__System.registerDynamic("70", ["71", "6f"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var _getIterator = $__require('72')["default"];
-  var _isIterable = $__require('70')["default"];
+  var _getIterator = $__require('71')["default"];
+  var _isIterable = $__require('6f')["default"];
   exports["default"] = (function() {
     function sliceIterator(arr, i) {
       var _arr = [];
@@ -22857,7 +22827,7 @@ $__System.registerDynamic("71", ["72", "70"], true, function($__require, exports
   return module.exports;
 });
 
-$__System.registerDynamic("73", [], true, function($__require, exports, module) {
+$__System.registerDynamic("72", [], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -22880,15 +22850,15 @@ $__System.registerDynamic("f", [], true, function($__require, exports, module) {
   return module.exports;
 });
 
-$__System.registerDynamic("74", ["73", "f", "47", "29", "e"], true, function($__require, exports, module) {
+$__System.registerDynamic("73", ["72", "f", "46", "29", "e"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var addToUnscopables = $__require('73'),
+  var addToUnscopables = $__require('72'),
       step = $__require('f'),
-      Iterators = $__require('47'),
+      Iterators = $__require('46'),
       toIObject = $__require('29');
   module.exports = $__require('e')(Array, 'Array', function(iterated, kind) {
     this._t = toIObject(iterated);
@@ -22915,18 +22885,18 @@ $__System.registerDynamic("74", ["73", "f", "47", "29", "e"], true, function($__
   return module.exports;
 });
 
-$__System.registerDynamic("1c", ["74", "47"], true, function($__require, exports, module) {
+$__System.registerDynamic("1c", ["73", "46"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  $__require('74');
-  var Iterators = $__require('47');
+  $__require('73');
+  var Iterators = $__require('46');
   Iterators.NodeList = Iterators.HTMLCollection = Iterators.Array;
   return module.exports;
 });
 
-$__System.registerDynamic("48", [], true, function($__require, exports, module) {
+$__System.registerDynamic("47", [], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -22939,12 +22909,12 @@ $__System.registerDynamic("48", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("75", ["48", "c"], true, function($__require, exports, module) {
+$__System.registerDynamic("74", ["47", "c"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var toInteger = $__require('48'),
+  var toInteger = $__require('47'),
       defined = $__require('c');
   module.exports = function(TO_STRING) {
     return function(that, pos) {
@@ -22962,7 +22932,7 @@ $__System.registerDynamic("75", ["48", "c"], true, function($__require, exports,
   return module.exports;
 });
 
-$__System.registerDynamic("76", [], true, function($__require, exports, module) {
+$__System.registerDynamic("75", [], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -22971,7 +22941,7 @@ $__System.registerDynamic("76", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("46", ["8"], true, function($__require, exports, module) {
+$__System.registerDynamic("45", ["8"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -22980,7 +22950,7 @@ $__System.registerDynamic("46", ["8"], true, function($__require, exports, modul
   return module.exports;
 });
 
-$__System.registerDynamic("77", [], true, function($__require, exports, module) {
+$__System.registerDynamic("76", [], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -22996,12 +22966,12 @@ $__System.registerDynamic("77", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("5", ["4a"], true, function($__require, exports, module) {
+$__System.registerDynamic("5", ["49"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = !$__require('4a')(function() {
+  module.exports = !$__require('49')(function() {
     return Object.defineProperty({}, 'a', {get: function() {
         return 7;
       }}).a != 7;
@@ -23009,13 +22979,13 @@ $__System.registerDynamic("5", ["4a"], true, function($__require, exports, modul
   return module.exports;
 });
 
-$__System.registerDynamic("8", ["4", "77", "5"], true, function($__require, exports, module) {
+$__System.registerDynamic("8", ["4", "76", "5"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   var $ = $__require('4'),
-      createDesc = $__require('77');
+      createDesc = $__require('76');
   module.exports = $__require('5') ? function(object, key, value) {
     return $.setDesc(object, key, createDesc(1, value));
   } : function(object, key, value) {
@@ -23025,15 +22995,15 @@ $__System.registerDynamic("8", ["4", "77", "5"], true, function($__require, expo
   return module.exports;
 });
 
-$__System.registerDynamic("78", ["4", "77", "4b", "8", "6"], true, function($__require, exports, module) {
+$__System.registerDynamic("77", ["4", "76", "4a", "8", "6"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
   var $ = $__require('4'),
-      descriptor = $__require('77'),
-      setToStringTag = $__require('4b'),
+      descriptor = $__require('76'),
+      setToStringTag = $__require('4a'),
       IteratorPrototype = {};
   $__require('8')(IteratorPrototype, $__require('6')('iterator'), function() {
     return this;
@@ -23057,7 +23027,7 @@ $__System.registerDynamic("11", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("4b", ["4", "11", "6"], true, function($__require, exports, module) {
+$__System.registerDynamic("4a", ["4", "11", "6"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -23075,20 +23045,20 @@ $__System.registerDynamic("4b", ["4", "11", "6"], true, function($__require, exp
   return module.exports;
 });
 
-$__System.registerDynamic("e", ["76", "18", "46", "8", "11", "47", "78", "4b", "4", "6"], true, function($__require, exports, module) {
+$__System.registerDynamic("e", ["75", "18", "45", "8", "11", "46", "77", "4a", "4", "6"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var LIBRARY = $__require('76'),
+  var LIBRARY = $__require('75'),
       $export = $__require('18'),
-      redefine = $__require('46'),
+      redefine = $__require('45'),
       hide = $__require('8'),
       has = $__require('11'),
-      Iterators = $__require('47'),
-      $iterCreate = $__require('78'),
-      setToStringTag = $__require('4b'),
+      Iterators = $__require('46'),
+      $iterCreate = $__require('77'),
+      setToStringTag = $__require('4a'),
       getProto = $__require('4').getProto,
       ITERATOR = $__require('6')('iterator'),
       BUGGY = !([].keys && 'next' in [].keys()),
@@ -23161,13 +23131,13 @@ $__System.registerDynamic("e", ["76", "18", "46", "8", "11", "47", "78", "4b", "
   return module.exports;
 });
 
-$__System.registerDynamic("1b", ["75", "e"], true, function($__require, exports, module) {
+$__System.registerDynamic("1b", ["74", "e"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var $at = $__require('75')(true);
+  var $at = $__require('74')(true);
   $__require('e')(String, 'String', function(iterated) {
     this._t = String(iterated);
     this._i = 0;
@@ -23215,12 +23185,12 @@ $__System.registerDynamic("30", ["12"], true, function($__require, exports, modu
   return module.exports;
 });
 
-$__System.registerDynamic("16", ["41", "6"], true, function($__require, exports, module) {
+$__System.registerDynamic("16", ["40", "6"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var cof = $__require('41'),
+  var cof = $__require('40'),
       TAG = $__require('6')('toStringTag'),
       ARG = cof(function() {
         return arguments;
@@ -23234,12 +23204,12 @@ $__System.registerDynamic("16", ["41", "6"], true, function($__require, exports,
   return module.exports;
 });
 
-$__System.registerDynamic("79", ["49"], true, function($__require, exports, module) {
+$__System.registerDynamic("78", ["48"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var global = $__require('49'),
+  var global = $__require('48'),
       SHARED = '__core-js_shared__',
       store = global[SHARED] || (global[SHARED] = {});
   module.exports = function(key) {
@@ -23261,21 +23231,21 @@ $__System.registerDynamic("10", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("6", ["79", "10", "49"], true, function($__require, exports, module) {
+$__System.registerDynamic("6", ["78", "10", "48"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var store = $__require('79')('wks'),
+  var store = $__require('78')('wks'),
       uid = $__require('10'),
-      Symbol = $__require('49').Symbol;
+      Symbol = $__require('48').Symbol;
   module.exports = function(name) {
     return store[name] || (store[name] = Symbol && Symbol[name] || (Symbol || uid)('Symbol.' + name));
   };
   return module.exports;
 });
 
-$__System.registerDynamic("47", [], true, function($__require, exports, module) {
+$__System.registerDynamic("46", [], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -23284,14 +23254,14 @@ $__System.registerDynamic("47", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("3c", ["16", "6", "47", "3"], true, function($__require, exports, module) {
+$__System.registerDynamic("3a", ["16", "6", "46", "3"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   var classof = $__require('16'),
       ITERATOR = $__require('6')('iterator'),
-      Iterators = $__require('47');
+      Iterators = $__require('46');
   module.exports = $__require('3').getIteratorMethod = function(it) {
     if (it != undefined)
       return it[ITERATOR] || it['@@iterator'] || Iterators[classof(it)];
@@ -23299,13 +23269,13 @@ $__System.registerDynamic("3c", ["16", "6", "47", "3"], true, function($__requir
   return module.exports;
 });
 
-$__System.registerDynamic("7a", ["30", "3c", "3"], true, function($__require, exports, module) {
+$__System.registerDynamic("79", ["30", "3a", "3"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   var anObject = $__require('30'),
-      get = $__require('3c');
+      get = $__require('3a');
   module.exports = $__require('3').getIterator = function(it) {
     var iterFn = get(it);
     if (typeof iterFn != 'function')
@@ -23315,35 +23285,35 @@ $__System.registerDynamic("7a", ["30", "3c", "3"], true, function($__require, ex
   return module.exports;
 });
 
-$__System.registerDynamic("7b", ["1c", "1b", "7a"], true, function($__require, exports, module) {
+$__System.registerDynamic("7a", ["1c", "1b", "79"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   $__require('1c');
   $__require('1b');
-  module.exports = $__require('7a');
+  module.exports = $__require('79');
   return module.exports;
 });
 
-$__System.registerDynamic("72", ["7b"], true, function($__require, exports, module) {
+$__System.registerDynamic("71", ["7a"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   module.exports = {
-    "default": $__require('7b'),
+    "default": $__require('7a'),
     __esModule: true
   };
   return module.exports;
 });
 
-$__System.registerDynamic("29", ["44", "c"], true, function($__require, exports, module) {
+$__System.registerDynamic("29", ["43", "c"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var IObject = $__require('44'),
+  var IObject = $__require('43'),
       defined = $__require('c');
   module.exports = function(it) {
     return IObject(defined(it));
@@ -23351,7 +23321,7 @@ $__System.registerDynamic("29", ["44", "c"], true, function($__require, exports,
   return module.exports;
 });
 
-$__System.registerDynamic("7c", ["4", "29"], true, function($__require, exports, module) {
+$__System.registerDynamic("7b", ["4", "29"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -23377,42 +23347,42 @@ $__System.registerDynamic("7c", ["4", "29"], true, function($__require, exports,
   return module.exports;
 });
 
-$__System.registerDynamic("7d", ["18", "7c"], true, function($__require, exports, module) {
+$__System.registerDynamic("7c", ["18", "7b"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   var $export = $__require('18'),
-      $entries = $__require('7c')(true);
+      $entries = $__require('7b')(true);
   $export($export.S, 'Object', {entries: function entries(it) {
       return $entries(it);
     }});
   return module.exports;
 });
 
-$__System.registerDynamic("7e", ["7d", "3"], true, function($__require, exports, module) {
+$__System.registerDynamic("7d", ["7c", "3"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  $__require('7d');
+  $__require('7c');
   module.exports = $__require('3').Object.entries;
   return module.exports;
 });
 
-$__System.registerDynamic("7f", ["7e"], true, function($__require, exports, module) {
+$__System.registerDynamic("7e", ["7d"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   module.exports = {
-    "default": $__require('7e'),
+    "default": $__require('7d'),
     __esModule: true
   };
   return module.exports;
 });
 
-$__System.registerDynamic("80", [], true, function($__require, exports, module) {
+$__System.registerDynamic("7f", [], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -23461,16 +23431,16 @@ $__System.registerDynamic("80", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("81", ["80"], true, function($__require, exports, module) {
+$__System.registerDynamic("80", ["7f"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__require('80');
+  module.exports = $__require('7f');
   return module.exports;
 });
 
-$__System.registerDynamic("82", [], true, function($__require, exports, module) {
+$__System.registerDynamic("81", [], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -23486,16 +23456,16 @@ $__System.registerDynamic("82", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("83", ["82"], true, function($__require, exports, module) {
+$__System.registerDynamic("82", ["81"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__require('82');
+  module.exports = $__require('81');
   return module.exports;
 });
 
-$__System.registerDynamic("49", [], true, function($__require, exports, module) {
+$__System.registerDynamic("48", [], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -23506,7 +23476,7 @@ $__System.registerDynamic("49", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("84", [], true, function($__require, exports, module) {
+$__System.registerDynamic("83", [], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -23519,12 +23489,12 @@ $__System.registerDynamic("84", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("a", ["84"], true, function($__require, exports, module) {
+$__System.registerDynamic("a", ["83"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var aFunction = $__require('84');
+  var aFunction = $__require('83');
   module.exports = function(fn, that, length) {
     aFunction(fn);
     if (that === undefined)
@@ -23550,12 +23520,12 @@ $__System.registerDynamic("a", ["84"], true, function($__require, exports, modul
   return module.exports;
 });
 
-$__System.registerDynamic("18", ["49", "3", "a"], true, function($__require, exports, module) {
+$__System.registerDynamic("18", ["48", "3", "a"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var global = $__require('49'),
+  var global = $__require('48'),
       core = $__require('3'),
       ctx = $__require('a'),
       PROTOTYPE = 'prototype';
@@ -23633,7 +23603,7 @@ $__System.registerDynamic("c", [], true, function($__require, exports, module) {
   return module.exports;
 });
 
-$__System.registerDynamic("38", ["c"], true, function($__require, exports, module) {
+$__System.registerDynamic("36", ["c"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -23645,7 +23615,7 @@ $__System.registerDynamic("38", ["c"], true, function($__require, exports, modul
   return module.exports;
 });
 
-$__System.registerDynamic("41", [], true, function($__require, exports, module) {
+$__System.registerDynamic("40", [], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -23657,19 +23627,19 @@ $__System.registerDynamic("41", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("44", ["41"], true, function($__require, exports, module) {
+$__System.registerDynamic("43", ["40"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var cof = $__require('41');
+  var cof = $__require('40');
   module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it) {
     return cof(it) == 'String' ? it.split('') : Object(it);
   };
   return module.exports;
 });
 
-$__System.registerDynamic("4a", [], true, function($__require, exports, module) {
+$__System.registerDynamic("49", [], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
@@ -23684,15 +23654,15 @@ $__System.registerDynamic("4a", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("85", ["4", "38", "44", "4a"], true, function($__require, exports, module) {
+$__System.registerDynamic("84", ["4", "36", "43", "49"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   var $ = $__require('4'),
-      toObject = $__require('38'),
-      IObject = $__require('44');
-  module.exports = $__require('4a')(function() {
+      toObject = $__require('36'),
+      IObject = $__require('43');
+  module.exports = $__require('49')(function() {
     var a = Object.assign,
         A = {},
         B = {},
@@ -23726,13 +23696,13 @@ $__System.registerDynamic("85", ["4", "38", "44", "4a"], true, function($__requi
   return module.exports;
 });
 
-$__System.registerDynamic("86", ["18", "85"], true, function($__require, exports, module) {
+$__System.registerDynamic("85", ["18", "84"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   var $export = $__require('18');
-  $export($export.S + $export.F, 'Object', {assign: $__require('85')});
+  $export($export.S + $export.F, 'Object', {assign: $__require('84')});
   return module.exports;
 });
 
@@ -23747,29 +23717,29 @@ $__System.registerDynamic("3", [], true, function($__require, exports, module) {
   return module.exports;
 });
 
-$__System.registerDynamic("87", ["86", "3"], true, function($__require, exports, module) {
+$__System.registerDynamic("86", ["85", "3"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  $__require('86');
+  $__require('85');
   module.exports = $__require('3').Object.assign;
   return module.exports;
 });
 
-$__System.registerDynamic("88", ["87"], true, function($__require, exports, module) {
+$__System.registerDynamic("87", ["86"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
   module.exports = {
-    "default": $__require('87'),
+    "default": $__require('86'),
     __esModule: true
   };
   return module.exports;
 });
 
-$__System.register('89', ['88'], function (_export) {
+$__System.register('88', ['87'], function (_export) {
     var _Object$assign;
 
     function decorator(fn) {
@@ -23867,7 +23837,7 @@ $__System.register('89', ['88'], function (_export) {
         }
     };
 });
-$__System.register('27', ['71', '72', '81', '83', '88', '89', '7f'], function (_export) {
+$__System.register('27', ['70', '71', '80', '82', '87', '88', '7e'], function (_export) {
     var _slicedToArray, _getIterator, camelcase, decamelize, _Object$assign, decorator, coerce, _Object$entries, property, nullable, ui;
 
     /** Helper Methods **/
@@ -23991,8 +23961,8 @@ $__System.register('27', ['71', '72', '81', '83', '88', '89', '7f'], function (_
         }, function (_6) {
             decorator = _6.decorator;
             coerce = _6.coerce;
-        }, function (_f) {
-            _Object$entries = _f['default'];
+        }, function (_e) {
+            _Object$entries = _e['default'];
         }],
         execute: function () {
             'use strict';
@@ -24083,23 +24053,25 @@ $__System.register('27', ['71', '72', '81', '83', '88', '89', '7f'], function (_
         }
     };
 });
-$__System.register('8a', ['20', '21', '24', '27', '34', '3e', '1f'], function (_export) {
-    var _get, _inherits, _classCallCheck, property, nullable, _createClass, _toConsumableArray, VoyaChart, AreaSpline;
+$__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], function (_export) {
+    var _get, _inherits, _defineDecoratedPropertyDescriptor, _createDecoratedClass, _classCallCheck, property, nullable, _toConsumableArray, VoyaChart, AreaSpline;
 
     return {
         setters: [function (_) {
             _get = _['default'];
         }, function (_2) {
             _inherits = _2['default'];
-        }, function (_4) {
-            _classCallCheck = _4['default'];
-        }, function (_5) {
-            property = _5.property;
-            nullable = _5.nullable;
         }, function (_3) {
-            _createClass = _3['default'];
-        }, function (_e) {
-            _toConsumableArray = _e['default'];
+            _defineDecoratedPropertyDescriptor = _3['default'];
+        }, function (_4) {
+            _createDecoratedClass = _4['default'];
+        }, function (_5) {
+            _classCallCheck = _5['default'];
+        }, function (_6) {
+            property = _6.property;
+            nullable = _6.nullable;
+        }, function (_c) {
+            _toConsumableArray = _c['default'];
         }, function (_f) {
             VoyaChart = _f.VoyaChart;
         }],
@@ -24107,25 +24079,39 @@ $__System.register('8a', ['20', '21', '24', '27', '34', '3e', '1f'], function (_
             'use strict';
 
             AreaSpline = (function (_VoyaChart) {
+                var _instanceInitializers = {};
+
                 _inherits(AreaSpline, _VoyaChart);
 
                 function AreaSpline(chartProperties) {
                     _classCallCheck(this, AreaSpline);
 
                     _get(Object.getPrototypeOf(AreaSpline.prototype), 'constructor', this).call(this, chartProperties);
+
+                    _defineDecoratedPropertyDescriptor(this, 'xaxistype', _instanceInitializers);
+
+                    _defineDecoratedPropertyDescriptor(this, 'yaxistype', _instanceInitializers);
+
+                    _defineDecoratedPropertyDescriptor(this, 'xaxisformat', _instanceInitializers);
+
+                    _defineDecoratedPropertyDescriptor(this, 'yaxisformat', _instanceInitializers);
+
                     this.labels = [];
                 }
 
-                /**
-                 * Handle property change.
-                 * @Override
-                 * @param {string} prop
-                 * @param {*} oldValue
-                 * @param {*} newValue
-                 */
+                // Set to a C3 chart type, in order to customize the ticks along the x-axis.
+                // See:  http://c3js.org/examples.html, for available chart types.
 
-                _createClass(AreaSpline, [{
+                _createDecoratedClass(AreaSpline, [{
                     key: 'propertyChangedCallback',
+
+                    /**
+                     * Handle property change.
+                     * @Override
+                     * @param {string} prop
+                     * @param {*} oldValue
+                     * @param {*} newValue
+                     */
                     value: function propertyChangedCallback(prop, oldValue, newValue) {
                         if (oldValue === newValue) {
                             return;
@@ -24151,19 +24137,31 @@ $__System.register('8a', ['20', '21', '24', '27', '34', '3e', '1f'], function (_
                         chartModel.data = {};
                         chartModel.data.columns = [];
 
-                        // TODO: ADD X-AXIS & Y-AXIS PROPERTIES, SO USERS CAN CUSTOMIZE THE AXIS.
-                        // TODO: ADD TEST FOR X/Y AXIS PROPERTY VALUES.
-                        // TODO: ONLY RUN THIS CODE IF THE PROPERTY IS PRESENT & HAS VALUE.
-                        //
                         // Set up the x-axis for the chart.
-                        // This tells C3 to render the x-axis as a Time Series.
-                        // Each tick on the x-axis, in the Year-Month-Day format.
-                        chartModel.axis.x = {
-                            type: 'timeseries',
-                            tick: {
-                                format: '%Y-%m-%d'
+                        if (this.xaxistype && this.xaxistype !== 'area-spline') {
+                            chartModel.axis.x = {
+                                type: this.xaxistype
+                            };
+
+                            if (this.xaxistype === 'timeseries' && this.xaxisformat) {
+                                chartModel.axis.x.tick = {
+                                    format: this.xaxisformat
+                                };
                             }
-                        };
+                        }
+
+                        // Set up the y-axis for the chart.
+                        if (this.yaxistype && this.yaxistype !== 'area-spline') {
+                            chartModel.axis.y = {
+                                type: this.yaxistype
+                            };
+
+                            if (this.yaxistype === 'timeseries' && this.yaxisformat) {
+                                chartModel.axis.y.tick = {
+                                    format: this.yaxisformat
+                                };
+                            }
+                        }
 
                         // TODO: FIGURE OUT HOW TO TURN OFF ALL DATA EXCEPT THE FIRST RECORD (3-MONTH) ON PAGE-LOAD
                         // TODO: ADD A PROPERTY TO ENABLE/DISABLE DEFAULTING TO JUST FIRST RECORD????
@@ -24215,7 +24213,36 @@ $__System.register('8a', ['20', '21', '24', '27', '34', '3e', '1f'], function (_
 
                         this.chartModel = chartModel;
                     }
-                }]);
+                }, {
+                    key: 'xaxistype',
+                    decorators: [nullable, property],
+                    initializer: null,
+
+                    // Set to a C3 chart type, in order to customize the ticks along the y-axis.
+                    // See:  http://c3js.org/examples.html, for available chart types.
+                    enumerable: true
+                }, {
+                    key: 'yaxistype',
+                    decorators: [nullable, property],
+                    initializer: null,
+
+                    // Format String for a "timeseries" x-axis.
+                    // C3 API Ref:  http://c3js.org/reference.html#axis-x-tick-format
+                    enumerable: true
+                }, {
+                    key: 'xaxisformat',
+                    decorators: [nullable, property],
+                    initializer: null,
+
+                    // Format String for a "timeseries" y-axis.
+                    // C3 API Ref:  http://c3js.org/reference.html#axis-x-tick-format
+                    enumerable: true
+                }, {
+                    key: 'yaxisformat',
+                    decorators: [nullable, property],
+                    initializer: null,
+                    enumerable: true
+                }], null, _instanceInitializers);
 
                 return AreaSpline;
             })(VoyaChart);
@@ -24224,8 +24251,8 @@ $__System.register('8a', ['20', '21', '24', '27', '34', '3e', '1f'], function (_
         }
     };
 });
-$__System.register('8b', ['20', '21', '22', '23', '24', '27', '4e', '1e', '8a'], function (_export) {
-    var _get, _inherits, _defineDecoratedPropertyDescriptor, _createDecoratedClass, _classCallCheck, property, nullable, _WeakMap, Donut, AreaSpline, _chartInstances, VoyaChart;
+$__System.register('8a', ['20', '21', '22', '23', '24', '27', '89', '4d', '1e'], function (_export) {
+    var _get, _inherits, _defineDecoratedPropertyDescriptor, _createDecoratedClass, _classCallCheck, property, nullable, AreaSpline, _WeakMap, Donut, _chartInstances, VoyaChart;
 
     return {
         setters: [function (_) {
@@ -24241,12 +24268,12 @@ $__System.register('8b', ['20', '21', '22', '23', '24', '27', '4e', '1e', '8a'],
         }, function (_6) {
             property = _6.property;
             nullable = _6.nullable;
+        }, function (_7) {
+            AreaSpline = _7.AreaSpline;
+        }, function (_d) {
+            _WeakMap = _d['default'];
         }, function (_e) {
-            _WeakMap = _e['default'];
-        }, function (_e2) {
-            Donut = _e2.Donut;
-        }, function (_a) {
-            AreaSpline = _a.AreaSpline;
+            Donut = _e.Donut;
         }],
         execute: function () {
             'use strict';
@@ -24314,7 +24341,7 @@ $__System.register('8b', ['20', '21', '22', '23', '24', '27', '4e', '1e', '8a'],
         }
     };
 });
-$__System.registerDynamic("8c", [], true, function($__require, exports, module) {
+$__System.registerDynamic("8b", [], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -24540,13 +24567,13 @@ $__System.registerDynamic("8c", [], true, function($__require, exports, module) 
   return module.exports;
 });
 
-$__System.registerDynamic("8d", ["8c"], true, function($__require, exports, module) {
+$__System.registerDynamic("8c", ["8b"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
       global = this,
       GLOBAL = this;
-  var Delegate = $__require('8c');
+  var Delegate = $__require('8b');
   module.exports = function(root) {
     return new Delegate(root);
   };
@@ -24554,16 +24581,16 @@ $__System.registerDynamic("8d", ["8c"], true, function($__require, exports, modu
   return module.exports;
 });
 
-$__System.registerDynamic("8e", ["8d"], true, function($__require, exports, module) {
+$__System.registerDynamic("8d", ["8c"], true, function($__require, exports, module) {
   ;
   var define,
       global = this,
       GLOBAL = this;
-  module.exports = $__require('8d');
+  module.exports = $__require('8c');
   return module.exports;
 });
 
-$__System.register('1', ['25', '8b', '8e'], function (_export) {
+$__System.register('1', ['25', '8a', '8d'], function (_export) {
 	var _Object$keys, delegate, eventMethod;
 
 	function appLoaded() {
@@ -24579,8 +24606,8 @@ $__System.register('1', ['25', '8b', '8e'], function (_export) {
 	return {
 		setters: [function (_) {
 			_Object$keys = _['default'];
-		}, function (_b) {}, function (_e) {
-			delegate = _e['default'];
+		}, function (_a) {}, function (_d) {
+			delegate = _d['default'];
 		}],
 		execute: function () {
 			'use strict';

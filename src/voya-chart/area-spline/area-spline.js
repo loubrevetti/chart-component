@@ -7,6 +7,30 @@ export class AreaSpline extends VoyaChart {
         this.labels = [];
     }
 
+    // Set to a C3 chart type, in order to customize the ticks along the x-axis.
+    // See:  http://c3js.org/examples.html, for available chart types.
+    @property
+    @nullable
+    xaxistype;
+
+    // Set to a C3 chart type, in order to customize the ticks along the y-axis.
+    // See:  http://c3js.org/examples.html, for available chart types.
+    @property
+    @nullable
+    yaxistype;
+
+    // Format String for a "timeseries" x-axis.
+    // C3 API Ref:  http://c3js.org/reference.html#axis-x-tick-format
+    @property
+    @nullable
+    xaxisformat;
+
+    // Format String for a "timeseries" y-axis.
+    // C3 API Ref:  http://c3js.org/reference.html#axis-x-tick-format
+    @property
+    @nullable
+    yaxisformat;
+
     /**
      * Handle property change.
      * @Override
@@ -37,19 +61,31 @@ export class AreaSpline extends VoyaChart {
         chartModel.data = {};
         chartModel.data.columns = [];
 
-        // TODO: ADD X-AXIS & Y-AXIS PROPERTIES, SO USERS CAN CUSTOMIZE THE AXIS.
-        // TODO: ADD TEST FOR X/Y AXIS PROPERTY VALUES.
-        // TODO: ONLY RUN THIS CODE IF THE PROPERTY IS PRESENT & HAS VALUE.
-        //
         // Set up the x-axis for the chart.
-        // This tells C3 to render the x-axis as a Time Series.
-        // Each tick on the x-axis, in the Year-Month-Day format.
-        chartModel.axis.x = {
-            type: 'timeseries',
-            tick: {
-                format: '%Y-%m-%d'
+        if ((this.xaxistype) && (this.xaxistype !== 'area-spline')) {
+            chartModel.axis.x = {
+                type: this.xaxistype
+            };
+
+            if ((this.xaxistype === 'timeseries') && this.xaxisformat) {
+                chartModel.axis.x.tick = {
+                    format: this.xaxisformat
+                }
             }
-        };
+        }
+
+        // Set up the y-axis for the chart.
+        if ((this.yaxistype) && (this.yaxistype !== 'area-spline')) {
+            chartModel.axis.y = {
+                type: this.yaxistype
+            };
+
+            if (this.yaxistype === 'timeseries' && this.yaxisformat) {
+                chartModel.axis.y.tick = {
+                    format: this.yaxisformat
+                }
+            }
+        }
 
         // TODO: FIGURE OUT HOW TO TURN OFF ALL DATA EXCEPT THE FIRST RECORD (3-MONTH) ON PAGE-LOAD
         // TODO: ADD A PROPERTY TO ENABLE/DISABLE DEFAULTING TO JUST FIRST RECORD????
