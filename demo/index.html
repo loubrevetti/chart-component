@@ -72,11 +72,11 @@
 
 <p>
     <voya-chart
-            type="AreaSpline"
-			xaxistype="timeseries"
-			xaxisformat="%Y-%m-%d"
-            api-url="/src/stubs/balanceHistory.json"
-            api-params={"method":"GET"}>
+            type="AreaSpline"                         <!-- Chart Type -->
+			xaxistype="timeseries"                    <!-- X-axis type.  Use a valid chart type to change how the axis displays it's ticks -->
+			xaxisformat="%Y-%m-%d"                    <!-- X-axis format string.  Use when x-axis is displaying as a Time Series -->
+            api-url="/src/stubs/balanceHistory.json"  <!-- Data service URL -->
+            api-params={"method":"GET"}>              <!-- Data service request type -->
     </voya-chart>
 </p>
 
