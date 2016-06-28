@@ -50,19 +50,22 @@
 	></voya-chart>
 </p>
 
-<!-- type        : Chart Type -->
-<!-- xaxistype   : Optional. X-axis type.  Use a valid chart type to change how the axis displays it's ticks -->
-<!-- xaxisformat : Optional. X-axis format string.  Use when x-axis is displaying as a Time Series -->
-<!-- showalldata : Optional. TRUE/FALSE. Defaults to TRUE. Set to FALSE, to initially display only the first set of data. -->
-<!-- api-url     : Data service URL -->
-<!-- api-params  : Data service request type -->
-<p>
+<!-- type          : Chart Type -->
+<!-- x-axis-type   : Optional. X-axis type.  Use a valid chart type to change how the axis displays it's ticks -->
+<!-- x-axis-format : Optional. X-axis format string.  Use when x-axis is displaying as a Time Series -->
+<!-- hide-y-axis   : Optional. Boolean. Hide/Show the y-axis. Defaults to Show (false).
+<!-- max-x-labels  : Optional. Integer. Maximum number of labels to display along the x-axis -->
+<!-- api-url       : Data service URL -->
+<!-- api-params    : Data service request type -->
+
+<p style="width: 500px; margin: auto;">
     <voya-chart
             type="AreaSpline"
-			xaxistype="timeseries"
-			xaxisformat="%Y-%m-%d"
-			showalldata="false"
-            api-url="/src/stubs/balanceHistory.json"
+			x-axis-type="timeseries"
+			x-axis-format="%Y-%m-%d"
+			hide-y-axis="true"
+			max-x-labels="4"
+			api-url="/src/stubs/balanceHistory.json"
             api-params={"method":"GET"}>
     </voya-chart>
 </p>

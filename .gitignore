@@ -10,6 +10,7 @@
 *.exe
 *.o
 *.so
+demo/demo-*
 
 # Packages #
 ############

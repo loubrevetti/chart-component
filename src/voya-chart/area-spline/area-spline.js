@@ -16,18 +16,25 @@ export class AreaSpline extends VoyaChart {
     // See:  http://c3js.org/examples.html, for available chart types.
     @property
     @nullable
-    xaxistype;
+    xAxisType;
 
     // Format String for a "timeseries" x-axis.
     // C3 API Ref:  http://c3js.org/reference.html#axis-x-tick-format
     @property
     @nullable
-    xaxisformat;
+    xAxisFormat;
 
-    // If TRUE, display all supplied data sets in the chart when the chart is first rendered.
-    // If FALSE, initially display only the first set of data.
+    @property({type: 'boolean'})
+    @nullable
+    hideYAxis;
+
+    @property({type: 'boolean'})
+    @nullable
+    hideXAxis;
+
     @property
-    showalldata = true;
+    @nullable
+    maxXLabels;
 
     /**
      * Handle property change.
@@ -54,25 +61,53 @@ export class AreaSpline extends VoyaChart {
     buildChartModel() {
         let chartModel = {};
 
-        chartModel.axis = {};         // Used to customize the x/y axis.
-        chartModel.names = {};        // Used to build the chart Legend.
-        chartModel.data = {};         // Used to describe the chart's data.
-        chartModel.data.columns = []; // Data Columns hold data to display, as well as data for use along the x/y axis.
-        chartModel.data.hide = [];    // List of Columns that should be initially hidden from view.
-        chartModel.data.xs = {};      // Associate custom x-axis data with the col data it describes.
+        // Chart axis configuration.
+        // See:  http://c3js.org/reference.html#axis-rotated
+        chartModel.axis = {
+            x: {
+                tick: {
+                    culling: {}
+                }
+            },
+            y: {}
+        };
+
+        // Chart data configuration
+        // See:  http://c3js.org/reference.html#data-url
+        chartModel.data = {
+            columns: [],
+            hide: {},
+            xs: {}
+        };
+
+        // Binds each item in the legend to a particular column of data.
+        chartModel.names = {};
+
+        // Hide the y-axis.
+        if (this.hideYAxis) {
+            chartModel.axis.y.show = false;
+        }
+
+        // Hide the x-axis.
+        if (this.hideXAxis) {
+            chartModel.axis.x.show = false;
+        }
+
+        // Cull the labels along the x-axis.
+        if (!Number.isNaN(this.maxXLabels)) {
+            chartModel.axis.x.tick.culling = {
+                max: Number.parseInt(this.maxXLabels, 10)
+            }
+        }
 
         // Are the x-axis ticks being displayed in anything other than standard Area Spline format?
-        if ((this.xaxistype) && (this.xaxistype !== 'area-spline')) {
-            chartModel.axis.x = {
-                type: this.xaxistype
-            };
+        if ((this.xAxisType) && (this.xAxisType !== 'area-spline')) {
+            chartModel.axis.x.type = this.xAxisType;
 
             // Is the x-axis being set up as a Time Series specifically?
             // If so, apply any supplied formatting.
-            if ((this.xaxistype === 'timeseries') && this.xaxisformat) {
-                chartModel.axis.x.tick = {
-                    format: this.xaxisformat
-                }
+            if ((this.xAxisType === 'timeseries') && this.xAxisFormat) {
+                chartModel.axis.x.tick.format = this.xAxisFormat;
             }
         }
         
@@ -89,11 +124,6 @@ export class AreaSpline extends VoyaChart {
                 chartData.push(item.label);
                 chartData.push(...item.data);
                 chartModel.data.columns.push(chartData);
-
-                // If NOT show-all-data, make sure only the first col's data is initially displayed.
-                if (!this.showalldata && (idx !== 0)) {
-                    chartModel.data.hide.push(item.label);
-                }
 
                 // If custom x-axis data has been supplied...
                 if (item.xAxis) {
