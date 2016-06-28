@@ -96,7 +96,7 @@ export class AreaSpline extends VoyaChart {
         // Cull the labels along the x-axis.
         if (!Number.isNaN(this.maxXLabels)) {
             chartModel.axis.x.tick.culling = {
-                max: Number.parseInt(this.maxXLabels)
+                max: Number.parseInt(this.maxXLabels, 10)
             }
         }
 
