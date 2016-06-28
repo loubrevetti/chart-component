@@ -74,7 +74,8 @@ export class VoyaChart{
 					return c ? c.toUpperCase() : '';
 				})];
 				if (chart[name] === undefined)return;
-				chart[name] = value;
+				let val = (name==="colors" && typeof(value)==="string") ? value.split(",") : value
+				chart[name] = val;
 			})
 		}
 		buildServices() {
@@ -90,8 +91,9 @@ export class VoyaChart{
 		}
 		buildChartData(){
 			this.chartModel.data.type = this.instanceName;
-			if (!this.colors) return this.chartModel;
-			//TODO: adding color binding on instaniation
+			if(!this.colors) return this.chartModel;
+			this.chartModel.data.colors = this.buildColorModel();
+			return this.chartModel;
 		}
 		buildInstanceData(){
 			let typeConfig={};
@@ -100,6 +102,13 @@ export class VoyaChart{
 				typeConfig[prop] = this._properties[prop];
 			}
 			return typeConfig
+		}
+		buildColorModel(){
+			let colors={}
+			this.chartModel.data.columns.forEach(function(col,idx){
+				colors[col[0]] = this.colors[idx];
+			}.bind(this))
+			return colors;
 		}
 		buildLegend(){
 			let chart = this

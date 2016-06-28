@@ -22580,7 +22580,8 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 							});
 
 							if (chart[name] === undefined) return;
-							chart[name] = value;
+							var val = name === "colors" && typeof value === "string" ? value.split(",") : value;
+							chart[name] = val;
 						});
 					}
 				}, {
@@ -22603,7 +22604,8 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 					value: function buildChartData() {
 						this.chartModel.data.type = this.instanceName;
 						if (!this.colors) return this.chartModel;
-						//TODO: adding color binding on instaniation
+						this.chartModel.data.colors = this.buildColorModel();
+						return this.chartModel;
 					}
 				}, {
 					key: 'buildInstanceData',
@@ -22614,6 +22616,15 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 							typeConfig[prop] = this._properties[prop];
 						}
 						return typeConfig;
+					}
+				}, {
+					key: 'buildColorModel',
+					value: function buildColorModel() {
+						var colors = {};
+						this.chartModel.data.columns.forEach((function (col, idx) {
+							colors[col[0]] = this.colors[idx];
+						}).bind(this));
+						return colors;
 					}
 				}, {
 					key: 'buildLegend',
@@ -24591,14 +24602,18 @@ $__System.register('1', ['25', '8a', '8d'], function (_export) {
 		var menu = document.querySelector('.toolbar');
 		var voyaChart = document.querySelector('voya-chart');
 		voyaChart.api.eventBus.on('rendered', function () {
+			//let colors={}
+			//voyaChart.api.chartModel.data.columns.forEach(function(col,idx){
+			//	colors[col[0]] = "#"+brandedModel[idx];
+			//})
+			//voyaChart.api.updateColors(colors);
+		});
+		delegate(menu).on('click', "li", function (e) {
 			var colors = {};
 			voyaChart.api.chartModel.data.columns.forEach(function (col, idx) {
 				colors[col[0]] = "#" + brandedModel[idx];
 			});
 			voyaChart.api.updateColors(colors);
-		});
-		delegate(menu).on('click', "li", function (e) {
-			console.log('this menu is here and ready for voya-charts to be  leveraged to display features to devs');
 		});
 	}
 	return {
