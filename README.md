@@ -34,49 +34,25 @@ Base Chart | [base-chart](#base)
 Donut Chart | [donut-chart](#donut)
 Spline Chart | [spline-chart](#spline)
 
-### Base Chart<a id="base"></a>
+## Base Chart<a id="base"></a>
 this is the base class that all types extend from, this class has all core properties across the board for all chart types
 
-* **eventBus:** emits events form the chart api for devs to listen to in order to properly hook back into chart public interface
-  - **rendered**: fires when chart has rendered
-  - **update**: fires when charts data model has been updated
-  - **legenditemclick**: fires when chart legend item is clicked
-  - **legenditemhover**: fires when chart legend item activates mouseover
-  - **legenditemout**: fires when chart legend item activates mouseout 
-  - 
+* -**eventBus:** emits events form the chart api for devs to listen to in order to properly hook back into chart public interface
+    - **rendered**: fires when chart has rendered
+    - **update**: fires when charts data model has been updated
+    - **legenditemclick**: fires when chart legend item is clicked
+    - **legenditemhover**: fires when chart legend item activates mouseover
+    - **legenditemout**: fires when chart legend item activates mouseout 
+    
 * **dataModel:** property which holds raw data model to chart instance
 * **chartModel:** property which holds chart configuration plus assembled data model for chart inheritance
 * **legend:** porperty which holds legend pbject for chart
+* **colors:** property whixh will change the data point colors
 
 
-### theming *global and column-instance property*
-* **theme<a id="theme"></a>:** setting theme to true on column instance will allow that instance to have the capability to theme that instance in 3 different themes, If set on  table then all columns become that theme. **please remember that column instance properites will always override globale properties**
-  * ``` column instance: <voya-column theme="white/orange/red"></voya-column>```
-  * ``` global instance: <voya-table theme=""white/orange/red"></voya-table>```
-
-* **row-alternating<a id="row-alternating"></a>:** if set true or defined rows will have slight grey backgorund in every other row
-  * ``` global instance: <voya-table row-alternating></voya-table>```
-
-* **borders<a id="borders"></a>:** 3 values horizontal / vertical / none by default table has borders around all cells
-  * ``` global instance: <voya-table borders="horizontal/vertical/none"></voya-table>```
-
-* **width<a id="width"></a>:** sets width on column in percentage it will then even divide the widths of other column instances
-  * ```column instance: <voya-column width="60"></voya-column>```
-
-### adaptive *global and column-instance property*
-* **mobile-width<a id="mobile-width"></a>:** tells the table that when the window width is equal to or less then the implmented value
-  * ``` global instance: <voya-table mobile-width="768"></voya-table>```
-
-* **mobile<a id="mobile"></a>:** if set on column in its adaptive view it will display value in list
-  * ```column instance: <voya-column mobile></voya-column>```
-
-* **mobile-label<a id="mobile-label"></a>:** if set on column in its adaptive view it will display label in list form cell header
-  * ```column instance: <voya-column mobile-label></voya-column>```
-
-### templatling *column-instance property*
-* **cell-template<a id="cell-template"></a>:** ability to write inline html to be implemented in column instance
-  * ``` column instance: <voya-column cell-template="<a href='${link.href}'>${^link.name}</a>"></voya-column>```
-  * **${data model property mapping}:** this signature allows for the table to locgically parse out within the model the value (could be deep nested)to be implemented within the template.
-  * **${^data model property mapping}**: the carat indicates that this property should be the actual workable value for the table to work with feautres such as sorting
+## Donut Chart <a id="donut"></a>
+* **width:** alter width to chart
+* **title:** alter title to chart
+* **expand:** boolean to set expand fetaure on focused region
 
 
