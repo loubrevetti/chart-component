@@ -32,6 +32,10 @@ export class AreaSpline extends VoyaChart {
     @nullable
     hideXAxis;
 
+    @property
+    @nullable
+    maxXLabels;
+
     /**
      * Handle property change.
      * @Override
@@ -57,14 +61,27 @@ export class AreaSpline extends VoyaChart {
     buildChartModel() {
         let chartModel = {};
 
-        chartModel.axis = {};         // Used to customize the x/y axis.
-        chartModel.axis.x = {};       // Used to configure the x-axis.
-        chartModel.axis.y = {};       // Used to configure the y-axis.
-        chartModel.names = {};        // Used to build the chart Legend.
-        chartModel.data = {};         // Used to describe the chart's data.
-        chartModel.data.columns = []; // Data Columns hold data to display, as well as data for use along the x/y axis.
-        chartModel.data.hide = [];    // List of Columns that should be initially hidden from view.
-        chartModel.data.xs = {};      // Associate custom x-axis data with the col data it describes.
+        // Chart axis configuration.
+        // See:  http://c3js.org/reference.html#axis-rotated
+        chartModel.axis = {
+            x: {
+                tick: {
+                    culling: {}
+                }
+            },
+            y: {}
+        };
+
+        // Chart data configuration
+        // See:  http://c3js.org/reference.html#data-url
+        chartModel.data = {
+            columns: [],
+            hide: {},
+            xs: {}
+        };
+
+        // Binds each item in the legend to a particular column of data.
+        chartModel.names = {};
 
         // Hide the y-axis.
         if (this.hideYAxis) {
@@ -76,6 +93,13 @@ export class AreaSpline extends VoyaChart {
             chartModel.axis.x.show = false;
         }
 
+        // Cull the labels along the x-axis.
+        if (!Number.isNaN(this.maxXLabels)) {
+            chartModel.axis.x.tick.culling = {
+                max: Number.parseInt(this.maxXLabels)
+            }
+        }
+
         // Are the x-axis ticks being displayed in anything other than standard Area Spline format?
         if ((this.xAxisType) && (this.xAxisType !== 'area-spline')) {
             chartModel.axis.x.type = this.xAxisType;
@@ -83,9 +107,7 @@ export class AreaSpline extends VoyaChart {
             // Is the x-axis being set up as a Time Series specifically?
             // If so, apply any supplied formatting.
             if ((this.xAxisType === 'timeseries') && this.xAxisFormat) {
-                chartModel.axis.x.tick = {
-                    format: this.xAxisFormat
-                }
+                chartModel.axis.x.tick.format = this.xAxisFormat;
             }
         }
         
