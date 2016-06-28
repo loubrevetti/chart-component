@@ -31,7 +31,7 @@ export class VoyaChart{
 			this.assembleData();
 		}
 		@property
-		renderEvent;
+		eventBus;
 
 		@property
 		@nullable
@@ -62,6 +62,10 @@ export class VoyaChart{
 		legend;
 
 		@property
+		@nullable
+		colors;
+
+		@property
 		instanceName;
 
 		bindProperties(chart,props) {
@@ -70,7 +74,8 @@ export class VoyaChart{
 					return c ? c.toUpperCase() : '';
 				})];
 				if (chart[name] === undefined)return;
-				chart[name] = value;
+				let val = (name==="colors" && typeof(value)==="string") ? value.split(",") : value
+				chart[name] = val;
 			})
 		}
 		buildServices() {
@@ -86,7 +91,9 @@ export class VoyaChart{
 		}
 		buildChartData(){
 			this.chartModel.data.type = this.instanceName;
-			return this.chartModel
+			if(!this.colors) return this.chartModel;
+			this.chartModel.data.colors = this.buildColorModel();
+			return this.chartModel;
 		}
 		buildInstanceData(){
 			let typeConfig={};
@@ -95,6 +102,13 @@ export class VoyaChart{
 				typeConfig[prop] = this._properties[prop];
 			}
 			return typeConfig
+		}
+		buildColorModel(){
+			let colors={}
+			this.chartModel.data.columns.forEach(function(col,idx){
+				colors[col[0]] = this.colors[idx];
+			}.bind(this))
+			return colors;
 		}
 		buildLegend(){
 			let chart = this
@@ -134,7 +148,10 @@ export class VoyaChart{
 		redraw(){
 			_chart.get(this).chart.flush();
 		}
-		getData(id){
+		getData(){
+			return _chart.get(this).chart.data();
+		}
+		getVisibleData(id){
 			return (id)? _chart.get(this).chart.data.shown(id) : _chart.get(this).chart.data.shown(id);
 		}
 		getNames(){
@@ -143,6 +160,9 @@ export class VoyaChart{
 		setNames(newNames){
 			_chart.get(this).chart.data.names(newNames);
 			this.redraw();
+		}
+		updateColors(colorModel){
+			_chart.get(this).chart.data.colors(colorModel);
 		}
 		removeToolTip(){
 	        _chart.get(this).chart.tooltip.hide();
