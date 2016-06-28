@@ -24602,11 +24602,7 @@ $__System.register('1', ['25', '8a', '8d'], function (_export) {
 		var menu = document.querySelector('.toolbar');
 		var voyaChart = document.querySelector('voya-chart');
 		voyaChart.api.eventBus.on('rendered', function () {
-			//let colors={}
-			//voyaChart.api.chartModel.data.columns.forEach(function(col,idx){
-			//	colors[col[0]] = "#"+brandedModel[idx];
-			//})
-			//voyaChart.api.updateColors(colors);
+			/* TODO: any updates to charts that need to be done in a non event based handler */
 		});
 		delegate(menu).on('click', "li", function (e) {
 			var colors = {};
