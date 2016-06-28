@@ -16,17 +16,21 @@ export class AreaSpline extends VoyaChart {
     // See:  http://c3js.org/examples.html, for available chart types.
     @property
     @nullable
-    xaxistype;
+    xAxisType;
 
     // Format String for a "timeseries" x-axis.
     // C3 API Ref:  http://c3js.org/reference.html#axis-x-tick-format
     @property
     @nullable
-    xaxisformat;
+    xAxisFormat;
 
     @property({type: 'boolean'})
     @nullable
-    hideyaxis;
+    hideYAxis;
+
+    @property({type: 'boolean'})
+    @nullable
+    hideXAxis;
 
     /**
      * Handle property change.
@@ -54,6 +58,8 @@ export class AreaSpline extends VoyaChart {
         let chartModel = {};
 
         chartModel.axis = {};         // Used to customize the x/y axis.
+        chartModel.axis.x = {};       // Used to configure the x-axis.
+        chartModel.axis.y = {};       // Used to configure the y-axis.
         chartModel.names = {};        // Used to build the chart Legend.
         chartModel.data = {};         // Used to describe the chart's data.
         chartModel.data.columns = []; // Data Columns hold data to display, as well as data for use along the x/y axis.
@@ -61,23 +67,24 @@ export class AreaSpline extends VoyaChart {
         chartModel.data.xs = {};      // Associate custom x-axis data with the col data it describes.
 
         // Hide the y-axis.
-        if (this.hideyaxis) {
-            chartModel.axis.y = {
-                show: false
-            }
+        if (this.hideYAxis) {
+            chartModel.axis.y.show = false;
+        }
+
+        // Hide the x-axis.
+        if (this.hideXAxis) {
+            chartModel.axis.x.show = false;
         }
 
         // Are the x-axis ticks being displayed in anything other than standard Area Spline format?
-        if ((this.xaxistype) && (this.xaxistype !== 'area-spline')) {
-            chartModel.axis.x = {
-                type: this.xaxistype
-            };
+        if ((this.xAxisType) && (this.xAxisType !== 'area-spline')) {
+            chartModel.axis.x.type = this.xAxisType;
 
             // Is the x-axis being set up as a Time Series specifically?
             // If so, apply any supplied formatting.
-            if ((this.xaxistype === 'timeseries') && this.xaxisformat) {
+            if ((this.xAxisType === 'timeseries') && this.xAxisFormat) {
                 chartModel.axis.x.tick = {
-                    format: this.xaxisformat
+                    format: this.xAxisFormat
                 }
             }
         }

@@ -72,19 +72,19 @@
 </p>
 
 <!-- type        : Chart Type -->
-<!-- xaxistype   : Optional. X-axis type.  Use a valid chart type to change how the axis displays it's ticks -->
-<!-- xaxisformat : Optional. X-axis format string.  Use when x-axis is displaying as a Time Series -->
-<!-- hideyaxis   : Optional. Boolean. Hide/Show the y-axis. Defaults to Show (false).
+<!-- xAxisType   : Optional. X-axis type.  Use a valid chart type to change how the axis displays it's ticks -->
+<!-- xAxisFormat : Optional. X-axis format string.  Use when x-axis is displaying as a Time Series -->
+<!-- hideYAxis   : Optional. Boolean. Hide/Show the y-axis. Defaults to Show (false).
 <!-- api-url     : Data service URL -->
 <!-- api-params  : Data service request type -->
 
 <p style="width: 500px; margin: auto;">
     <voya-chart
             type="AreaSpline"
-			xaxistype="timeseries"
-			xaxisformat="%Y-%m-%d"
-			hideyaxis="true"
-            api-url="/src/stubs/balanceHistory.json"
+			x-axis-type="timeseries"
+			x-axis-format="%Y-%m-%d"
+			hide-y-axis="true"
+			api-url="/src/stubs/balanceHistory.json"
             api-params={"method":"GET"}>
     </voya-chart>
 </p>

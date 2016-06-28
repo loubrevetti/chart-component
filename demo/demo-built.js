@@ -24093,11 +24093,13 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
 
                     _get(Object.getPrototypeOf(AreaSpline.prototype), 'constructor', this).call(this, chartProperties);
 
-                    _defineDecoratedPropertyDescriptor(this, 'xaxistype', _instanceInitializers);
+                    _defineDecoratedPropertyDescriptor(this, 'xAxisType', _instanceInitializers);
 
-                    _defineDecoratedPropertyDescriptor(this, 'xaxisformat', _instanceInitializers);
+                    _defineDecoratedPropertyDescriptor(this, 'xAxisFormat', _instanceInitializers);
 
-                    _defineDecoratedPropertyDescriptor(this, 'hideyaxis', _instanceInitializers);
+                    _defineDecoratedPropertyDescriptor(this, 'hideYAxis', _instanceInitializers);
+
+                    _defineDecoratedPropertyDescriptor(this, 'hideXAxis', _instanceInitializers);
 
                     this.labels = [];
                 }
@@ -24136,6 +24138,8 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                         var chartModel = {};
 
                         chartModel.axis = {}; // Used to customize the x/y axis.
+                        chartModel.axis.x = {}; // Used to configure the x-axis.
+                        chartModel.axis.y = {}; // Used to configure the y-axis.
                         chartModel.names = {}; // Used to build the chart Legend.
                         chartModel.data = {}; // Used to describe the chart's data.
                         chartModel.data.columns = []; // Data Columns hold data to display, as well as data for use along the x/y axis.
@@ -24143,23 +24147,24 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                         chartModel.data.xs = {}; // Associate custom x-axis data with the col data it describes.
 
                         // Hide the y-axis.
-                        if (this.hideyaxis) {
-                            chartModel.axis.y = {
-                                show: false
-                            };
+                        if (this.hideYAxis) {
+                            chartModel.axis.y.show = false;
+                        }
+
+                        // Hide the x-axis.
+                        if (this.hideXAxis) {
+                            chartModel.axis.x.show = false;
                         }
 
                         // Are the x-axis ticks being displayed in anything other than standard Area Spline format?
-                        if (this.xaxistype && this.xaxistype !== 'area-spline') {
-                            chartModel.axis.x = {
-                                type: this.xaxistype
-                            };
+                        if (this.xAxisType && this.xAxisType !== 'area-spline') {
+                            chartModel.axis.x.type = this.xAxisType;
 
                             // Is the x-axis being set up as a Time Series specifically?
                             // If so, apply any supplied formatting.
-                            if (this.xaxistype === 'timeseries' && this.xaxisformat) {
+                            if (this.xAxisType === 'timeseries' && this.xAxisFormat) {
                                 chartModel.axis.x.tick = {
-                                    format: this.xaxisformat
+                                    format: this.xAxisFormat
                                 };
                             }
                         }
@@ -24196,7 +24201,7 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                         this.chartModel = chartModel;
                     }
                 }, {
-                    key: 'xaxistype',
+                    key: 'xAxisType',
                     decorators: [nullable, property],
                     initializer: null,
 
@@ -24204,12 +24209,17 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                     // C3 API Ref:  http://c3js.org/reference.html#axis-x-tick-format
                     enumerable: true
                 }, {
-                    key: 'xaxisformat',
+                    key: 'xAxisFormat',
                     decorators: [nullable, property],
                     initializer: null,
                     enumerable: true
                 }, {
-                    key: 'hideyaxis',
+                    key: 'hideYAxis',
+                    decorators: [nullable, property({ type: 'boolean' })],
+                    initializer: null,
+                    enumerable: true
+                }, {
+                    key: 'hideXAxis',
                     decorators: [nullable, property({ type: 'boolean' })],
                     initializer: null,
                     enumerable: true
