@@ -354,8 +354,8 @@ $__System.register('1e', ['20', '21', '22', '23', '24', '25', '26', '27', '1d', 
                 }, {
                     key: 'getAggregateNumber',
                     value: function getAggregateNumber(id) {
-                        if (this.getData(id).length == 0) return null;
-                        var dataPoint = this.getData(id),
+                        if (this.getVisibleData(id).length == 0) return null;
+                        var dataPoint = this.getVisibleData(id),
                             amount = 0;
                         dataPoint[0].values.forEach(function (obj) {
                             amount = amount + obj.value;
@@ -365,7 +365,7 @@ $__System.register('1e', ['20', '21', '22', '23', '24', '25', '26', '27', '1d', 
                 }, {
                     key: 'getPercentage',
                     value: function getPercentage(id) {
-                        var dataPoints = this.getData(),
+                        var dataPoints = this.getVisibleData(),
                             totalAmount = 0;
                         dataPoints.forEach((function (dataPoint) {
                             totalAmount += this.getAggregateNumber(dataPoint.id);
@@ -22530,7 +22530,7 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 				function VoyaChart(chartProperties) {
 					_classCallCheck(this, VoyaChart);
 
-					_defineDecoratedPropertyDescriptor(this, 'renderEvent', _instanceInitializers);
+					_defineDecoratedPropertyDescriptor(this, 'eventBus', _instanceInitializers);
 
 					_defineDecoratedPropertyDescriptor(this, 'services', _instanceInitializers);
 
@@ -22545,6 +22545,8 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 					_defineDecoratedPropertyDescriptor(this, 'chartModel', _instanceInitializers);
 
 					_defineDecoratedPropertyDescriptor(this, 'legend', _instanceInitializers);
+
+					_defineDecoratedPropertyDescriptor(this, 'colors', _instanceInitializers);
 
 					_defineDecoratedPropertyDescriptor(this, 'instanceName', _instanceInitializers);
 
@@ -22600,7 +22602,8 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 					key: 'buildChartData',
 					value: function buildChartData() {
 						this.chartModel.data.type = this.instanceName;
-						return this.chartModel;
+						if (!this.colors) return this.chartModel;
+						//TODO: adding color binding on instaniation
 					}
 				}, {
 					key: 'buildInstanceData',
@@ -22661,7 +22664,12 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 					}
 				}, {
 					key: 'getData',
-					value: function getData(id) {
+					value: function getData() {
+						return _chart.get(this).chart.data();
+					}
+				}, {
+					key: 'getVisibleData',
+					value: function getVisibleData(id) {
 						return id ? _chart.get(this).chart.data.shown(id) : _chart.get(this).chart.data.shown(id);
 					}
 				}, {
@@ -22676,6 +22684,11 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 						this.redraw();
 					}
 				}, {
+					key: 'updateColors',
+					value: function updateColors(colorModel) {
+						_chart.get(this).chart.data.colors(colorModel);
+					}
+				}, {
 					key: 'removeToolTip',
 					value: function removeToolTip() {
 						_chart.get(this).chart.tooltip.hide();
@@ -22687,7 +22700,7 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 						_chart.get(this).chart.internal.showTooltip([toolTipData], element);
 					}
 				}, {
-					key: 'renderEvent',
+					key: 'eventBus',
 					decorators: [property],
 					initializer: null,
 					enumerable: true
@@ -22723,6 +22736,11 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 					enumerable: true
 				}, {
 					key: 'legend',
+					decorators: [nullable, property],
+					initializer: null,
+					enumerable: true
+				}, {
+					key: 'colors',
 					decorators: [nullable, property],
 					initializer: null,
 					enumerable: true
@@ -24567,13 +24585,17 @@ $__System.registerDynamic("8d", ["8c"], true, function($__require, exports, modu
 });
 
 $__System.register('1', ['25', '8a', '8d'], function (_export) {
-	var _Object$keys, delegate, eventMethod;
+	var _Object$keys, delegate, eventMethod, brandedModel;
 
 	function appLoaded() {
 		var menu = document.querySelector('.toolbar');
 		var voyaChart = document.querySelector('voya-chart');
 		voyaChart.api.eventBus.on('rendered', function () {
-			//TODO: here is how you would work with api of chart object must wait for c3 to have rendered it
+			var colors = {};
+			voyaChart.api.chartModel.data.columns.forEach(function (col, idx) {
+				colors[col[0]] = "#" + brandedModel[idx];
+			});
+			voyaChart.api.updateColors(colors);
 		});
 		delegate(menu).on('click', "li", function (e) {
 			console.log('this menu is here and ready for voya-charts to be  leveraged to display features to devs');
@@ -24591,6 +24613,7 @@ $__System.register('1', ['25', '8a', '8d'], function (_export) {
 			eventMethod = addEventListener ? { addEventListener: "DOMContentLoaded" } : { attachEvent: "onload" };
 
 			window[_Object$keys(eventMethod)[0]](eventMethod[_Object$keys(eventMethod)[0]], appLoaded);
+			brandedModel = ["EE3B3B", "FF3030", "CD0000", "B22222"];
 		}
 	};
 });

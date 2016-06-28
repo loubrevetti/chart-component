@@ -50,15 +50,15 @@ export class Donut extends VoyaChart{
         }.bind(this))
     }
     getAggregateNumber(id){
-        if(this.getData(id).length==0)return null;
-        let dataPoint = this.getData(id),amount=0;
+        if(this.getVisibleData(id).length==0)return null;
+        let dataPoint = this.getVisibleData(id),amount=0;
         dataPoint[0].values.forEach(function(obj){
             amount = amount+obj.value;
         })
         return amount;
     }
     getPercentage(id){
-        let dataPoints = this.getData(), totalAmount=0;
+        let dataPoints = this.getVisibleData(), totalAmount=0;
         dataPoints.forEach(function(dataPoint){
             totalAmount+=this.getAggregateNumber(dataPoint.id);
         }.bind(this))
