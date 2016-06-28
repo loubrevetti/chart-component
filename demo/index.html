@@ -74,19 +74,19 @@
 <!-- type        : Chart Type -->
 <!-- xaxistype   : Optional. X-axis type.  Use a valid chart type to change how the axis displays it's ticks -->
 <!-- xaxisformat : Optional. X-axis format string.  Use when x-axis is displaying as a Time Series -->
-<!-- showalldata : Optional. TRUE/FALSE. Defaults to TRUE. Set to FALSE, to initially display only the first set of data. -->
 <!-- api-url     : Data service URL -->
 <!-- api-params  : Data service request type -->
-<p>
+
+<p style="width: 500px; margin: auto;">
     <voya-chart
             type="AreaSpline"
 			xaxistype="timeseries"
 			xaxisformat="%Y-%m-%d"
-			showalldata="false"
             api-url="/src/stubs/balanceHistory.json"
             api-params={"method":"GET"}>
     </voya-chart>
 </p>
+
 
 <!-- DO NOT REMOVE NEEDED FOR HOOKS TO COMPILED CODE FROM GULP TASKS -->
 <!-- @if DEMO_TYPE!='built' -->

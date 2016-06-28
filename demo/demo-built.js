@@ -24097,8 +24097,6 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
 
                     _defineDecoratedPropertyDescriptor(this, 'xaxisformat', _instanceInitializers);
 
-                    _defineDecoratedPropertyDescriptor(this, 'showalldata', _instanceInitializers);
-
                     this.labels = [];
                 }
 
@@ -24133,8 +24131,6 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                 }, {
                     key: 'buildChartModel',
                     value: function buildChartModel() {
-                        var _this = this;
-
                         var chartModel = {};
 
                         chartModel.axis = {}; // Used to customize the x/y axis.
@@ -24143,6 +24139,8 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                         chartModel.data.columns = []; // Data Columns hold data to display, as well as data for use along the x/y axis.
                         chartModel.data.hide = []; // List of Columns that should be initially hidden from view.
                         chartModel.data.xs = {}; // Associate custom x-axis data with the col data it describes.
+
+                        //
 
                         // Are the x-axis ticks being displayed in anything other than standard Area Spline format?
                         if (this.xaxistype && this.xaxistype !== 'area-spline') {
@@ -24171,11 +24169,6 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                             chartData.push(item.label);
                             chartData.push.apply(chartData, _toConsumableArray(item.data));
                             chartModel.data.columns.push(chartData);
-
-                            // If NOT show-all-data, make sure only the first col's data is initially displayed.
-                            if (!_this.showalldata && idx !== 0) {
-                                chartModel.data.hide.push(item.label);
-                            }
 
                             // If custom x-axis data has been supplied...
                             if (item.xAxis) {
@@ -24207,16 +24200,6 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                     key: 'xaxisformat',
                     decorators: [nullable, property],
                     initializer: null,
-
-                    // If TRUE, display all supplied data sets in the chart when the chart is first rendered.
-                    // If FALSE, initially display only the first set of data.
-                    enumerable: true
-                }, {
-                    key: 'showalldata',
-                    decorators: [property],
-                    initializer: function initializer() {
-                        return true;
-                    },
                     enumerable: true
                 }], null, _instanceInitializers);
 
