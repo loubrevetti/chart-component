@@ -24,6 +24,10 @@ export class AreaSpline extends VoyaChart {
     @nullable
     xaxisformat;
 
+    @property({type: 'boolean'})
+    @nullable
+    hideyaxis;
+
     /**
      * Handle property change.
      * @Override
@@ -55,8 +59,13 @@ export class AreaSpline extends VoyaChart {
         chartModel.data.columns = []; // Data Columns hold data to display, as well as data for use along the x/y axis.
         chartModel.data.hide = [];    // List of Columns that should be initially hidden from view.
         chartModel.data.xs = {};      // Associate custom x-axis data with the col data it describes.
-        
-        //
+
+        // Hide the y-axis.
+        if (this.hideyaxis) {
+            chartModel.axis.y = {
+                show: false
+            }
+        }
 
         // Are the x-axis ticks being displayed in anything other than standard Area Spline format?
         if ((this.xaxistype) && (this.xaxistype !== 'area-spline')) {
@@ -86,7 +95,7 @@ export class AreaSpline extends VoyaChart {
                 chartData.push(item.label);
                 chartData.push(...item.data);
                 chartModel.data.columns.push(chartData);
-                
+
                 // If custom x-axis data has been supplied...
                 if (item.xAxis) {
                     let xAxisData = []; // Data to act as the chart's x-axis.

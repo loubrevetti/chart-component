@@ -74,6 +74,7 @@
 <!-- type        : Chart Type -->
 <!-- xaxistype   : Optional. X-axis type.  Use a valid chart type to change how the axis displays it's ticks -->
 <!-- xaxisformat : Optional. X-axis format string.  Use when x-axis is displaying as a Time Series -->
+<!-- hideyaxis   : Optional. Boolean. Hide/Show the y-axis. Defaults to Show (false).
 <!-- api-url     : Data service URL -->
 <!-- api-params  : Data service request type -->
 
@@ -82,11 +83,11 @@
             type="AreaSpline"
 			xaxistype="timeseries"
 			xaxisformat="%Y-%m-%d"
+			hideyaxis="true"
             api-url="/src/stubs/balanceHistory.json"
             api-params={"method":"GET"}>
     </voya-chart>
 </p>
-
 
 <!-- DO NOT REMOVE NEEDED FOR HOOKS TO COMPILED CODE FROM GULP TASKS -->
 <!-- @if DEMO_TYPE!='built' -->

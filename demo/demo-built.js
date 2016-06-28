@@ -24097,6 +24097,8 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
 
                     _defineDecoratedPropertyDescriptor(this, 'xaxisformat', _instanceInitializers);
 
+                    _defineDecoratedPropertyDescriptor(this, 'hideyaxis', _instanceInitializers);
+
                     this.labels = [];
                 }
 
@@ -24140,7 +24142,12 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                         chartModel.data.hide = []; // List of Columns that should be initially hidden from view.
                         chartModel.data.xs = {}; // Associate custom x-axis data with the col data it describes.
 
-                        //
+                        // Hide the y-axis.
+                        if (this.hideyaxis) {
+                            chartModel.axis.y = {
+                                show: false
+                            };
+                        }
 
                         // Are the x-axis ticks being displayed in anything other than standard Area Spline format?
                         if (this.xaxistype && this.xaxistype !== 'area-spline') {
@@ -24199,6 +24206,11 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                 }, {
                     key: 'xaxisformat',
                     decorators: [nullable, property],
+                    initializer: null,
+                    enumerable: true
+                }, {
+                    key: 'hideyaxis',
+                    decorators: [nullable, property({ type: 'boolean' })],
                     initializer: null,
                     enumerable: true
                 }], null, _instanceInitializers);
