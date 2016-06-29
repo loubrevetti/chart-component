@@ -24,17 +24,25 @@ export class AreaSpline extends VoyaChart {
     @nullable
     xAxisFormat;
 
+    // Hide/Show y-axis
     @property({type: 'boolean'})
     @nullable
     hideYAxis;
 
+    // Hide/Show x-axis
     @property({type: 'boolean'})
     @nullable
     hideXAxis;
 
+    // Max number of Labels to display along the x-axis.
+    // C3 will automatically choose logically-spaced labels from those available.
     @property
     @nullable
     maxXLabels;
+
+    @property({type: 'boolean'})
+    @nullable
+    groupTooltip;
 
     /**
      * Handle property change.
@@ -80,8 +88,20 @@ export class AreaSpline extends VoyaChart {
             xs: {}
         };
 
+        // Chart Tooltip configuration
+        // See:  http://c3js.org/reference.html#tooltip-show
+        chartModel.tooltip = {
+            // TODO: Define function to return custom ToolTip HTML?
+            // contents: (data, defaultTitleFormat, defaultValueFormat, color) => {}
+        };
+
         // Binds each item in the legend to a particular column of data.
         chartModel.names = {};
+
+        // Group vertically aligned data points into a single ToolTip.
+        if (!this.groupTooltip) {
+            chartModel.tooltip.grouped = false;
+        }
 
         // Hide the y-axis.
         if (this.hideYAxis) {
