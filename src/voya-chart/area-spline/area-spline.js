@@ -9,6 +9,7 @@ export class AreaSpline extends VoyaChart {
      */
     constructor(chartProperties) {
         super(chartProperties);
+        this.eventBus.on('converttomobile',this.responsiveChart.bind(this));
         this.labels = [];
     }
 
@@ -65,13 +66,16 @@ export class AreaSpline extends VoyaChart {
         if ((this.xaxistype) && (this.xaxistype !== 'area-spline')) {
             chartModel.axis.x = {
                 type: this.xaxistype
+
             };
 
             // Is the x-axis being set up as a Time Series specifically?
             // If so, apply any supplied formatting.
             if ((this.xaxistype === 'timeseries') && this.xaxisformat) {
                 chartModel.axis.x.tick = {
-                    format: this.xaxisformat
+                    format: this.xaxisformat,
+                    culling:{max:6}
+
                 }
             }
         }
@@ -113,5 +117,8 @@ export class AreaSpline extends VoyaChart {
         );
 
         this.chartModel = chartModel;
+    }
+    responsiveChart(e){
+        console.log('area spline '+ e)
     }
 }

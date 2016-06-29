@@ -7,6 +7,7 @@ export class Donut extends VoyaChart{
         this.labels=[];
         this.eventBus.on('legenditemhover',this.showToolTip.bind(this));
         this.eventBus.on('legenditemout',this.hideToolTip.bind(this));
+        this.eventBus.on('converttomobile',this.responsiveChart.bind(this));
     }
 
     @property
@@ -72,5 +73,8 @@ export class Donut extends VoyaChart{
     }
     hideToolTip(toolTipId){
         this.removeToolTip();
+    }
+    responsiveChart(e){
+        console.log('donut '+ e)
     }
 }

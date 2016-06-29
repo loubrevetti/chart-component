@@ -7,7 +7,7 @@ let _chartEvents = new WeakMap();
 export class VoyaChart{
 		constructor(chartProperties){
 			_chart.set(this, {c3:c3,chart:null});
-			_chartEvents.set(this,{render:'rendered',update:'update',legendItemClick:'legenditemclick',legendItemHover:'legenditemhover',legendItemOut:'legenditemout'});
+			_chartEvents.set(this,{render:'rendered',update:'update',legendItemClick:'legenditemclick',legendItemHover:'legenditemhover',legendItemOut:'legenditemout',convertToMobile:'converttomobile'});
 			this.eventBus = ee();
 			this.services = VoyaChartServices();
 			this.chartModel={};
@@ -28,10 +28,15 @@ export class VoyaChart{
 
 			this.bindProperties(this,chartProperties);
 			this.buildServices();
+			if(this.mobileWidth) this.responsiveListener();
 			this.assembleData();
 		}
 		@property
 		eventBus;
+
+		@property
+		@nullable
+		deviceType;
 
 		@property
 		@nullable
@@ -64,6 +69,10 @@ export class VoyaChart{
 		@property
 		@nullable
 		colors;
+
+		@property
+		@nullable
+		mobileWidth;
 
 		@property
 		instanceName;
@@ -171,4 +180,12 @@ export class VoyaChart{
 		setToolTip(toolTipData,element){
 			_chart.get(this).chart.internal.showTooltip([toolTipData],element)
 		}
+		responsiveListener(){
+			window.addEventListener("resize",function(e){
+				let windowWidth=(e)? e.target.outerWidth : window.outerWidth, deviceType = (windowWidth<=this.mobileWidth)? "mobile" : "desktop";
+				if(deviceType === this.deviceType) return;
+				this.eventBus.emit(_chartEvents.get(this).convertToMobile,deviceType);
+				this.deviceType = deviceType;
+			}.bind(this))
+		};
 }

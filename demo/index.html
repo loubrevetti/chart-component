@@ -46,7 +46,8 @@
 			api-params={"method":"GET"}
 			title="Your Accounts"
 			legend={"position":"right"}
-			colors="#9CBA7F,#659D32,#488214,#586949"
+			colors="#9CBA7F,#659D32,#488214,#586949",
+			mobile-width="768"
 	></voya-chart>
 </p>
 
@@ -56,14 +57,16 @@
 <!-- showalldata : Optional. TRUE/FALSE. Defaults to TRUE. Set to FALSE, to initially display only the first set of data. -->
 <!-- api-url     : Data service URL -->
 <!-- api-params  : Data service request type -->
-<p>
+<p style="width:400px; margin:0px auto;">
     <voya-chart
             type="AreaSpline"
 			xaxistype="timeseries"
 			xaxisformat="%Y-%m-%d"
 			showalldata="false"
             api-url="/src/stubs/balanceHistory.json"
-            api-params={"method":"GET"}>
+            api-params={"method":"GET"}
+			mobile-width="768"
+	>
     </voya-chart>
 </p>
 

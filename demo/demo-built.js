@@ -313,6 +313,7 @@ $__System.register('1e', ['20', '21', '22', '23', '24', '25', '26', '27', '1d', 
                     this.labels = [];
                     this.eventBus.on('legenditemhover', this.showToolTip.bind(this));
                     this.eventBus.on('legenditemout', this.hideToolTip.bind(this));
+                    this.eventBus.on('converttomobile', this.responsiveChart.bind(this));
                 }
 
                 _createDecoratedClass(Donut, [{
@@ -384,6 +385,11 @@ $__System.register('1e', ['20', '21', '22', '23', '24', '25', '26', '27', '1d', 
                     key: 'hideToolTip',
                     value: function hideToolTip(toolTipId) {
                         this.removeToolTip();
+                    }
+                }, {
+                    key: 'responsiveChart',
+                    value: function responsiveChart(e) {
+                        console.log('donut ' + e);
                     }
                 }, {
                     key: 'width',
@@ -22532,6 +22538,8 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 
 					_defineDecoratedPropertyDescriptor(this, 'eventBus', _instanceInitializers);
 
+					_defineDecoratedPropertyDescriptor(this, 'deviceType', _instanceInitializers);
+
 					_defineDecoratedPropertyDescriptor(this, 'services', _instanceInitializers);
 
 					_defineDecoratedPropertyDescriptor(this, 'apiUrl', _instanceInitializers);
@@ -22548,10 +22556,12 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 
 					_defineDecoratedPropertyDescriptor(this, 'colors', _instanceInitializers);
 
+					_defineDecoratedPropertyDescriptor(this, 'mobileWidth', _instanceInitializers);
+
 					_defineDecoratedPropertyDescriptor(this, 'instanceName', _instanceInitializers);
 
 					_chart.set(this, { c3: c3, chart: null });
-					_chartEvents.set(this, { render: 'rendered', update: 'update', legendItemClick: 'legenditemclick', legendItemHover: 'legenditemhover', legendItemOut: 'legenditemout' });
+					_chartEvents.set(this, { render: 'rendered', update: 'update', legendItemClick: 'legenditemclick', legendItemHover: 'legenditemhover', legendItemOut: 'legenditemout', convertToMobile: 'converttomobile' });
 					this.eventBus = ee();
 					this.services = VoyaChartServices();
 					this.chartModel = {};
@@ -22567,6 +22577,7 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 
 					this.bindProperties(this, chartProperties);
 					this.buildServices();
+					if (this.mobileWidth) this.responsiveListener();
 					this.assembleData();
 				}
 
@@ -22711,8 +22722,24 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 						_chart.get(this).chart.internal.showTooltip([toolTipData], element);
 					}
 				}, {
+					key: 'responsiveListener',
+					value: function responsiveListener() {
+						window.addEventListener("resize", (function (e) {
+							var windowWidth = e ? e.target.outerWidth : window.outerWidth,
+							    deviceType = windowWidth <= this.mobileWidth ? "mobile" : "desktop";
+							if (deviceType === this.deviceType) return;
+							this.eventBus.emit(_chartEvents.get(this).convertToMobile, deviceType);
+							this.deviceType = deviceType;
+						}).bind(this));
+					}
+				}, {
 					key: 'eventBus',
 					decorators: [property],
+					initializer: null,
+					enumerable: true
+				}, {
+					key: 'deviceType',
+					decorators: [nullable, property],
 					initializer: null,
 					enumerable: true
 				}, {
@@ -22752,6 +22779,11 @@ $__System.register('1f', ['22', '23', '24', '25', '27', '53', '4d', '6a', '6c'],
 					enumerable: true
 				}, {
 					key: 'colors',
+					decorators: [nullable, property],
+					initializer: null,
+					enumerable: true
+				}, {
+					key: 'mobileWidth',
 					decorators: [nullable, property],
 					initializer: null,
 					enumerable: true
@@ -24128,6 +24160,7 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
 
                     _defineDecoratedPropertyDescriptor(this, 'showalldata', _instanceInitializers);
 
+                    this.eventBus.on('converttomobile', this.responsiveChart.bind(this));
                     this.labels = [];
                 }
 
@@ -24177,13 +24210,16 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                         if (this.xaxistype && this.xaxistype !== 'area-spline') {
                             chartModel.axis.x = {
                                 type: this.xaxistype
+
                             };
 
                             // Is the x-axis being set up as a Time Series specifically?
                             // If so, apply any supplied formatting.
                             if (this.xaxistype === 'timeseries' && this.xaxisformat) {
                                 chartModel.axis.x.tick = {
-                                    format: this.xaxisformat
+                                    format: this.xaxisformat,
+                                    culling: { max: 6 }
+
                                 };
                             }
                         }
@@ -24223,6 +24259,11 @@ $__System.register('89', ['20', '21', '22', '23', '24', '27', '3c', '1f'], funct
                         });
 
                         this.chartModel = chartModel;
+                    }
+                }, {
+                    key: 'responsiveChart',
+                    value: function responsiveChart(e) {
+                        console.log('area spline ' + e);
                     }
                 }, {
                     key: 'xaxistype',
@@ -24602,11 +24643,7 @@ $__System.register('1', ['25', '8a', '8d'], function (_export) {
 		var menu = document.querySelector('.toolbar');
 		var voyaChart = document.querySelector('voya-chart');
 		voyaChart.api.eventBus.on('rendered', function () {
-			//let colors={}
-			//voyaChart.api.chartModel.data.columns.forEach(function(col,idx){
-			//	colors[col[0]] = "#"+brandedModel[idx];
-			//})
-			//voyaChart.api.updateColors(colors);
+			/* TODO: any updates to charts that need to be done in a non event based handler */
 		});
 		delegate(menu).on('click', "li", function (e) {
 			var colors = {};
