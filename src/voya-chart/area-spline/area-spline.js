@@ -90,7 +90,10 @@ export class AreaSpline extends VoyaChart {
 
         // Chart Tooltip configuration
         // See:  http://c3js.org/reference.html#tooltip-show
-        chartModel.tooltip = {};
+        chartModel.tooltip = {
+            // TODO: Define function to return custom ToolTip HTML?
+            // contents: (data, defaultTitleFormat, defaultValueFormat, color) => {}
+        };
 
         // Binds each item in the legend to a particular column of data.
         chartModel.names = {};
