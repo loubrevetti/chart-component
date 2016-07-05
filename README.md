@@ -72,5 +72,3 @@ this is the base class that all types extend from, this class has all core prope
 * **getPercentage:** will return percentage of column data from id passed into method as a decimal value
 * **showToolTip:** show tooltip of data item given data id passed into method
 * **hideToolTip:** hide tooltip
-
-
