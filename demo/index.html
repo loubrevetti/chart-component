@@ -57,15 +57,17 @@
 <!-- showalldata : Optional. TRUE/FALSE. Defaults to TRUE. Set to FALSE, to initially display only the first set of data. -->
 <!-- api-url     : Data service URL -->
 <!-- api-params  : Data service request type -->
-<p style="width:400px; margin:0px auto;">
+<p>
     <voya-chart
             type="AreaSpline"
-			xaxistype="timeseries"
-			xaxisformat="%Y-%m-%d"
-			showalldata="false"
+			x-axis-type="timeseries"
+			x-axis-format="%Y-%m-%d"
+			show-all-data="false"
+			hide-y-axis="true"
             api-url="/src/stubs/balanceHistory.json"
             api-params={"method":"GET"}
 			mobile-width="768"
+			max-x-labels="4"
 	>
     </voya-chart>
 </p>

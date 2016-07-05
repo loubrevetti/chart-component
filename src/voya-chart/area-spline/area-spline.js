@@ -9,6 +9,7 @@ export class AreaSpline extends VoyaChart {
      */
     constructor(chartProperties) {
         super(chartProperties);
+        this.eventBus.on('converttomobile',this.responsiveChart.bind(this));
         this.labels = [];
     }
 
@@ -163,5 +164,8 @@ export class AreaSpline extends VoyaChart {
         );
 
         this.chartModel = chartModel;
+    }
+    responsiveChart(e){
+        console.log('area spline '+ e)
     }
 }

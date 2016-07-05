@@ -25,8 +25,9 @@ System.config({
     "d3": "npm:d3@3.5.17",
     "dom-delegate": "npm:dom-delegate@2.0.3",
     "event-emitter": "npm:event-emitter@0.3.4",
+    "private-protected": "npm:private-decorator@0.1.7",
     "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@2.4.2",
-    "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@3.3.2",
+    "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@3.3.3",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
     },
@@ -77,25 +78,25 @@ System.config({
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
     },
     "npm:d@0.1.1": {
-      "es5-ext": "npm:es5-ext@0.10.11"
+      "es5-ext": "npm:es5-ext@0.10.12"
     },
-    "npm:es5-ext@0.10.11": {
+    "npm:es5-ext@0.10.12": {
       "es6-iterator": "npm:es6-iterator@2.0.0",
-      "es6-symbol": "npm:es6-symbol@3.0.2",
+      "es6-symbol": "npm:es6-symbol@3.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:es6-iterator@2.0.0": {
       "d": "npm:d@0.1.1",
-      "es5-ext": "npm:es5-ext@0.10.11",
-      "es6-symbol": "npm:es6-symbol@3.0.2"
+      "es5-ext": "npm:es5-ext@0.10.12",
+      "es6-symbol": "npm:es6-symbol@3.1.0"
     },
-    "npm:es6-symbol@3.0.2": {
+    "npm:es6-symbol@3.1.0": {
       "d": "npm:d@0.1.1",
-      "es5-ext": "npm:es5-ext@0.10.11"
+      "es5-ext": "npm:es5-ext@0.10.12"
     },
     "npm:event-emitter@0.3.4": {
       "d": "npm:d@0.1.1",
-      "es5-ext": "npm:es5-ext@0.10.11",
+      "es5-ext": "npm:es5-ext@0.10.12",
       "events": "github:jspm/nodelibs-events@0.1.1"
     },
     "npm:font-awesome@4.4.0": {
@@ -123,7 +124,7 @@ System.config({
       "compass-mixins": "github:Igosuki/compass-mixins@1.0.2",
       "font-awesome": "npm:font-awesome@4.4.0"
     },
-    "voya-github:Voya/deep-ui-voya-component-utils@3.3.2": {
+    "voya-github:Voya/deep-ui-voya-component-utils@3.3.3": {
       "camelcase": "npm:camelcase@2.1.1",
       "decamelize": "npm:decamelize@1.2.0"
     }

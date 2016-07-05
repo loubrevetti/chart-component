@@ -1,5 +1,6 @@
 import {VoyaChart} from '../voya-chart';
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
+import {privatemember, protectedmember} from 'voya-component-utils/decorators/method-decorators';
 
 export class Donut extends VoyaChart{
     constructor(chartProperties){
@@ -25,13 +26,15 @@ export class Donut extends VoyaChart{
     propertyChangedCallback(prop,oldValue,newValue){
         if(oldValue === newValue) return;
         if(prop === "dataModel"){
-            this.createConfig()
+            this.createConfig();
         }
     }
+    @privatemember
     createConfig(){
         this.assembleChartModel(this.desemmbleRawData());
         this.createChart();
     }
+    @privatemember
     desemmbleRawData(){
         let dataMappings = new Map();
         this.dataModel.forEach(function(record,idx){
@@ -42,39 +45,41 @@ export class Donut extends VoyaChart{
         })
         return Array.from(dataMappings);
     }
+    @privatemember
     assembleChartModel(data){
-        this.chartModel.data={};
-        this.chartModel.data.names={};
+        this.chartModel.data={names:{}};
         this.chartModel.data.columns=data.map(function(datapoint){
             this.chartModel.data.names[datapoint[0]] = datapoint[0];
             return datapoint[1];
         }.bind(this))
     }
+    @privatemember
     getAggregateNumber(id){
         if(this.getVisibleData(id).length==0)return null;
-        let dataPoint = this.getVisibleData(id),amount=0;
-        dataPoint[0].values.forEach(function(obj){
+        let amount=0;
+        this.getVisibleData(id)[0].values.forEach(function(obj){
             amount = amount+obj.value;
         })
         return amount;
     }
+    responsiveChart(e){
+        if(this.hasChartRendered()) this.destroy();
+        this.legend.position = (e==="mobile")? "bottom" : "right";
+        this.createChart();
+    }
     getPercentage(id){
-        let dataPoints = this.getVisibleData(), totalAmount=0;
-        dataPoints.forEach(function(dataPoint){
+        let totalAmount=0;
+        this.getVisibleData().forEach(function(dataPoint){
             totalAmount+=this.getAggregateNumber(dataPoint.id);
-        }.bind(this))
+        }.bind(this));
         return parseFloat((this.getAggregateNumber(id)/totalAmount));
     }
     showToolTip(toolTipId){
         if(!this.getAggregateNumber(toolTipId))return;
-        let selector=toolTipId.replace(/ /g,"-");
-        let toolTipData={id:toolTipId, name:toolTipId, value:this.getAggregateNumber(toolTipId), ratio:this.getPercentage(toolTipId)}
-        this.setToolTip(toolTipData,d3.select(".c3-arc-"+selector)[0][0]);
+        let toolTipData={id:toolTipId, name:toolTipId, value:this.getAggregateNumber(toolTipId), ratio:this.getPercentage(toolTipId)};
+        this.setToolTip(toolTipData,d3.select(".c3-arc-"+toolTipId.replace(/ /g,"-"))[0][0]);
     }
-    hideToolTip(toolTipId){
+    hideToolTip(){
         this.removeToolTip();
-    }
-    responsiveChart(e){
-        console.log('donut '+ e)
     }
 }
