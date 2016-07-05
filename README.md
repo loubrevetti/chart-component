@@ -37,6 +37,7 @@ Spline Chart | [spline-chart](#spline)
 ## Base Chart<a id="base"></a>
 this is the base class that all types extend from, this class has all core properties across the board for all chart types
 
+### Public properties
 * -**eventBus:** emits events form the chart api for devs to listen to in order to properly hook back into chart public interface
     - **rendered**: fires when chart has rendered
     - **update**: fires when charts data model has been updated
@@ -58,7 +59,7 @@ this is the base class that all types extend from, this class has all core prope
 * **getNames:** returns the names of all column data for target ids
 * **setNames:** allows you to reset label name by providing new names object ex {targetId,'new label',targetId,"new label"}
 * **updateColors:** method which updates color scheme for chart
-* **updateConfig:** property which holds chart configuration plus assembled data model for chart inheritance
+* **updateConfig:** update config for chart model
 
 
 ## Donut Chart <a id="donut"></a>
