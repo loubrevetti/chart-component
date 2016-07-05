@@ -51,8 +51,14 @@ this is the base class that all types extend from, this class has all core prope
 
 
 ## Donut Chart <a id="donut"></a>
+### Public properties
 * **width:** alter width to chart
 * **title:** alter title to chart
 * **expand:** boolean to set expand fetaure on focused region
+
+### Public methods
+* **getPercentage:** will return percentage of column data from id passed into method as a decimal value
+* **showToolTip:** show tooltip of data item given data id passed into method
+* **hideToolTip:** hide tooltip
 
 
