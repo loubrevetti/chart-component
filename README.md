@@ -47,7 +47,18 @@ this is the base class that all types extend from, this class has all core prope
 * **dataModel:** property which holds raw data model to chart instance
 * **chartModel:** property which holds chart configuration plus assembled data model for chart inheritance
 * **legend:** porperty which holds legend pbject for chart
-* **colors:** property whixh will change the data point colors
+* **colors:** property whixc will change the data point colors
+
+### Public methods
+* **redraw:** method which redraws chart if config has changed
+* **destroy:** method which destorys chart and config from chart component
+* **resize:** allows you to resize chart provided you provide a dimensions object ex {'width':number, 'height':number}
+* **getData:** returns raw data of chart object
+* **getVisibleData:** returns only visible data currently on chart
+* **getNames:** returns the names of all column data for target ids
+* **setNames:** allows you to reset label name by providing new names object ex {targetId,'new label',targetId,"new label"}
+* **updateColors:** method which updates color scheme for chart
+* **updateConfig:** property which holds chart configuration plus assembled data model for chart inheritance
 
 
 ## Donut Chart <a id="donut"></a>
