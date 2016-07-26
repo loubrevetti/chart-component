@@ -9,8 +9,7 @@ export class AreaSpline extends VoyaChart {
      */
     constructor(chartProperties) {
         super(chartProperties);
-        this.eventBus.on('converttomobile',this.responsiveChart.bind(this));
-        this.labels = [];
+        this.eventBus.on('converttomobile', this.responsiveChart.bind(this));
     }
 
     // Set to a C3 chart type, in order to customize the ticks along the x-axis.
@@ -24,6 +23,10 @@ export class AreaSpline extends VoyaChart {
     @property
     @nullable
     xAxisFormat;
+
+    @property({type: 'boolean'})
+    @nullable
+    showAllData;
 
     // Hide/Show y-axis
     @property({type: 'boolean'})
@@ -41,9 +44,21 @@ export class AreaSpline extends VoyaChart {
     @nullable
     maxXLabels;
 
+    // Group vertically aligned data points into a single ToolTip.
     @property({type: 'boolean'})
     @nullable
     groupTooltip;
+
+    // Sets the radius of rendered data-points on the chart.
+    @property
+    @nullable
+    pointRadius;
+
+    // JSON String.  Array of HEX color values, 1 for each set of data.
+    // Customizes the colors used to represent each data set on the chart.
+    @property
+    @nullable
+    chartColors;
 
     /**
      * Handle property change.
@@ -69,6 +84,22 @@ export class AreaSpline extends VoyaChart {
      */
     buildChartModel() {
         let chartModel = {};
+        let showAllDataSets;
+
+        // If the user is on a mobile device, force ShowAllDataSets to FALSE.
+        // Otherwise, use whatever value the show-all-data HTML attribute is set to.
+        if (this.mobileWidth >= window.screen.width) {
+            showAllDataSets = false;
+
+        } else {
+            if (typeof this.showAllData === 'boolean') {
+                showAllDataSets = this.showAllData;
+            } else if (typeof this.showAllData === 'string') {
+                showAllDataSets = (this.showAllData.toLowerCase() === 'true');
+            } else {
+                showAllDataSets = true;
+            }
+        }
 
         // Chart axis configuration.
         // See:  http://c3js.org/reference.html#axis-rotated
@@ -85,9 +116,35 @@ export class AreaSpline extends VoyaChart {
         // See:  http://c3js.org/reference.html#data-url
         chartModel.data = {
             columns: [],
-            hide: {},
+            hide: [],
             xs: {}
         };
+
+        // Custom chart colors
+        if (typeof this.chartColors === 'string') {
+            try {
+                let colors = JSON.parse(this.chartColors);
+
+                if (Array.isArray(colors) && colors.length > 0) {
+                    chartModel.color = {
+                        pattern: [...colors]
+                    };
+                }
+            } catch(err) {
+                console.log(`ERROR: ${err.message}. Unable to apply custom chart colors. Using defaults.`);
+            }
+        }
+
+        // Chart data-point configuration
+        if (this.pointRadius) {
+            let pr = Number.parseInt(this.pointRadius, 10);
+
+            if (!Number.isNaN(pr)) {
+                chartModel.point = {
+                    r: pr // Point radius
+                };
+            }
+        }
 
         // Chart Tooltip configuration
         // See:  http://c3js.org/reference.html#tooltip-show
@@ -146,6 +203,11 @@ export class AreaSpline extends VoyaChart {
                 chartData.push(...item.data);
                 chartModel.data.columns.push(chartData);
 
+                // Should All Data be displayed?  If not, show only the first data set on page-load.
+                if ((!showAllDataSets) && (idx > 0)) {
+                    chartModel.data.hide.push(item.label);
+                }
+
                 // If custom x-axis data has been supplied...
                 if (item.xAxis) {
                     let xAxisData = []; // Data to act as the chart's x-axis.
@@ -165,7 +227,12 @@ export class AreaSpline extends VoyaChart {
 
         this.chartModel = chartModel;
     }
-    responsiveChart(e){
-        console.log('area spline '+ e)
+
+    /**
+     * Responsive Chart
+     * @param e
+     */
+    responsiveChart(e) {
+        console.log('area spline ' + e);
     }
 }

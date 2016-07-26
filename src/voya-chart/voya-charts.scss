@@ -1,5 +1,12 @@
 /*base style sheet for component skinning*/
 @import "jspm:c3/src/scss/main";
-voya-charts{
+voya-chart {
 
+  .c3-legend-item {
+    > text {
+      font-family: $font-family-regular;
+      font-weight: bold;
+      color: $text-gray;
+    }
+  }
 }

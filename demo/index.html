@@ -46,28 +46,37 @@
 			api-params={"method":"GET"}
 			title="Your Accounts"
 			legend={"position":"right"}
-			colors="#9CBA7F,#659D32,#488214,#586949",
+			colors="#9CBA7F,#659D32,#488214,#586949"
 			mobile-width="768"
 	></voya-chart>
 </p>
 
-<!-- type        : Chart Type -->
-<!-- xaxistype   : Optional. X-axis type.  Use a valid chart type to change how the axis displays it's ticks -->
-<!-- xaxisformat : Optional. X-axis format string.  Use when x-axis is displaying as a Time Series -->
-<!-- showalldata : Optional. TRUE/FALSE. Defaults to TRUE. Set to FALSE, to initially display only the first set of data. -->
-<!-- api-url     : Data service URL -->
-<!-- api-params  : Data service request type -->
+<!-- type          : Chart Type -->
+<!-- x-axis-type   : Optional. X-axis type. Use a valid chart type to change how the axis displays it's ticks -->
+<!-- x-axis-format : Optional. X-axis format string. Use when x-axis is displaying as a Time Series -->
+<!-- show-all-data : Optional. TRUE/FALSE. Defaults to TRUE. Set to FALSE, to initially display only the first set of data. -->
+<!-- hide-y-axis   : Optional. TRUE/FALSE. Defaults to FALSE. Set to TRUE to hide the chart's Y-axis. -->
+<!-- max-x-labels  : Optional. The maximum number of labels to display along the X-axis. -->
+<!-- point-radius  : Optional. Data-point radius. Defaults to 2.5. -->
+<!-- group-tooltip : Optional. TRUE/FALSE. Defaults to FALSE.  Group vertically aligned data points into a single ToolTip. -->
+<!-- chart-colors  : Optional. JSON String. Array of HEX color values, 1 for each set of data. Customizes the colors used to represent each data set on the chart. -->
+<!-- api-url       : Data service URL -->
+<!-- api-params    : Data service request type -->
+<!-- mobile-width  : The width at which the chart switches to a mobile layout. -->
+
 <p>
     <voya-chart
             type="AreaSpline"
 			x-axis-type="timeseries"
 			x-axis-format="%Y-%m-%d"
-			show-all-data="false"
 			hide-y-axis="true"
+			show-all-data="true"
             api-url="/src/stubs/balanceHistory.json"
             api-params={"method":"GET"}
 			mobile-width="768"
 			max-x-labels="4"
+			point-radius="6"
+			chart-colors='["#DDDDDD", "#AAAAAA", "#777777", "#444444"]'
 	>
     </voya-chart>
 </p>
