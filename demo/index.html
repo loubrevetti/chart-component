@@ -60,18 +60,23 @@
 <!-- point-radius  : Optional. Data-point radius. Defaults to 2.5. -->
 <!-- group-tooltip : Optional. TRUE/FALSE. Defaults to FALSE.  Group vertically aligned data points into a single ToolTip. -->
 <!-- chart-colors  : Optional. JSON String. Array of HEX color values, 1 for each set of data. Customizes the colors used to represent each data set on the chart. -->
-<!-- api-url       : Data service URL -->
+<!-- data          : Optional. JSON String. Data to inject directly into the chart. -->
+<!-- api-url       : Optional. String. Data service URL. Either 'data' or 'api-url' should be supplied. -->
 <!-- api-params    : Data service request type -->
 <!-- mobile-width  : The width at which the chart switches to a mobile layout. -->
 
 <p>
+    <!--
+        api-url="/src/stubs/balanceHistory.json"
+        Switch out 'api-url' with 'data' to test getting data via a web service vs. an html attribute
+    -->
     <voya-chart
             type="AreaSpline"
 			x-axis-type="timeseries"
 			x-axis-format="%Y-%m-%d"
 			hide-y-axis="true"
 			show-all-data="true"
-            api-url="/src/stubs/balanceHistory.json"
+            data='[{ "label": "3 mo", "data": [10000, 20000, 30000], "xAxis": ["2015-01-01", "2015-02-01", "2015-03-01"]}, {"label": "6 mo", "data": [10000, 20000, 30000, 25000, 35000, 30000], "xAxis": ["2015-01-01", "2015-02-01", "2015-03-01", "2015-04-01", "2015-05-01", "2015-06-01"]}, {"label": "1 yr", "data": [10000, 20000, 30000, 25000, 35000, 30000, 40000, 50000, 40000, 45000, 60000, 55000], "xAxis": ["2015-01-01", "2015-02-01", "2015-03-01", "2015-04-01", "2015-05-01", "2015-06-01", "2015-07-01", "2015-08-01", "2015-09-01", "2015-10-01", "2015-11-01", "2015-12-01"]}, { "label": "2 yr", "data": [ 10000, 20000, 30000, 25000, 35000, 30000, 40000, 50000, 40000, 45000, 60000, 55000, 60000, 70000, 80000, 75000, 75000, 80000, 85000, 90000, 95000, 90000, 100000, 95000], "xAxis": [ "2015-01-01", "2015-02-01", "2015-03-01", "2015-04-01", "2015-05-01", "2015-06-01", "2015-07-01", "2015-08-01", "2015-09-01", "2015-10-01", "2015-11-01", "2015-12-01", "2016-01-01", "2016-02-01", "2016-03-01", "2016-04-01", "2016-05-01", "2016-06-01", "2016-07-01", "2016-08-01", "2016-09-01", "2016-10-01", "2016-11-01", "2016-12-01"] }]'
             api-params={"method":"GET"}
 			mobile-width="768"
 			max-x-labels="4"
