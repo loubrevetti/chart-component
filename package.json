@@ -38,6 +38,7 @@
     "esnext": true
   },
   "jspm": {
+    "main": "voya-charts.js",
     "directories": {
       "lib": "src"
     },
