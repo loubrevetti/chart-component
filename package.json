@@ -38,7 +38,7 @@
     "esnext": true
   },
   "jspm": {
-    "main": "voya-charts.js",
+    "main": "voya-chart.js",
     "directories": {
       "lib": "src"
     },
