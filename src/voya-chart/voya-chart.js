@@ -94,41 +94,19 @@ export class VoyaChart{
 
 		@privatemember
 		assembleData() {
-
-			// If an API URL has been provided, get the data from the web service.
-			// Otherwise, use the 'data' HTML attribute.
 			if (this.apiUrl) {
 				this.services.loadData().then(function (response) {
 					this.dataModel = response.records;
 				}.bind(this));
 
-			} else if (this.data) {
-				try {
-					let records = JSON.parse(this.data);
-					let self = this;
-
-					window.setTimeout(
-						() => {
-							self.dataModel = records;
-						}, 0
-					);
-
-					//this.dataModel = records;
-				} catch (err) {
-					// TODO: How should the UI indicate that we got invalid JSON?
-					console.log(`ERROR: ${err.message}`);
-				}
-
 			} else {
-				// TODO: How should the UI indicate there is no data to display?
-				console.log('ERROR: Chart cannot be constructed. No Data.');
+				// This will allow the Chart Object to finish initializing, though nothing will be rendered on-screen.
+				this.dataModel = [];
+				console.log("WARN - Voya Chart. Unable to render chart. No chart data provided.");
 			}
 
-			// Only need to add the responsive listener, if there's some possibility of successfully rendering the chart.
-			if (this.apiUrl || this.data) {
-				if (this.mobileWidth) {
-					this.responsiveListener();
-				}
+			if (this.mobileWidth) {
+				this.responsiveListener();
 			}
 		}
 

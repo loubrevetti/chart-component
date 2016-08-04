@@ -76,6 +76,12 @@ export class AreaSpline extends VoyaChart {
             this.buildChartModel();
             this.createChart();
         }
+
+        if (prop === 'data') {
+            if (typeof newValue === 'string' && newValue.length > 0) {
+                this.dataModel = JSON.parse(newValue);
+            }
+        }
     }
 
     /**
