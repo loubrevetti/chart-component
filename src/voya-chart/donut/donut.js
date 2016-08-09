@@ -10,7 +10,6 @@ export class Donut extends VoyaChart{
         this.eventBus.on('legenditemout',this.hideToolTip.bind(this));
         this.eventBus.on('converttomobile',this.responsiveChart.bind(this));
     }
-
     @property
     @nullable
     width;
@@ -31,27 +30,19 @@ export class Donut extends VoyaChart{
     }
     @privatemember
     createConfig(){
-        this.assembleChartModel(this.desemmbleRawData());
+        this.assembleChartModel();
         this.createChart();
     }
     @privatemember
-    desemmbleRawData(){
-        let dataMappings = new Map();
-        this.dataModel.forEach(function(record,idx){
-            Object.keys(record).forEach(function(key){
-                if(idx === 0) dataMappings.set(key,[key]);
-                dataMappings.get(key).push(record[key]);
-            })
-        })
-        return Array.from(dataMappings);
-    }
-    @privatemember
-    assembleChartModel(data){
-        this.chartModel.data={names:{}};
-        this.chartModel.data.columns=data.map(function(datapoint){
-            this.chartModel.data.names[datapoint[0]] = datapoint[0];
-            return datapoint[1];
-        }.bind(this))
+    assembleChartModel(){
+        this.chartModel.data.columns=this.dataModel.map(function(datapoint){
+            this.buildNameModel(datapoint);
+            this.buildColorModel(datapoint);
+            let val = Object.keys(datapoint).map((key)=>(key!=="name" && key !=="color")? key : null).filter((item)=>(item)?item:null)[0]
+            let array = Array(1).fill(datapoint[val])
+                array.unshift(datapoint.name)
+            return array;
+        }.bind(this));
     }
     @privatemember
     getAggregateNumber(id){

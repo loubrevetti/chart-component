@@ -45,6 +45,10 @@ export class VoyaChart{
 
 		@property
 		@nullable
+		bindingProperty;
+
+		@property
+		@nullable
 		dataModel;
 
 		@property
@@ -96,7 +100,7 @@ export class VoyaChart{
 		assembleData() {
 			if (this.apiUrl) {
 				this.services.loadData().then(function (response) {
-					this.dataModel = response.records;
+					this.dataModel = response[this.bindingProperty];
 				}.bind(this));
 
 			} else {
@@ -114,7 +118,6 @@ export class VoyaChart{
 		buildChartData(){
 			this.chartModel.data.type = this.instanceName;
 			if(!this.colors) return this.chartModel;
-			this.chartModel.data.colors = this.buildColorModel();
 		}
 
 		@privatemember
@@ -126,13 +129,15 @@ export class VoyaChart{
 			}.bind(this))
 			this.chartModel[this.instanceName] = typeConfig;
 		}
-		@privatemember
-		buildColorModel(){
-			let colors={}
-			this.chartModel.data.columns.forEach(function(col,idx){
-				colors[col[0]] = this.colors[idx];
-			}.bind(this));
-			return colors;
+		@protectedmember
+		buildColorModel(datapoint){
+			if(!this.chartModel.data.colors) this.chartModel.data.colors={}
+			this.chartModel.data.colors[datapoint.name]=datapoint.color;
+		}
+		@protectedmember
+		buildNameModel(datapoint){
+			if(!this.chartModel.data.names) this.chartModel.data.names={};
+			this.chartModel.data.names[datapoint.name] = datapoint.name;
 		}
 		@privatemember
 		buildLegend(){

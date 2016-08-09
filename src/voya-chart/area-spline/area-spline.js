@@ -71,7 +71,6 @@ export class AreaSpline extends VoyaChart {
         if (oldValue === newValue) {
             return;
         }
-
         if (prop === "dataModel") {
             this.buildChartModel();
             this.createChart();
@@ -88,6 +87,9 @@ export class AreaSpline extends VoyaChart {
      * Using the data supplied by the server, construct the ChartModel Object.
      * The ChartModel Object will ultimately supply the data to C3 in order to construct the chart.
      */
+    buildChartModel2(){
+
+    }
     buildChartModel() {
         let chartModel = {};
         let showAllDataSets;
@@ -232,6 +234,7 @@ export class AreaSpline extends VoyaChart {
         );
 
         this.chartModel = chartModel;
+        console.log(this.chartModel)
     }
 
     /**

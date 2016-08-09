@@ -47,6 +47,7 @@
 			title="Your Accounts"
 			legend={"position":"right"}
 			colors="#9CBA7F,#659D32,#488214,#586949"
+			binding-property="allocationsData"
 			mobile-width="768"
 	></voya-chart>
 </p>
@@ -63,7 +64,6 @@
 <!-- api-url       : Optional. String. Data service URL. Either 'data' or 'api-url' should be supplied. -->
 <!-- api-params    : Data service request type -->
 <!-- mobile-width  : The width at which the chart switches to a mobile layout. -->
-
 <p>
     <!--
         api-url="/src/stubs/balanceHistory.json"
@@ -77,6 +77,7 @@
 			show-all-data="true"
             api-url="/src/stubs/balanceHistory.json"
             api-params={"method":"GET"}
+			data-mapping="{}"
 			mobile-width="768"
 			max-x-labels="4"
 			point-radius="6"
