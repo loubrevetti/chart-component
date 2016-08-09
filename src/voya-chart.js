@@ -1,9 +1,10 @@
+import {NativeHTMLElement} from 'voya-component-utils';
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
 import {Donut} from './voya-chart/donut/donut';
 import {AreaSpline} from './voya-chart/area-spline/area-spline';
 let _chartInstances = new WeakMap();
 
-export class VoyaChart extends (HTMLElement || Element){
+export class VoyaChart extends NativeHTMLElement {
     createdCallback(){
         let chartInstances={"_DONUT": Donut, "_AREASPLINE": AreaSpline};
         _chartInstances.set(this,chartInstances);
