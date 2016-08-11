@@ -72,10 +72,11 @@
     <voya-chart
             type="AreaSpline"
 			x-axis-type="timeseries"
-			x-axis-format="%Y-%m-%d"
+			x-axis-format="%m/%d/%Y"
 			hide-y-axis="true"
 			show-all-data="true"
             api-url="/src/stubs/balanceHistory.json"
+			binding-property="data"
             api-params={"method":"GET"}
 			data-mapping="{}"
 			mobile-width="768"

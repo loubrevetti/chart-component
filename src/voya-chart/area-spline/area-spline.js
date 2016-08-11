@@ -1,6 +1,6 @@
 import {VoyaChart} from '../voya-chart';
 import {property, nullable} from 'voya-component-utils/decorators/property-decorators';
-
+let _properties = new WeakMap();
 export class AreaSpline extends VoyaChart {
 
     /**
@@ -9,6 +9,7 @@ export class AreaSpline extends VoyaChart {
      */
     constructor(chartProperties) {
         super(chartProperties);
+        _properties.set(this,{nameMapping:{},xAxis:[],data:[],columns:[]})
         this.eventBus.on('converttomobile', this.responsiveChart.bind(this));
     }
 
@@ -72,6 +73,7 @@ export class AreaSpline extends VoyaChart {
             return;
         }
         if (prop === "dataModel") {
+            this.normalizeData(this.dataModel);
             this.buildChartModel();
             this.createChart();
         }
@@ -87,8 +89,41 @@ export class AreaSpline extends VoyaChart {
      * Using the data supplied by the server, construct the ChartModel Object.
      * The ChartModel Object will ultimately supply the data to C3 in order to construct the chart.
      */
-    buildChartModel2(){
-
+    normalizeData(dataModel){
+        dataModel.map(function(data){
+            Object.keys(data).forEach(function(property){
+                if(Array.isArray(data[property])) {
+                    this.normalizeData(data[property]);
+                    return;
+                }else{
+                    if(property!=="groupBy" && typeof(data[property]) === "string" && data[property].match(/[a-z]/i)) this.addNames(data[property]);
+                    if(typeof(data[property]) === "number") this.addValues(data[property]);
+                    if(typeof(data[property]) === "string" && data[property].match(/^(\d{2})\/(\d{2})\/(\d{4})$/)) this.addDates(data[property]);
+                }
+            }.bind(this))
+        }.bind(this))
+        this.addToColumnsArray();
+    }
+    addDates(date){
+        _properties.get(this).xAxis.push(new Date(date))
+    }
+    addValues(value){
+        _properties.get(this).data.push(value)
+    }
+    addNames(name){
+        _properties.get(this).data.push(name);
+        _properties.get(this).xAxis.push("x_"+name);
+        _properties.get(this).nameMapping[name] = "x_"+name;
+    }
+    addToColumnsArray(){
+        if(_properties.get(this).data.length===0) return;
+        _properties.get(this).columns.push(_properties.get(this).data);
+        _properties.get(this).columns.push(_properties.get(this).xAxis);
+        this.resetDataPoint()
+    }
+    resetDataPoint(){
+        _properties.get(this).data = [];
+        _properties.get(this).xAxis = [];
     }
     buildChartModel() {
         let chartModel = {};
@@ -123,9 +158,9 @@ export class AreaSpline extends VoyaChart {
         // Chart data configuration
         // See:  http://c3js.org/reference.html#data-url
         chartModel.data = {
-            columns: [],
+            columns: _properties.get(this).columns,
             hide: [],
-            xs: {}
+            xs: _properties.get(this).nameMapping
         };
 
         // Custom chart colors
@@ -196,43 +231,6 @@ export class AreaSpline extends VoyaChart {
                 chartModel.axis.x.tick.format = this.xAxisFormat;
             }
         }
-        
-        this.dataModel.forEach(
-            (item, idx, arr) => {
-                let chartData = []; // Data, to be displayed in the chart.
-
-                // Store the names of each set of data to be displayed in the chart.
-                chartModel.names[item.label] = item.label;
-
-                // Column data for an individual col is supplied to C3 as an array.
-                // The first item in the array, identifies the data in the col.
-                // Col data identifiers should be unique.
-                chartData.push(item.label);
-                chartData.push(...item.data);
-                chartModel.data.columns.push(chartData);
-
-                // Should All Data be displayed?  If not, show only the first data set on page-load.
-                if ((!showAllDataSets) && (idx > 0)) {
-                    chartModel.data.hide.push(item.label);
-                }
-
-                // If custom x-axis data has been supplied...
-                if (item.xAxis) {
-                    let xAxisData = []; // Data to act as the chart's x-axis.
-                    let xPrefix = 'x_';
-
-                    // This property tells C3 which cols of data will serve as the ticks along the x-axis.
-                    // The identified cols will be excluded from the chart itself and serve only to deliniate points along the axis.
-                    // Format = { Col data to display : Col data to use as it's x-axis }
-                    chartModel.data.xs[item.label] = `${xPrefix}${item.label}`;
-
-                    xAxisData.push(`${xPrefix}${item.label}`);
-                    xAxisData.push(...item.xAxis);
-                    chartModel.data.columns.push(xAxisData);
-                }
-            }
-        );
-
         this.chartModel = chartModel;
         console.log(this.chartModel)
     }
