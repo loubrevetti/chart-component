@@ -4,7 +4,7 @@ chart component for deep architecture, this chart offers advanced features such 
 ### live Demo
 [github pages] **still work in progress(https://pages.github.voya.net/Voya/deep-ui-voya-table/)
 
-###Implementation of table component
+###Implementation of chart component
 1. download repository into local machine
 2. run ```npm install```
 3. run ```jspm install```
@@ -46,6 +46,7 @@ this is the base class that all types extend from, this class has all core prope
     - **legenditemout**: fires when chart legend item activates mouseout 
     
 * **dataModel:** property which holds raw data model to chart instance
+* ** bindingPorperty:** property which abstracts data form service to use within chart
 * **chartModel:** property which holds chart configuration plus assembled data model for chart inheritance
 * **legend:** porperty which holds legend pbject for chart
 * **colors:** property whixc will change the data point colors
@@ -63,6 +64,11 @@ this is the base class that all types extend from, this class has all core prope
 
 
 ## Donut Chart <a id="donut"></a>
+### Expected JSON Model
+  * this model should be built as an array of object containing 3 key/value pairs, you need to identify two property names:
+  * name: contains label, and color contains color for datapoint
+  * data model assumption ```bindingProperty[{'name':'label for data', 'value':'the value', 'color':'#f00'}]```
+  
 ### Public properties
 * **width:** alter width to chart
 * **title:** alter title to chart
