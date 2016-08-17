@@ -1,5 +1,5 @@
 export function restAssembly(){
-    let apiParams={method:"POST",headers:{'Content-Type': 'application/json','credentials':'include','mode':'cors'}};
+    let apiParams={method:"POST",headers:{'Content-Type': 'application/json'}};
     let REQUEST;
     let RESPONSE;
     function buildRequest(params){
