@@ -72,15 +72,27 @@ export class AreaSpline extends VoyaChart {
         if (oldValue === newValue) {
             return;
         }
+
         if (prop === "dataModel") {
-            this.normalizeData(this.dataModel);
-            this.buildChartModel();
-            this.createChart();
+            if (Array.isArray(this.dataModel) && this.dataModel.length > 0) {
+                this.normalizeData(this.dataModel);
+                this.buildChartModel();
+                this.createChart();
+            } else {
+                console.log('Area-Spline Chart::propertyChangedCallback() - dataModel Array is empty or not an Array.');
+            }
         }
 
         if (prop === 'data') {
             if (typeof newValue === 'string' && newValue.length > 0) {
                 this.dataModel = JSON.parse(newValue);
+            }
+        }
+
+        if (prop === 'apiUrl') {
+            if (typeof newValue === 'string' && newValue.length > 0) {
+                this.buildServices();
+                this.assembleData();
             }
         }
     }
