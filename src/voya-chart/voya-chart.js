@@ -88,7 +88,6 @@ export class VoyaChart{
 			})
 		}
 
-		@privatemember
 		buildServices() {
 			if (!this.apiUrl) return;
 			let payload = (this.apiParams && typeof(this.apiParams)==="string")? JSON.parse(this.apiParams) : this.apiParams;
@@ -96,7 +95,6 @@ export class VoyaChart{
 			this.services.api(apiParams)
 		}
 
-		@privatemember
 		assembleData() {
 			if (this.apiUrl) {
 				this.services.loadData().then(function (response) {
