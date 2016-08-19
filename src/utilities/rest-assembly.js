@@ -1,5 +1,5 @@
 export function restAssembly(){
-    let apiParams={method:"POST",headers:{'Content-Type': 'application/json'}};
+    let apiParams={method:"POST",headers:{'Content-Type': 'application/json','X-Requested-By': 'myVoya'}};
     let REQUEST;
     let RESPONSE;
     function buildRequest(params){
