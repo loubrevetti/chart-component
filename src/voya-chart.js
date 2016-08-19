@@ -1,3 +1,9 @@
+//8/19/2016 JPRAY - temporarily commenting out all of the privatemember/protectedmember decorators.
+// There were blocking errors being thrown in FF (non-blocking in Chrome) because 
+// getCallerName() was returning '@' within MyVoya-UI charts.  
+// Also, relying on throwing an error within a try block is too hackish and bad for 
+// performance to use as a standard way of achieving private/protected properties
+
 import {NativeHTMLElement} from 'voya-component-utils';
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
 import {Donut} from './voya-chart/donut/donut';

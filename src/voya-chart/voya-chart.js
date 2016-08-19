@@ -78,7 +78,7 @@ export class VoyaChart{
 		@property
 		instanceName;
 
-		@privatemember
+		//@privatemember
 		bindProperties(chart,props) {
 			Object.keys(props).forEach(function (attr) {
 				let [value,name] = [props[attr].value, props[attr].name.replace(/[-_\s]+(.)?/g, function (match, c) {return c ? c.toUpperCase() : '';})];
@@ -112,13 +112,13 @@ export class VoyaChart{
 			}
 		}
 
-		@privatemember
+		//@privatemember
 		buildChartData(){
 			this.chartModel.data.type = this.instanceName;
 			if(!this.colors) return this.chartModel;
 		}
 
-		@privatemember
+		//@privatemember
 		buildInstanceData(){
 			let typeConfig={};
 			Object.keys(this._properties).forEach(function(prop){
@@ -127,17 +127,17 @@ export class VoyaChart{
 			}.bind(this))
 			this.chartModel[this.instanceName] = typeConfig;
 		}
-		@protectedmember
+		//@protectedmember
 		buildColorModel(datapoint){
 			if(!this.chartModel.data.colors) this.chartModel.data.colors={}
 			this.chartModel.data.colors[datapoint.name]=datapoint.color;
 		}
-		@protectedmember
+		//@protectedmember
 		buildNameModel(datapoint){
 			if(!this.chartModel.data.names) this.chartModel.data.names={};
 			this.chartModel.data.names[datapoint.name] = datapoint.name;
 		}
-		@privatemember
+		//@privatemember
 		buildLegend(){
 			let chart = this
 			if(!this.legend.item) this.legend['item']={};
@@ -155,7 +155,7 @@ export class VoyaChart{
 			}
 			this.chartModel.legend = this.legend;
 		}
-		@protectedmember
+		//@protectedmember
 		createChart(){
 			this.buildChartData();
 			if(this.legend) this.buildLegend();
@@ -167,7 +167,7 @@ export class VoyaChart{
 		//end of build for base chart
 
 		//exposing public api for implementing devs
-		@privatemember
+		//@privatemember
 		exposeC3Api(chart,c3Properties){
 			Object.keys(c3Properties).forEach(function (prop) {
 				if (chart[prop] === undefined || prop==="legend")return;
@@ -209,7 +209,7 @@ export class VoyaChart{
 		setToolTip(toolTipData,element){
 			_chart.get(this).chart.internal.showTooltip([toolTipData],element)
 		}
-		@protectedmember
+		//@protectedmember
 		responsiveListener(){
 			this.deviceType = (window.outerWidth <= this.mobileWidth)? "mobile" : "desktop";
 			this.emitMobileEvent(this.deviceType)
@@ -220,7 +220,7 @@ export class VoyaChart{
 				this.deviceType = deviceType;
 			}.bind(this));
 		}
-		@protectedmember
+		//@protectedmember
 		emitMobileEvent(deviceType){
 			this.eventBus.emit(_chartEvents.get(this).convertToMobile,deviceType);
 		}

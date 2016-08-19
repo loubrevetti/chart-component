@@ -28,12 +28,12 @@ export class Donut extends VoyaChart{
             this.createConfig();
         }
     }
-    @privatemember
+    //@privatemember
     createConfig(){
         this.assembleChartModel();
         this.createChart();
     }
-    @privatemember
+    //@privatemember
     assembleChartModel(){
         this.chartModel.data.columns=this.dataModel.map(function(datapoint){
             this.buildNameModel(datapoint);
@@ -44,7 +44,7 @@ export class Donut extends VoyaChart{
             return array;
         }.bind(this));
     }
-    @privatemember
+    //@privatemember
     getAggregateNumber(id){
         if(this.getVisibleData(id).length==0)return null;
         let amount=0;
