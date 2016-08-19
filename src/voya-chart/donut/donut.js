@@ -22,12 +22,21 @@ export class Donut extends VoyaChart{
     @nullable
     expand;
 
-    propertyChangedCallback(prop,oldValue,newValue){
-        if(oldValue === newValue) return;
-        if(prop === "dataModel"){
+    propertyChangedCallback(prop, oldValue, newValue) {
+        if (oldValue === newValue) return;
+
+        if (prop === "dataModel") {
             this.createConfig();
         }
+
+        if (prop === 'apiUrl') {
+            if (typeof newValue === 'string' && newValue.length > 0) {
+                this.buildServices();
+                this.assembleData();
+            }
+        }
     }
+
     @privatemember
     createConfig(){
         this.assembleChartModel();
