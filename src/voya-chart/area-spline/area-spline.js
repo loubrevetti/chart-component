@@ -109,7 +109,7 @@ export class AreaSpline extends VoyaChart {
                     return;
                 }else{
                     if(property!=="groupBy" && typeof(data[property]) === "string" && data[property].match(/[a-z]/i)) this.addNames(data[property]);
-                    if(typeof(data[property]) === "number") this.addValues(data[property]);
+                    if(typeof(data[property]) === "number") this.addValues(data[property])
                     if(typeof(data[property]) === "string" && data[property].match(/^(\d{2})\/(\d{2})\/(\d{4})$/)) this.addDates(data[property]);
                 }
             }.bind(this))
