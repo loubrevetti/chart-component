@@ -41,7 +41,11 @@ export class VoyaChart{
 		
 		@property
 		@nullable
-		apiParams;
+		fetchOptions;
+
+		@property
+		@nullable
+		fetchPayload;
 
 		@property
 		@nullable
@@ -90,8 +94,9 @@ export class VoyaChart{
 
 		buildServices() {
 			if (!this.apiUrl) return;
-			let payload = (this.apiParams && typeof(this.apiParams)==="string")? JSON.parse(this.apiParams) : this.apiParams;
-			let apiParams={url:this.apiUrl,payload:payload};
+			let payload = (this.fetchPayload && typeof(this.fetchPayload)==="string")? JSON.parse(this.fetchPayload) : this.fetchPayload;
+			let options = (this.fetchOptions && typeof(this.fetchOptions)==="string")? JSON.parse(this.fetchOptions) : this.fetchOptions;
+			let apiParams={url:this.apiUrl,payload:payload,options:options};
 			this.services.api(apiParams)
 		}
 
