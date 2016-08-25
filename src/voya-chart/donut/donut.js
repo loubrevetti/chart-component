@@ -39,6 +39,7 @@ export class Donut extends VoyaChart{
 
     //@privatemember
     createConfig(){
+        if(this.hasChartRendered()) this.destroy();
         this.assembleChartModel();
         this.createChart();
     }
