@@ -78,7 +78,7 @@ export class Donut extends VoyaChart{
     showToolTip(toolTipId){
         if(!this.getAggregateNumber(toolTipId))return;
         let toolTipData={id:toolTipId, name:toolTipId, value:this.getAggregateNumber(toolTipId), ratio:this.getPercentage(toolTipId)};
-        this.setToolTip(toolTipData,d3.select(".c3-arc-"+toolTipId.replace(/ /g,"-"))[0][0]);
+        this.setToolTip(toolTipData,d3.select(".c3-arc-"+toolTipId.replace(/( |\/)/g,"-"))[0][0]);
     }
     hideToolTip(){
         this.removeToolTip();
