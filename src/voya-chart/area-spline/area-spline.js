@@ -1,5 +1,6 @@
 import {VoyaChart} from '../voya-chart';
 import {property, nullable} from 'voya-component-utils/decorators/property-decorators';
+import {format} from '../../utilities/data-formats';
 let _properties = new WeakMap();
 export class AreaSpline extends VoyaChart {
 
@@ -140,7 +141,6 @@ export class AreaSpline extends VoyaChart {
     buildChartModel() {
         let chartModel = {};
         let showAllDataSets;
-
         // If the user is on a mobile device, force ShowAllDataSets to FALSE.
         // Otherwise, use whatever value the show-all-data HTML attribute is set to.
         if (this.mobileWidth >= window.screen.width) {
@@ -206,6 +206,11 @@ export class AreaSpline extends VoyaChart {
         chartModel.tooltip = {
             // TODO: Define function to return custom ToolTip HTML?
             // contents: (data, defaultTitleFormat, defaultValueFormat, color) => {}
+            format:{
+                value:function(value){
+                    return (this.dataFormat)? format.getFormat()[this.dataFormat](value) : value;
+                }.bind(this)
+            }
         };
 
         // Binds each item in the legend to a particular column of data.
@@ -244,7 +249,7 @@ export class AreaSpline extends VoyaChart {
             }
         }
         this.chartModel = chartModel;
-        console.log(this.chartModel)
+        console.log(JSON.stringify(this.chartModel))
     }
 
     /**

@@ -61,6 +61,10 @@ export class VoyaChart{
 
 		@property
 		@nullable
+		dataFormat;
+
+		@property
+		@nullable
 		element;
 
 		@property
