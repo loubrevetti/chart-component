@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>voya-charts</title>
+  <link rel="stylesheet" type="text/css" href="demo.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+
+  <script src="https://voyaretirement.intg.voyaplans.com/static/global/js/vendor/ie/respond.min.js"></script>
+
+  <!--[if IE 8]><script src="//cdnjs.cloudflare.com/ajax/libs/ie8/0.2.3/ie8.js"></script><![endif]-->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/dom4/1.3.1/dom4.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/document-register-element/0.2.1/document-register-element.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.0/es5-shim.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.0/es5-sham.js"></script>
+</head>
+<style>
+	body{padding:0px; margin:0px;}
+	body ul{list-style: none; background: #aaa; margin: 0px; padding: 0px; position: relative; z-index: 1; box-shadow: 0px 0px 3px 2px rgba(0,0,0,.75); border-bottom: 1px solid #bbb;}
+	body ul:after{content:""; clear:both; display:table;}
+	body ul li{float:left; padding:10px 20px; font-size:12px; text-shadow: 0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7); color:#888; cursor:pointer; transition:background .25s, color .35s}
+	body ul li:hover{color:#fff; background:#666; transition:background .25s, color .35s}
+	.voyaWrapper{position:absolute; width:100%; height:100%; overflow:hidden}
+	.voyaWallpaper{ position: absolute; width: 300%; height: 350%; background: url(voyaLogo.png); background-size: 8%; opacity: .10; transform: rotate(30deg); left: -30%;}
+</style>
+<body>
+<div class="voyaWrapper">
+	<div class="voyaWallpaper"></div>
+</div>
+<ul class="toolbar">
+		<li data-property="pie" data-value="cllors">Change pie to red</li>
+</ul>
+
+<!-- inline html for implementation to serve for demo purposes -->
+<p>
+    <voya-chart
+			type="Donut"
+			width="80"
+			expand="true"
+			api-url="src/stubs/chart.json"
+			fetch-options={"method":"GET"}
+			title=""
+			legend={"position":"right"}
+			colors="#9CBA7F,#659D32,#488214,#586949"
+			binding-property="allocationsData"
+			mobile-width="768"
+	></voya-chart>
+</p>
+
+<!-- type             : Chart Type -->
+<!-- x-axis-type      : Optional. X-axis type. Use a valid chart type to change how the axis displays it's ticks -->
+<!-- x-axis-format    : Optional. X-axis format string. Use when x-axis is displaying as a Time Series -->
+<!-- show-all-data    : Optional. TRUE/FALSE. Defaults to TRUE. Set to FALSE, to initially display only the first set of data. -->
+<!-- hide-y-axis      : Optional. TRUE/FALSE. Defaults to FALSE. Set to TRUE to hide the chart's Y-axis. -->
+<!-- max-x-labels     : Optional. The maximum number of labels to display along the X-axis. -->
+<!-- point-radius     : Optional. Data-point radius. Defaults to 2.5. -->
+<!-- group-tooltip    : Optional. TRUE/FALSE. Defaults to FALSE.  Group vertically aligned data points into a single ToolTip. -->
+<!-- chart-colors     : Optional. JSON String. Array of HEX color values, 1 for each set of data. Customizes the colors used to represent each data set on the chart. -->
+<!-- api-url          : Optional. String. Data service URL. Either 'data' or 'api-url' should be supplied. -->
+<!-- binding-property : Required if the Chart is going to be calling a web service directly, in order to retrieve chart data. Indicates which property of the returned object contains the chart data -->
+<!-- api-params       : Data service request type -->
+<!-- mobile-width     : The width at which the chart switches to a mobile layout. -->
+<p>
+    <!--
+        api-url="/src/stubs/balanceHistory.json"
+        Switch out 'api-url' with 'data' to test getting data via a web service vs. an html attribute
+    -->
+    <voya-chart
+            type="AreaSpline"
+			x-axis-type="timeseries"
+			x-axis-format="%m/%d/%Y"
+			hide-y-axis="true"
+			show-all-data="true"
+      api-url="src/stubs/balanceHistory.json"
+			binding-property="data"
+            fetch-options={"method":"GET"}
+			data-mapping="{}"
+			mobile-width="768"
+			max-x-labels="4"
+			point-radius="6"
+			data-format="currency"
+			chart-colors='["#DDDDDD", "#AAAAAA", "#777777", "#444444"]'
+	>
+    </voya-chart>
+</p>
+
+<!-- DO NOT REMOVE NEEDED FOR HOOKS TO COMPILED CODE FROM GULP TASKS -->
+<!-- @if DEMO_TYPE!='built' -->
+<script src='../jspm_packages/system.js'></script><!-- required -->
+<script src='../config.js'></script><!-- required -->
+
+<!-- @if DEMO_TYPE='built' -->
+<script src="demo-built.js"></script>
+<!-- @endif -->
+
+</body>
+</html>
